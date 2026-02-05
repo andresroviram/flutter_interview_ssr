@@ -19,9 +19,9 @@ Sistema profesional de gestión de usuarios y direcciones desarrollado con Flutt
       <b>Detalle de Usuario</b>
     </td>
     <td align="center">
-      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.28.29.png" width="250" alt="Filtros Avanzados"/>
+      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.15.58.png" width="250" alt="Formulario de Usuario"/>
       <br/>
-      <b>Filtros Avanzados</b>
+      <b>Formulario de Usuario</b>
     </td>
   </tr>
   <tr>
@@ -31,9 +31,9 @@ Sistema profesional de gestión de usuarios y direcciones desarrollado con Flutt
       <b>Lista de Direcciones</b>
     </td>
     <td align="center">
-      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.15.58.png" width="250" alt="Formulario de Usuario"/>
+      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.28.29.png" width="250" alt="Filtros Avanzados"/>
       <br/>
-      <b>Formulario de Usuario</b>
+      <b>Filtros Avanzados</b>
     </td>
     <td align="center">
       <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.16.18.png" width="250" alt="Buscador"/>
