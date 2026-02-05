@@ -19,26 +19,26 @@ Sistema profesional de gestión de usuarios y direcciones desarrollado con Flutt
       <b>Detalle de Usuario</b>
     </td>
     <td align="center">
-      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.14.36.png" width="250" alt="Formulario de Usuario"/>
+      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.28.29.png" width="250" alt="Filtros Avanzados"/>
       <br/>
-      <b>Formulario de Usuario</b>
+      <b>Filtros Avanzados</b>
     </td>
   </tr>
   <tr>
     <td align="center">
-      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.15.34.png" width="250" alt="Panel de Filtros"/>
-      <br/>
-      <b>Panel de Filtros</b>
-    </td>
-    <td align="center">
-      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.15.58.png" width="250" alt="Lista de Direcciones"/>
+      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.15.34.png" width="250" alt="Lista de Direcciones"/>
       <br/>
       <b>Lista de Direcciones</b>
     </td>
     <td align="center">
-      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.16.18.png" width="250" alt="Formulario de Dirección"/>
+      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.15.58.png" width="250" alt="Formulario de Usuario"/>
       <br/>
-      <b>Formulario de Dirección</b>
+      <b>Formulario de Usuario</b>
+    </td>
+    <td align="center">
+      <img src="screenshots/Simulator Screenshot - iPhone 17 Pro Max - 2026-02-05 at 13.16.18.png" width="250" alt="Buscador"/>
+      <br/>
+      <b>Buscador</b>
     </td>
   </tr>
 </table>
