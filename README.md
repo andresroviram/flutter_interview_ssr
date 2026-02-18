@@ -73,7 +73,7 @@ lib/
 └── features/                       # Features del negocio
     ├── users/
     │   ├── data/                   # Capa de datos
-    │   │   ├── datasources/        # Fuentes de datos (Hive)
+    │   │   ├── datasources/        # Fuentes de datos (Drift SQLite)
     │   │   ├── models/             # Modelos serializables
     │   │   └── repositories/       # Implementación de repositorios
     │   ├── domain/                 # Lógica de negocio
@@ -111,7 +111,7 @@ lib/
 **Data Layer:**
 
 ✅ Modelo serializable con json_serializable  
-✅ DataSource Hive con operaciones CRUD completas  
+✅ DataSource Drift con operaciones CRUD completas y migraciones  
 ✅ Repository implementation con manejo de errores
 
 **Presentation Layer:**
@@ -132,7 +132,7 @@ lib/
 **Data Layer:**
 
 ✅ Modelo serializable con json_serializable  
-✅ DataSource Hive con gestión de direcciones  
+✅ DataSource Drift con gestión de direcciones y relaciones  
 ✅ Repository implementation con manejo de errores
 
 **Presentation Layer:**
@@ -186,9 +186,13 @@ flutter_riverpod: ^3.0.3
 # Navigation
 go_router: ^17.0.1
 
-# Local Storage
-hive: ^2.2.3
-hive_flutter: ^1.1.0
+# Local Storage & Database
+drift: ^2.31.0
+sqlite3_flutter_libs: ^0.5.24
+path_provider: ^2.1.5
+path: ^1.9.1
+sqlite3_web: ^0.1.1  # Web support
+web: ^1.1.0  # Web support
 
 # Code Generation
 json_annotation: ^4.9.0
@@ -196,6 +200,8 @@ freezed_annotation: ^3.1.0
 build_runner: ^2.10.4
 json_serializable: ^6.11.2
 freezed: ^3.2.3
+drift_dev: ^2.31.0
+build_web_compilers: ^4.0.11  # Web worker compilation
 
 # Utils
 intl: ^0.20.2
@@ -256,4 +262,29 @@ flutter analyze
 **Feature-First**: Escalabilidad y modularidad  
 **Riverpod sin codegen**: Simplicidad y type safety  
 **Result Pattern**: Errores explícitos y funcionales  
-**Hive**: Performance y persistencia local
+**Drift (SQLite)**: Base de datos relacional con ORM type-safe, soporte multi-plataforma (mobile, desktop, web con WASM)
+## 🌐 Soporte Web
+
+Este proyecto incluye soporte completo para Flutter Web utilizando Drift con SQLite WASM:
+
+✅ **WasmDatabase** - SQLite ejecutándose en el navegador con WebAssembly  
+✅ **Web Worker** - Base de datos en background thread para mejor performance  
+✅ **IndexedDB Storage** - Persistencia de datos en el navegador  
+✅ **Mismo código** - Sin cambios en la lógica de negocio entre plataformas
+
+### Ejecutar en Web
+
+```bash
+# Configurar assets web (primera vez)
+.\setup_web.ps1  # Windows
+# o
+./setup_web.sh   # Linux/Mac
+
+# Ejecutar en Chrome
+flutter run -d chrome --web-port=8080
+
+# Compilar para producción
+flutter build web --release
+```
+
+Para más detalles sobre la configuración web, consulta [WEB_SUPPORT.md](WEB_SUPPORT.md).
