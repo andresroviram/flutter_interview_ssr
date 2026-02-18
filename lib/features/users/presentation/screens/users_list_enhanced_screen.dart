@@ -15,8 +15,10 @@ import '../controllers/user_filters/user_filters_notifier.dart';
 import '../controllers/user_filters/user_filters_state.dart';
 import '../controllers/user_list/user_list_notifier.dart';
 import '../controllers/user_list/user_list_state.dart';
+import '../controllers/pagination/paginate_notifier.dart';
 import '../widgets/user_card.dart';
 import '../widgets/search_bar_widget.dart';
+import '../widgets/empty_users_state.dart';
 
 class UsersListEnhancedScreen extends ConsumerStatefulWidget {
   const UsersListEnhancedScreen({super.key});
@@ -29,9 +31,6 @@ class UsersListEnhancedScreen extends ConsumerStatefulWidget {
 class _UsersListEnhancedScreenState
     extends ConsumerState<UsersListEnhancedScreen> {
   static const _initialFilters = UserFiltersState();
-  int _currentPage = 1;
-  final int _itemsPerPage = 20;
-  List<UserEntity> _displayedUsers = [];
 
   Future<void> _deleteUser(int userId) async {
     await ref
@@ -53,45 +52,21 @@ class _UsersListEnhancedScreenState
     );
   }
 
-  void _loadInitialPage(List<UserEntity> allUsers) {
-    _currentPage = 1;
-    _displayedUsers = allUsers.paginate(_currentPage, _itemsPerPage);
-  }
-
-  Future<void> _loadMoreUsers(List<UserEntity> allUsers) async {
-    if (!allUsers.hasMorePages(_currentPage, _itemsPerPage)) {
-      return;
-    }
-
-    await Future.delayed(const Duration(milliseconds: 500));
-
-    setState(() {
-      _currentPage++;
-      final nextPageUsers = allUsers.paginate(_currentPage, _itemsPerPage);
-      _displayedUsers = [..._displayedUsers, ...nextPageUsers];
-    });
-  }
-
   Future<void> _resetUsersList() async {
     final data = await ref.refresh(searchUsersProvider.future);
     if (!mounted) return;
-    setState(() {
-      _currentPage = 1;
-      _displayedUsers = data.paginate(_currentPage, _itemsPerPage);
-    });
+    ref.read(usersPaginateProvider.notifier).reset(data);
   }
 
   @override
   Widget build(BuildContext context) {
     final usersAsync = ref.watch(filteredAndSortedUsersProvider);
     final currentFilters = ref.watch(currentFiltersProvider);
+    final paginateState = ref.watch(usersPaginateProvider);
 
     ref.listen<String>(searchQueryProvider, (previous, next) {
       if (previous != next) {
-        setState(() {
-          _currentPage = 1;
-          _displayedUsers = [];
-        });
+        ref.read(usersPaginateProvider.notifier).resetPagination();
       }
     });
 
@@ -144,81 +119,43 @@ class _UsersListEnhancedScreenState
             filters: currentFilters,
             onUpdateFilters: (filters) {
               ref.read(currentFiltersProvider.notifier).updateFilters(filters);
-              setState(() {
-                _currentPage = 1;
-                _displayedUsers = [];
-              });
+              ref.read(usersPaginateProvider.notifier).resetPagination();
             },
           ),
           Expanded(
             child: usersAsync.when(
               data: (users) {
                 if (users.isEmpty) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          currentFilters.hasActiveFilters
-                              ? Icons.search_off
-                              : Icons.person_outline,
-                          size: 64,
-                          color: Colors.grey,
-                        ),
-                        const SizedBox(height: 16),
-                        Text(
-                          currentFilters.hasActiveFilters
-                              ? 'No se encontraron usuarios'
-                              : 'No hay usuarios',
-                          style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.grey,
-                          ),
-                        ),
-                        if (currentFilters.hasActiveFilters) ...[
-                          const SizedBox(height: 8),
-                          TextButton(
-                            onPressed: () {
-                              ref
-                                  .read(currentFiltersProvider.notifier)
-                                  .resetFilters();
-                              ref
-                                  .read(searchQueryProvider.notifier)
-                                  .updateQuery('');
-                            },
-                            child: const Text('Limpiar filtros'),
-                          ),
-                        ],
-                      ],
-                    ),
-                  );
+                  return EmptyUsersState(currentFilters: currentFilters);
                 }
 
-                if (_displayedUsers.isEmpty ||
-                    _displayedUsers.length > users.length) {
+                if (paginateState.displayedItems.isEmpty ||
+                    paginateState.displayedItems.length > users.length) {
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     if (mounted) {
-                      setState(() {
-                        _loadInitialPage(users);
-                      });
+                      ref
+                          .read(usersPaginateProvider.notifier)
+                          .loadInitialPage(users);
                     }
                   });
                 }
 
                 final hasMoreItems = users.hasMorePages(
-                  _currentPage,
-                  _itemsPerPage,
+                  paginateState.currentPage,
+                  paginateState.itemsPerPage,
                 );
 
                 return RefreshIndicator(
                   onRefresh: _resetUsersList,
                   child: PaginatedListView<UserEntity>(
-                    items: _displayedUsers.isEmpty
-                        ? users.paginate(1, _itemsPerPage)
-                        : _displayedUsers,
+                    items: paginateState.displayedItems.isEmpty
+                        ? users.paginate(1, paginateState.itemsPerPage)
+                        : paginateState.displayedItems,
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     hasMoreItems: hasMoreItems,
-                    onLoadMore: () => _loadMoreUsers(users),
+                    onLoadMore: () => ref
+                        .read(usersPaginateProvider.notifier)
+                        .loadMoreItems(users),
                     itemBuilder: (context, user, index) {
                       final delay = Duration(milliseconds: 50 * (index % 10));
 
