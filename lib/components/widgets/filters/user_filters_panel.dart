@@ -76,7 +76,6 @@ class _UserFiltersPanelState extends ConsumerState<UserFiltersPanel> {
                 ],
               ),
               const SizedBox(height: 24),
-
               Text(
                 'Rango de Edad',
                 style: theme.textTheme.titleMedium?.copyWith(
@@ -112,7 +111,6 @@ class _UserFiltersPanelState extends ConsumerState<UserFiltersPanel> {
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 24),
-
               Text(
                 'Ordenar por',
                 style: theme.textTheme.titleMedium?.copyWith(
@@ -137,7 +135,6 @@ class _UserFiltersPanelState extends ConsumerState<UserFiltersPanel> {
                 }).toList(),
               ),
               const SizedBox(height: 16),
-
               SwitchListTile(
                 title: const Text('Orden ascendente'),
                 subtitle: Text(
@@ -153,7 +150,6 @@ class _UserFiltersPanelState extends ConsumerState<UserFiltersPanel> {
                 contentPadding: EdgeInsets.zero,
               ),
               const SizedBox(height: 24),
-
               Row(
                 children: [
                   Expanded(

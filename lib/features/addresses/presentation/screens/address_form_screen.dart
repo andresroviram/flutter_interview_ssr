@@ -139,7 +139,6 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
               },
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _streetController,
               decoration: const InputDecoration(
@@ -153,7 +152,6 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _neighborhoodController,
               decoration: const InputDecoration(
@@ -167,7 +165,6 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _cityController,
               decoration: const InputDecoration(
@@ -181,7 +178,6 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _stateController,
               decoration: const InputDecoration(
@@ -195,7 +191,6 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _postalCodeController,
               decoration: const InputDecoration(
@@ -210,9 +205,7 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
                 Validators.postalCode,
               ])(value),
             ),
-
             const SizedBox(height: 32),
-
             ElevatedButton(
               onPressed: isSaving ? null : _saveAddress,
               style: ElevatedButton.styleFrom(
@@ -256,9 +249,7 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
       updatedAt: DateTime.now(),
     );
 
-    await ref
-        .read(addressFormNotifierProvider.notifier)
-        .saveAddress(
+    await ref.read(addressFormNotifierProvider.notifier).saveAddress(
           address: address,
           isUpdate: widget.addressToEdit != null,
           userId: widget.user.id,

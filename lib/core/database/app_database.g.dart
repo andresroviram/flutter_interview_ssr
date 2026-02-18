@@ -96,15 +96,15 @@ class $UsersTable extends Users with TableInfo<$UsersTable, User> {
   );
   @override
   List<GeneratedColumn> get $columns => [
-    id,
-    firstName,
-    lastName,
-    birthDate,
-    email,
-    phone,
-    createdAt,
-    updatedAt,
-  ];
+        id,
+        firstName,
+        lastName,
+        birthDate,
+        email,
+        phone,
+        createdAt,
+        updatedAt,
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -314,16 +314,17 @@ class User extends DataClass implements Insertable<User> {
     String? phone,
     DateTime? createdAt,
     Value<DateTime?> updatedAt = const Value.absent(),
-  }) => User(
-    id: id ?? this.id,
-    firstName: firstName ?? this.firstName,
-    lastName: lastName ?? this.lastName,
-    birthDate: birthDate ?? this.birthDate,
-    email: email ?? this.email,
-    phone: phone ?? this.phone,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
-  );
+  }) =>
+      User(
+        id: id ?? this.id,
+        firstName: firstName ?? this.firstName,
+        lastName: lastName ?? this.lastName,
+        birthDate: birthDate ?? this.birthDate,
+        email: email ?? this.email,
+        phone: phone ?? this.phone,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
+      );
   User copyWithCompanion(UsersCompanion data) {
     return User(
       id: data.id.present ? data.id.value : this.id,
@@ -354,15 +355,15 @@ class User extends DataClass implements Insertable<User> {
 
   @override
   int get hashCode => Object.hash(
-    id,
-    firstName,
-    lastName,
-    birthDate,
-    email,
-    phone,
-    createdAt,
-    updatedAt,
-  );
+        id,
+        firstName,
+        lastName,
+        birthDate,
+        email,
+        phone,
+        createdAt,
+        updatedAt,
+      );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -405,12 +406,12 @@ class UsersCompanion extends UpdateCompanion<User> {
     required String phone,
     required DateTime createdAt,
     this.updatedAt = const Value.absent(),
-  }) : firstName = Value(firstName),
-       lastName = Value(lastName),
-       birthDate = Value(birthDate),
-       email = Value(email),
-       phone = Value(phone),
-       createdAt = Value(createdAt);
+  })  : firstName = Value(firstName),
+        lastName = Value(lastName),
+        birthDate = Value(birthDate),
+        email = Value(email),
+        phone = Value(phone),
+        createdAt = Value(createdAt);
   static Insertable<User> custom({
     Expression<int>? id,
     Expression<String>? firstName,
@@ -625,18 +626,18 @@ class $AddressesTable extends Addresses
   );
   @override
   List<GeneratedColumn> get $columns => [
-    id,
-    userId,
-    street,
-    neighborhood,
-    city,
-    state,
-    postalCode,
-    label,
-    isPrimary,
-    createdAt,
-    updatedAt,
-  ];
+        id,
+        userId,
+        street,
+        neighborhood,
+        city,
+        state,
+        postalCode,
+        label,
+        isPrimary,
+        createdAt,
+        updatedAt,
+      ];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -906,19 +907,20 @@ class AddressesData extends DataClass implements Insertable<AddressesData> {
     bool? isPrimary,
     DateTime? createdAt,
     Value<DateTime?> updatedAt = const Value.absent(),
-  }) => AddressesData(
-    id: id ?? this.id,
-    userId: userId ?? this.userId,
-    street: street ?? this.street,
-    neighborhood: neighborhood ?? this.neighborhood,
-    city: city ?? this.city,
-    state: state ?? this.state,
-    postalCode: postalCode ?? this.postalCode,
-    label: label ?? this.label,
-    isPrimary: isPrimary ?? this.isPrimary,
-    createdAt: createdAt ?? this.createdAt,
-    updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
-  );
+  }) =>
+      AddressesData(
+        id: id ?? this.id,
+        userId: userId ?? this.userId,
+        street: street ?? this.street,
+        neighborhood: neighborhood ?? this.neighborhood,
+        city: city ?? this.city,
+        state: state ?? this.state,
+        postalCode: postalCode ?? this.postalCode,
+        label: label ?? this.label,
+        isPrimary: isPrimary ?? this.isPrimary,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt.present ? updatedAt.value : this.updatedAt,
+      );
   AddressesData copyWithCompanion(AddressesCompanion data) {
     return AddressesData(
       id: data.id.present ? data.id.value : this.id,
@@ -929,9 +931,8 @@ class AddressesData extends DataClass implements Insertable<AddressesData> {
           : this.neighborhood,
       city: data.city.present ? data.city.value : this.city,
       state: data.state.present ? data.state.value : this.state,
-      postalCode: data.postalCode.present
-          ? data.postalCode.value
-          : this.postalCode,
+      postalCode:
+          data.postalCode.present ? data.postalCode.value : this.postalCode,
       label: data.label.present ? data.label.value : this.label,
       isPrimary: data.isPrimary.present ? data.isPrimary.value : this.isPrimary,
       createdAt: data.createdAt.present ? data.createdAt.value : this.createdAt,
@@ -959,18 +960,18 @@ class AddressesData extends DataClass implements Insertable<AddressesData> {
 
   @override
   int get hashCode => Object.hash(
-    id,
-    userId,
-    street,
-    neighborhood,
-    city,
-    state,
-    postalCode,
-    label,
-    isPrimary,
-    createdAt,
-    updatedAt,
-  );
+        id,
+        userId,
+        street,
+        neighborhood,
+        city,
+        state,
+        postalCode,
+        label,
+        isPrimary,
+        createdAt,
+        updatedAt,
+      );
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -1025,15 +1026,15 @@ class AddressesCompanion extends UpdateCompanion<AddressesData> {
     required bool isPrimary,
     required DateTime createdAt,
     this.updatedAt = const Value.absent(),
-  }) : userId = Value(userId),
-       street = Value(street),
-       neighborhood = Value(neighborhood),
-       city = Value(city),
-       state = Value(state),
-       postalCode = Value(postalCode),
-       label = Value(label),
-       isPrimary = Value(isPrimary),
-       createdAt = Value(createdAt);
+  })  : userId = Value(userId),
+        street = Value(street),
+        neighborhood = Value(neighborhood),
+        city = Value(city),
+        state = Value(state),
+        postalCode = Value(postalCode),
+        label = Value(label),
+        isPrimary = Value(isPrimary),
+        createdAt = Value(createdAt);
   static Insertable<AddressesData> custom({
     Expression<int>? id,
     Expression<int>? userId,
@@ -1160,28 +1161,26 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   List<DatabaseSchemaEntity> get allSchemaEntities => [users, addresses];
 }
 
-typedef $$UsersTableCreateCompanionBuilder =
-    UsersCompanion Function({
-      Value<int> id,
-      required String firstName,
-      required String lastName,
-      required DateTime birthDate,
-      required String email,
-      required String phone,
-      required DateTime createdAt,
-      Value<DateTime?> updatedAt,
-    });
-typedef $$UsersTableUpdateCompanionBuilder =
-    UsersCompanion Function({
-      Value<int> id,
-      Value<String> firstName,
-      Value<String> lastName,
-      Value<DateTime> birthDate,
-      Value<String> email,
-      Value<String> phone,
-      Value<DateTime> createdAt,
-      Value<DateTime?> updatedAt,
-    });
+typedef $$UsersTableCreateCompanionBuilder = UsersCompanion Function({
+  Value<int> id,
+  required String firstName,
+  required String lastName,
+  required DateTime birthDate,
+  required String email,
+  required String phone,
+  required DateTime createdAt,
+  Value<DateTime?> updatedAt,
+});
+typedef $$UsersTableUpdateCompanionBuilder = UsersCompanion Function({
+  Value<int> id,
+  Value<String> firstName,
+  Value<String> lastName,
+  Value<DateTime> birthDate,
+  Value<String> email,
+  Value<String> phone,
+  Value<DateTime> createdAt,
+  Value<DateTime?> updatedAt,
+});
 
 class $$UsersTableFilterComposer extends Composer<_$AppDatabase, $UsersTable> {
   $$UsersTableFilterComposer({
@@ -1192,44 +1191,44 @@ class $$UsersTableFilterComposer extends Composer<_$AppDatabase, $UsersTable> {
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.id,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get firstName => $composableBuilder(
-    column: $table.firstName,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.firstName,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get lastName => $composableBuilder(
-    column: $table.lastName,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.lastName,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<DateTime> get birthDate => $composableBuilder(
-    column: $table.birthDate,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.birthDate,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get email => $composableBuilder(
-    column: $table.email,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.email,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get phone => $composableBuilder(
-    column: $table.phone,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.phone,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.createdAt,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.updatedAt,
+        builder: (column) => ColumnFilters(column),
+      );
 }
 
 class $$UsersTableOrderingComposer
@@ -1242,44 +1241,44 @@ class $$UsersTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.id,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get firstName => $composableBuilder(
-    column: $table.firstName,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.firstName,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get lastName => $composableBuilder(
-    column: $table.lastName,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.lastName,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<DateTime> get birthDate => $composableBuilder(
-    column: $table.birthDate,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.birthDate,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get email => $composableBuilder(
-    column: $table.email,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.email,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get phone => $composableBuilder(
-    column: $table.phone,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.phone,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.createdAt,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.updatedAt,
+        builder: (column) => ColumnOrderings(column),
+      );
 }
 
 class $$UsersTableAnnotationComposer
@@ -1316,122 +1315,115 @@ class $$UsersTableAnnotationComposer
       $composableBuilder(column: $table.updatedAt, builder: (column) => column);
 }
 
-class $$UsersTableTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          $UsersTable,
-          User,
-          $$UsersTableFilterComposer,
-          $$UsersTableOrderingComposer,
-          $$UsersTableAnnotationComposer,
-          $$UsersTableCreateCompanionBuilder,
-          $$UsersTableUpdateCompanionBuilder,
-          (User, BaseReferences<_$AppDatabase, $UsersTable, User>),
-          User,
-          PrefetchHooks Function()
-        > {
+class $$UsersTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $UsersTable,
+    User,
+    $$UsersTableFilterComposer,
+    $$UsersTableOrderingComposer,
+    $$UsersTableAnnotationComposer,
+    $$UsersTableCreateCompanionBuilder,
+    $$UsersTableUpdateCompanionBuilder,
+    (User, BaseReferences<_$AppDatabase, $UsersTable, User>),
+    User,
+    PrefetchHooks Function()> {
   $$UsersTableTableManager(_$AppDatabase db, $UsersTable table)
-    : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$UsersTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$UsersTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$UsersTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<String> firstName = const Value.absent(),
-                Value<String> lastName = const Value.absent(),
-                Value<DateTime> birthDate = const Value.absent(),
-                Value<String> email = const Value.absent(),
-                Value<String> phone = const Value.absent(),
-                Value<DateTime> createdAt = const Value.absent(),
-                Value<DateTime?> updatedAt = const Value.absent(),
-              }) => UsersCompanion(
-                id: id,
-                firstName: firstName,
-                lastName: lastName,
-                birthDate: birthDate,
-                email: email,
-                phone: phone,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
-              ),
-          createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                required String firstName,
-                required String lastName,
-                required DateTime birthDate,
-                required String email,
-                required String phone,
-                required DateTime createdAt,
-                Value<DateTime?> updatedAt = const Value.absent(),
-              }) => UsersCompanion.insert(
-                id: id,
-                firstName: firstName,
-                lastName: lastName,
-                birthDate: birthDate,
-                email: email,
-                phone: phone,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
-              .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
+      : super(
+          TableManagerState(
+            db: db,
+            table: table,
+            createFilteringComposer: () =>
+                $$UsersTableFilterComposer($db: db, $table: table),
+            createOrderingComposer: () =>
+                $$UsersTableOrderingComposer($db: db, $table: table),
+            createComputedFieldComposer: () =>
+                $$UsersTableAnnotationComposer($db: db, $table: table),
+            updateCompanionCallback: ({
+              Value<int> id = const Value.absent(),
+              Value<String> firstName = const Value.absent(),
+              Value<String> lastName = const Value.absent(),
+              Value<DateTime> birthDate = const Value.absent(),
+              Value<String> email = const Value.absent(),
+              Value<String> phone = const Value.absent(),
+              Value<DateTime> createdAt = const Value.absent(),
+              Value<DateTime?> updatedAt = const Value.absent(),
+            }) =>
+                UsersCompanion(
+              id: id,
+              firstName: firstName,
+              lastName: lastName,
+              birthDate: birthDate,
+              email: email,
+              phone: phone,
+              createdAt: createdAt,
+              updatedAt: updatedAt,
+            ),
+            createCompanionCallback: ({
+              Value<int> id = const Value.absent(),
+              required String firstName,
+              required String lastName,
+              required DateTime birthDate,
+              required String email,
+              required String phone,
+              required DateTime createdAt,
+              Value<DateTime?> updatedAt = const Value.absent(),
+            }) =>
+                UsersCompanion.insert(
+              id: id,
+              firstName: firstName,
+              lastName: lastName,
+              birthDate: birthDate,
+              email: email,
+              phone: phone,
+              createdAt: createdAt,
+              updatedAt: updatedAt,
+            ),
+            withReferenceMapper: (p0) => p0
+                .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+                .toList(),
+            prefetchHooksCallback: null,
+          ),
+        );
 }
 
-typedef $$UsersTableProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      $UsersTable,
-      User,
-      $$UsersTableFilterComposer,
-      $$UsersTableOrderingComposer,
-      $$UsersTableAnnotationComposer,
-      $$UsersTableCreateCompanionBuilder,
-      $$UsersTableUpdateCompanionBuilder,
-      (User, BaseReferences<_$AppDatabase, $UsersTable, User>),
-      User,
-      PrefetchHooks Function()
-    >;
-typedef $$AddressesTableCreateCompanionBuilder =
-    AddressesCompanion Function({
-      Value<int> id,
-      required int userId,
-      required String street,
-      required String neighborhood,
-      required String city,
-      required String state,
-      required String postalCode,
-      required String label,
-      required bool isPrimary,
-      required DateTime createdAt,
-      Value<DateTime?> updatedAt,
-    });
-typedef $$AddressesTableUpdateCompanionBuilder =
-    AddressesCompanion Function({
-      Value<int> id,
-      Value<int> userId,
-      Value<String> street,
-      Value<String> neighborhood,
-      Value<String> city,
-      Value<String> state,
-      Value<String> postalCode,
-      Value<String> label,
-      Value<bool> isPrimary,
-      Value<DateTime> createdAt,
-      Value<DateTime?> updatedAt,
-    });
+typedef $$UsersTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $UsersTable,
+    User,
+    $$UsersTableFilterComposer,
+    $$UsersTableOrderingComposer,
+    $$UsersTableAnnotationComposer,
+    $$UsersTableCreateCompanionBuilder,
+    $$UsersTableUpdateCompanionBuilder,
+    (User, BaseReferences<_$AppDatabase, $UsersTable, User>),
+    User,
+    PrefetchHooks Function()>;
+typedef $$AddressesTableCreateCompanionBuilder = AddressesCompanion Function({
+  Value<int> id,
+  required int userId,
+  required String street,
+  required String neighborhood,
+  required String city,
+  required String state,
+  required String postalCode,
+  required String label,
+  required bool isPrimary,
+  required DateTime createdAt,
+  Value<DateTime?> updatedAt,
+});
+typedef $$AddressesTableUpdateCompanionBuilder = AddressesCompanion Function({
+  Value<int> id,
+  Value<int> userId,
+  Value<String> street,
+  Value<String> neighborhood,
+  Value<String> city,
+  Value<String> state,
+  Value<String> postalCode,
+  Value<String> label,
+  Value<bool> isPrimary,
+  Value<DateTime> createdAt,
+  Value<DateTime?> updatedAt,
+});
 
 class $$AddressesTableFilterComposer
     extends Composer<_$AppDatabase, $AddressesTable> {
@@ -1443,59 +1435,59 @@ class $$AddressesTableFilterComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnFilters<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.id,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<int> get userId => $composableBuilder(
-    column: $table.userId,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.userId,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get street => $composableBuilder(
-    column: $table.street,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.street,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get neighborhood => $composableBuilder(
-    column: $table.neighborhood,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.neighborhood,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get city => $composableBuilder(
-    column: $table.city,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.city,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get state => $composableBuilder(
-    column: $table.state,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.state,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get postalCode => $composableBuilder(
-    column: $table.postalCode,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.postalCode,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<String> get label => $composableBuilder(
-    column: $table.label,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.label,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<bool> get isPrimary => $composableBuilder(
-    column: $table.isPrimary,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.isPrimary,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.createdAt,
+        builder: (column) => ColumnFilters(column),
+      );
 
   ColumnFilters<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnFilters(column),
-  );
+        column: $table.updatedAt,
+        builder: (column) => ColumnFilters(column),
+      );
 }
 
 class $$AddressesTableOrderingComposer
@@ -1508,59 +1500,59 @@ class $$AddressesTableOrderingComposer
     super.$removeJoinBuilderFromRootComposer,
   });
   ColumnOrderings<int> get id => $composableBuilder(
-    column: $table.id,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.id,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<int> get userId => $composableBuilder(
-    column: $table.userId,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.userId,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get street => $composableBuilder(
-    column: $table.street,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.street,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get neighborhood => $composableBuilder(
-    column: $table.neighborhood,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.neighborhood,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get city => $composableBuilder(
-    column: $table.city,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.city,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get state => $composableBuilder(
-    column: $table.state,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.state,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get postalCode => $composableBuilder(
-    column: $table.postalCode,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.postalCode,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<String> get label => $composableBuilder(
-    column: $table.label,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.label,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<bool> get isPrimary => $composableBuilder(
-    column: $table.isPrimary,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.isPrimary,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<DateTime> get createdAt => $composableBuilder(
-    column: $table.createdAt,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.createdAt,
+        builder: (column) => ColumnOrderings(column),
+      );
 
   ColumnOrderings<DateTime> get updatedAt => $composableBuilder(
-    column: $table.updatedAt,
-    builder: (column) => ColumnOrderings(column),
-  );
+        column: $table.updatedAt,
+        builder: (column) => ColumnOrderings(column),
+      );
 }
 
 class $$AddressesTableAnnotationComposer
@@ -1582,9 +1574,9 @@ class $$AddressesTableAnnotationComposer
       $composableBuilder(column: $table.street, builder: (column) => column);
 
   GeneratedColumn<String> get neighborhood => $composableBuilder(
-    column: $table.neighborhood,
-    builder: (column) => column,
-  );
+        column: $table.neighborhood,
+        builder: (column) => column,
+      );
 
   GeneratedColumn<String> get city =>
       $composableBuilder(column: $table.city, builder: (column) => column);
@@ -1593,9 +1585,9 @@ class $$AddressesTableAnnotationComposer
       $composableBuilder(column: $table.state, builder: (column) => column);
 
   GeneratedColumn<String> get postalCode => $composableBuilder(
-    column: $table.postalCode,
-    builder: (column) => column,
-  );
+        column: $table.postalCode,
+        builder: (column) => column,
+      );
 
   GeneratedColumn<String> get label =>
       $composableBuilder(column: $table.label, builder: (column) => column);
@@ -1610,112 +1602,107 @@ class $$AddressesTableAnnotationComposer
       $composableBuilder(column: $table.updatedAt, builder: (column) => column);
 }
 
-class $$AddressesTableTableManager
-    extends
-        RootTableManager<
-          _$AppDatabase,
-          $AddressesTable,
-          AddressesData,
-          $$AddressesTableFilterComposer,
-          $$AddressesTableOrderingComposer,
-          $$AddressesTableAnnotationComposer,
-          $$AddressesTableCreateCompanionBuilder,
-          $$AddressesTableUpdateCompanionBuilder,
-          (
-            AddressesData,
-            BaseReferences<_$AppDatabase, $AddressesTable, AddressesData>,
-          ),
-          AddressesData,
-          PrefetchHooks Function()
-        > {
+class $$AddressesTableTableManager extends RootTableManager<
+    _$AppDatabase,
+    $AddressesTable,
+    AddressesData,
+    $$AddressesTableFilterComposer,
+    $$AddressesTableOrderingComposer,
+    $$AddressesTableAnnotationComposer,
+    $$AddressesTableCreateCompanionBuilder,
+    $$AddressesTableUpdateCompanionBuilder,
+    (
+      AddressesData,
+      BaseReferences<_$AppDatabase, $AddressesTable, AddressesData>,
+    ),
+    AddressesData,
+    PrefetchHooks Function()> {
   $$AddressesTableTableManager(_$AppDatabase db, $AddressesTable table)
-    : super(
-        TableManagerState(
-          db: db,
-          table: table,
-          createFilteringComposer: () =>
-              $$AddressesTableFilterComposer($db: db, $table: table),
-          createOrderingComposer: () =>
-              $$AddressesTableOrderingComposer($db: db, $table: table),
-          createComputedFieldComposer: () =>
-              $$AddressesTableAnnotationComposer($db: db, $table: table),
-          updateCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                Value<int> userId = const Value.absent(),
-                Value<String> street = const Value.absent(),
-                Value<String> neighborhood = const Value.absent(),
-                Value<String> city = const Value.absent(),
-                Value<String> state = const Value.absent(),
-                Value<String> postalCode = const Value.absent(),
-                Value<String> label = const Value.absent(),
-                Value<bool> isPrimary = const Value.absent(),
-                Value<DateTime> createdAt = const Value.absent(),
-                Value<DateTime?> updatedAt = const Value.absent(),
-              }) => AddressesCompanion(
-                id: id,
-                userId: userId,
-                street: street,
-                neighborhood: neighborhood,
-                city: city,
-                state: state,
-                postalCode: postalCode,
-                label: label,
-                isPrimary: isPrimary,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
-              ),
-          createCompanionCallback:
-              ({
-                Value<int> id = const Value.absent(),
-                required int userId,
-                required String street,
-                required String neighborhood,
-                required String city,
-                required String state,
-                required String postalCode,
-                required String label,
-                required bool isPrimary,
-                required DateTime createdAt,
-                Value<DateTime?> updatedAt = const Value.absent(),
-              }) => AddressesCompanion.insert(
-                id: id,
-                userId: userId,
-                street: street,
-                neighborhood: neighborhood,
-                city: city,
-                state: state,
-                postalCode: postalCode,
-                label: label,
-                isPrimary: isPrimary,
-                createdAt: createdAt,
-                updatedAt: updatedAt,
-              ),
-          withReferenceMapper: (p0) => p0
-              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
-              .toList(),
-          prefetchHooksCallback: null,
-        ),
-      );
+      : super(
+          TableManagerState(
+            db: db,
+            table: table,
+            createFilteringComposer: () =>
+                $$AddressesTableFilterComposer($db: db, $table: table),
+            createOrderingComposer: () =>
+                $$AddressesTableOrderingComposer($db: db, $table: table),
+            createComputedFieldComposer: () =>
+                $$AddressesTableAnnotationComposer($db: db, $table: table),
+            updateCompanionCallback: ({
+              Value<int> id = const Value.absent(),
+              Value<int> userId = const Value.absent(),
+              Value<String> street = const Value.absent(),
+              Value<String> neighborhood = const Value.absent(),
+              Value<String> city = const Value.absent(),
+              Value<String> state = const Value.absent(),
+              Value<String> postalCode = const Value.absent(),
+              Value<String> label = const Value.absent(),
+              Value<bool> isPrimary = const Value.absent(),
+              Value<DateTime> createdAt = const Value.absent(),
+              Value<DateTime?> updatedAt = const Value.absent(),
+            }) =>
+                AddressesCompanion(
+              id: id,
+              userId: userId,
+              street: street,
+              neighborhood: neighborhood,
+              city: city,
+              state: state,
+              postalCode: postalCode,
+              label: label,
+              isPrimary: isPrimary,
+              createdAt: createdAt,
+              updatedAt: updatedAt,
+            ),
+            createCompanionCallback: ({
+              Value<int> id = const Value.absent(),
+              required int userId,
+              required String street,
+              required String neighborhood,
+              required String city,
+              required String state,
+              required String postalCode,
+              required String label,
+              required bool isPrimary,
+              required DateTime createdAt,
+              Value<DateTime?> updatedAt = const Value.absent(),
+            }) =>
+                AddressesCompanion.insert(
+              id: id,
+              userId: userId,
+              street: street,
+              neighborhood: neighborhood,
+              city: city,
+              state: state,
+              postalCode: postalCode,
+              label: label,
+              isPrimary: isPrimary,
+              createdAt: createdAt,
+              updatedAt: updatedAt,
+            ),
+            withReferenceMapper: (p0) => p0
+                .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+                .toList(),
+            prefetchHooksCallback: null,
+          ),
+        );
 }
 
-typedef $$AddressesTableProcessedTableManager =
-    ProcessedTableManager<
-      _$AppDatabase,
-      $AddressesTable,
+typedef $$AddressesTableProcessedTableManager = ProcessedTableManager<
+    _$AppDatabase,
+    $AddressesTable,
+    AddressesData,
+    $$AddressesTableFilterComposer,
+    $$AddressesTableOrderingComposer,
+    $$AddressesTableAnnotationComposer,
+    $$AddressesTableCreateCompanionBuilder,
+    $$AddressesTableUpdateCompanionBuilder,
+    (
       AddressesData,
-      $$AddressesTableFilterComposer,
-      $$AddressesTableOrderingComposer,
-      $$AddressesTableAnnotationComposer,
-      $$AddressesTableCreateCompanionBuilder,
-      $$AddressesTableUpdateCompanionBuilder,
-      (
-        AddressesData,
-        BaseReferences<_$AppDatabase, $AddressesTable, AddressesData>,
-      ),
-      AddressesData,
-      PrefetchHooks Function()
-    >;
+      BaseReferences<_$AppDatabase, $AddressesTable, AddressesData>,
+    ),
+    AddressesData,
+    PrefetchHooks Function()>;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;

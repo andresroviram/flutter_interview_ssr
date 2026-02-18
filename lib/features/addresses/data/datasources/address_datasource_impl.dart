@@ -62,9 +62,7 @@ class AddressDataSourceImpl implements IAddressDataSource {
   @override
   Future<AddressEntity> createAddress(AddressEntity address) async {
     try {
-      final id = await _database
-          .into(_database.addresses)
-          .insert(
+      final id = await _database.into(_database.addresses).insert(
             AddressesCompanion.insert(
               userId: address.userId,
               street: address.street,
@@ -107,7 +105,8 @@ class AddressDataSourceImpl implements IAddressDataSource {
 
       await (_database.update(
         _database.addresses,
-      )..where((tbl) => tbl.id.equals(address.id))).write(
+      )..where((tbl) => tbl.id.equals(address.id)))
+          .write(
         AddressesCompanion(
           userId: drift.Value(address.userId),
           street: drift.Value(address.street),
@@ -138,7 +137,8 @@ class AddressDataSourceImpl implements IAddressDataSource {
 
       await (_database.delete(
         _database.addresses,
-      )..where((tbl) => tbl.id.equals(id))).go();
+      )..where((tbl) => tbl.id.equals(id)))
+          .go();
     } catch (e) {
       if (e is NotFoundException) rethrow;
       throw StorageException(message: 'Error al eliminar dirección: $e');
@@ -158,7 +158,8 @@ class AddressDataSourceImpl implements IAddressDataSource {
 
         await (_database.update(
           _database.addresses,
-        )..where((tbl) => tbl.id.equals(address.id))).write(
+        )..where((tbl) => tbl.id.equals(address.id)))
+            .write(
           AddressesCompanion(
             isPrimary: drift.Value(updated.isPrimary),
             updatedAt: drift.Value(updated.updatedAt),

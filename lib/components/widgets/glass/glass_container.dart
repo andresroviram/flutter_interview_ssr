@@ -38,8 +38,7 @@ class GlassContainer extends StatelessWidget {
       margin: margin,
       decoration: BoxDecoration(
         borderRadius: borderRadius ?? BorderRadius.circular(16),
-        border:
-            border ??
+        border: border ??
             Border.all(
               color: isDark
                   ? Colors.white.withValues(alpha: 0.2)
@@ -53,8 +52,7 @@ class GlassContainer extends StatelessWidget {
           filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
           child: Container(
             decoration: BoxDecoration(
-              gradient:
-                  gradient ??
+              gradient: gradient ??
                   LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,

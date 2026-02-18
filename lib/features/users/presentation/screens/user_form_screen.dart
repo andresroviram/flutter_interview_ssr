@@ -120,7 +120,6 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _lastNameController,
               decoration: const InputDecoration(
@@ -134,7 +133,6 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _emailController,
               decoration: const InputDecoration(
@@ -150,7 +148,6 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             TextFormField(
               controller: _phoneController,
               decoration: const InputDecoration(
@@ -168,22 +165,16 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
               ])(value),
             ),
             const SizedBox(height: 16),
-
             BirthDatePickerField(
               selectedDate: _birthDate,
               onDateSelected: (date) => setState(() => _birthDate = date),
               showError: isSaving,
             ),
-
             const SizedBox(height: 32),
-
             if (!isEditing) ..._buildAddressSection(),
             const SizedBox(height: 16),
-
             if (isEditing) ..._buildManageAddressesButton(),
-
             const SizedBox(height: 16),
-
             ElevatedButton(
               onPressed: isSaving ? null : _saveUser,
               style: ElevatedButton.styleFrom(
@@ -271,9 +262,7 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
       );
     }
 
-    await ref
-        .read(userFormNotifierProvider.notifier)
-        .submitUserForm(
+    await ref.read(userFormNotifierProvider.notifier).submitUserForm(
           user: user,
           isUpdate: widget.userToEdit != null,
           initialAddress: initialAddress,

@@ -12,7 +12,9 @@ final appRouterProvider = Provider<GoRouter>(
   (ref) => GoRouter(
     initialLocation: '/',
     routes: [
-      GoRoute(path: '/', builder: (context, state) => const UsersListEnhancedScreen()),
+      GoRoute(
+          path: '/',
+          builder: (context, state) => const UsersListEnhancedScreen()),
       GoRoute(
         path: '/user/:userId/detail',
         builder: (context, state) {

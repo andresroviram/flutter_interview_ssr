@@ -16,5 +16,5 @@ class UserFiltersNotifier extends Notifier<UserFiltersState> {
 
 final currentFiltersProvider =
     NotifierProvider<UserFiltersNotifier, UserFiltersState>(
-      UserFiltersNotifier.new,
-    );
+  UserFiltersNotifier.new,
+);

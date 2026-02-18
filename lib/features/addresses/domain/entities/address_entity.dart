@@ -71,18 +71,18 @@ class AddressEntity extends Equatable {
 
   @override
   List<Object?> get props => [
-    id,
-    userId,
-    street,
-    neighborhood,
-    city,
-    state,
-    postalCode,
-    label,
-    isPrimary,
-    createdAt,
-    updatedAt,
-  ];
+        id,
+        userId,
+        street,
+        neighborhood,
+        city,
+        state,
+        postalCode,
+        label,
+        isPrimary,
+        createdAt,
+        updatedAt,
+      ];
 
   @override
   String toString() =>

@@ -260,10 +260,10 @@ class _UsersListEnhancedScreenState
                           onDelete: () async {
                             final confirmed =
                                 await showDeleteConfirmationDialog(
-                                  context: context,
-                                  itemName: user.fullName,
-                                  title: 'Eliminar Usuario',
-                                );
+                              context: context,
+                              itemName: user.fullName,
+                              title: 'Eliminar Usuario',
+                            );
                             if (confirmed == true) {
                               await _deleteUser(user.id);
                             }

@@ -62,15 +62,15 @@ final searchUsersProvider = FutureProvider.autoDispose((ref) async {
 
 final filteredAndSortedUsersProvider =
     Provider.autoDispose<AsyncValue<List<UserEntity>>>((ref) {
-      final usersAsync = ref.watch(searchUsersProvider);
-      final filters = ref.watch(currentFiltersProvider);
+  final usersAsync = ref.watch(searchUsersProvider);
+  final filters = ref.watch(currentFiltersProvider);
 
-      return usersAsync.when(
-        data: (users) => AsyncValue.data(_applyFiltersLogic(users, filters)),
-        loading: () => const AsyncValue.loading(),
-        error: (error, stack) => AsyncValue.error(error, stack),
-      );
-    });
+  return usersAsync.when(
+    data: (users) => AsyncValue.data(_applyFiltersLogic(users, filters)),
+    loading: () => const AsyncValue.loading(),
+    error: (error, stack) => AsyncValue.error(error, stack),
+  );
+});
 
 List<UserEntity> _applyFiltersLogic(
   List<UserEntity> users,

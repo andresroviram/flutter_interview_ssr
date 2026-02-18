@@ -19,7 +19,6 @@ class Addresses extends Table {
   Set<Column> get primaryKey => {id};
 }
 
-
 extension AddressDriftMapper on AddressesData {
   AddressEntity toEntity() {
     return AddressEntity(

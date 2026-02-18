@@ -34,7 +34,6 @@ class AppTheme {
         shadow: AppColors.shadow,
         scrim: AppColors.scrim,
       ),
-
       appBarTheme: const AppBarTheme(
         centerTitle: true,
         elevation: 0,
@@ -47,13 +46,11 @@ class AppTheme {
           color: AppColors.onSurface,
         ),
       ),
-
       cardTheme: CardThemeData(
         elevation: 1,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         clipBehavior: Clip.antiAlias,
       ),
-
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: AppColors.surfaceVariant.withValues(alpha: 0.3),
@@ -82,7 +79,6 @@ class AppTheme {
           vertical: 16,
         ),
       ),
-
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           elevation: 1,
@@ -93,7 +89,6 @@ class AppTheme {
           minimumSize: const Size(64, 48),
         ),
       ),
-
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -102,7 +97,6 @@ class AppTheme {
           ),
         ),
       ),
-
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
@@ -113,39 +107,33 @@ class AppTheme {
           minimumSize: const Size(64, 48),
         ),
       ),
-
       floatingActionButtonTheme: const FloatingActionButtonThemeData(
         elevation: 3,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(16)),
         ),
       ),
-
       chipTheme: ChipThemeData(
         backgroundColor: AppColors.surfaceVariant,
         selectedColor: AppColors.secondaryContainer,
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
-
       dialogTheme: DialogThemeData(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
         elevation: 3,
       ),
-
       bottomSheetTheme: const BottomSheetThemeData(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
         ),
         elevation: 3,
       ),
-
       dividerTheme: const DividerThemeData(
         color: AppColors.outlineVariant,
         thickness: 1,
         space: 1,
       ),
-
       listTileTheme: const ListTileThemeData(
         contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       ),

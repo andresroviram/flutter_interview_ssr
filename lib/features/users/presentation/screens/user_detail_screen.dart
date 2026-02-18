@@ -95,7 +95,6 @@ class UserDetailScreen extends ConsumerWidget {
                 ),
               ),
             ),
-
             SliverToBoxAdapter(
               child: Padding(
                 padding: const EdgeInsets.all(24.0),
@@ -111,7 +110,6 @@ class UserDetailScreen extends ConsumerWidget {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 24),
-
                     Row(
                       children: [
                         Expanded(
@@ -142,7 +140,6 @@ class UserDetailScreen extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 32),
-
                     _SectionHeader(
                       icon: Icons.person,
                       title: 'Información Personal',
@@ -174,7 +171,6 @@ class UserDetailScreen extends ConsumerWidget {
                       ],
                     ),
                     const SizedBox(height: 24),
-
                     _SectionHeader(
                       icon: Icons.contact_mail,
                       title: 'Contacto',
@@ -227,9 +223,9 @@ class _SectionHeader extends StatelessWidget {
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.bold,
-            color: colorScheme.primary,
-          ),
+                fontWeight: FontWeight.bold,
+                color: colorScheme.primary,
+              ),
         ),
       ],
     );

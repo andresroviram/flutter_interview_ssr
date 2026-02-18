@@ -26,9 +26,8 @@ class AddressUseCases {
 
     return existingAddresses.fold(
       onSuccess: (addresses) {
-        final newAddress = addresses.isEmpty
-            ? address.copyWith(isPrimary: true)
-            : address;
+        final newAddress =
+            addresses.isEmpty ? address.copyWith(isPrimary: true) : address;
 
         if (newAddress.isPrimary && addresses.isNotEmpty) {
           return _createAndSetPrimary(newAddress);
