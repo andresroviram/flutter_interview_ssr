@@ -55,11 +55,11 @@ Drift proporciona un worker precompilado en sus releases, pero **no es universal
 **Opción 1: Script automatizado (Recomendado)**
 ```bash
 # Windows PowerShell
-.\setup_web.ps1
+.\\scripts\\setup_web.ps1
 
 # Linux/Mac
-chmod +x setup_web.sh
-./setup_web.sh
+chmod +x scripts/setup_web.sh
+./scripts/setup_web.sh
 ```
 
 El script automáticamente:
@@ -268,7 +268,7 @@ void main() {
 
 Después de modificar, recompila:
 ```bash
-./setup_web.ps1  # o usar dart compile js directamente
+./scripts/setup_web.ps1  # o usar dart compile js directamente
 ```
 
 ## hrome Android | ⚠️ Limitado | Sin SharedWorker, evitar múltiples pestañas |
@@ -309,8 +309,9 @@ Para desplegar tu aplicación web:
 - Ejecuta el script de descarga nuevamente
 
 ### Error: "drift_worker.dart.js not found"
-- Verifica que `drift_wconfiguración: `.\setup_web.ps1` o `./setup_web.sh`
-- O compílalo manualmente: `dart run build_runner build -o web:build_web
+- Verifica que `drift_worker.dart.js` existe en la carpeta `web/`
+- Ejecuta el script de configuración: `.\\scripts\\setup_web.ps1` o `./scripts/setup_web.sh`
+- O compílalo manualmente: `dart run build_runner build -o web:build_web`
 - Ejecuta el script de descarga nuevamente: `./download_web_files.ps1`
 
 ### La base de datos no persiste

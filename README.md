@@ -269,14 +269,14 @@ flutter test
 flutter test --coverage
 
 # Verificar umbral de cobertura (Windows)
-.\check_coverage.ps1
+.\scripts\check_coverage.ps1
 # o con umbral personalizado
-.\check_coverage.ps1 -Threshold 70
+.\scripts\check_coverage.ps1 -Threshold 70
 
 # Verificar umbral de cobertura (Linux/Mac)
-./check_coverage.sh
+./scripts/check_coverage.sh
 # o con umbral personalizado
-./check_coverage.sh 70
+./scripts/check_coverage.sh 70
 
 # Generar reporte HTML de cobertura (requiere lcov)
 genhtml coverage/lcov.info -o coverage/html
@@ -314,12 +314,12 @@ Ver [COVERAGE_ANALYSIS.md](COVERAGE_ANALYSIS.md) para análisis detallado.
 
 ```bash
 # Windows
-.\check_coverage.ps1              # Umbral: 60%
-.\check_coverage.ps1 -Threshold 70 # Umbral personalizado
+.\scripts\check_coverage.ps1              # Umbral: 60%
+.\scripts\check_coverage.ps1 -Threshold 70 # Umbral personalizado
 
 # Linux/Mac
-./check_coverage.sh               # Umbral: 60%
-./check_coverage.sh 70            # Umbral personalizado
+./scripts/check_coverage.sh               # Umbral: 60%
+./scripts/check_coverage.sh 70            # Umbral personalizado
 ```
 
 Los scripts verifican automáticamente:

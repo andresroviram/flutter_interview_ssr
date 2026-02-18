@@ -16,8 +16,8 @@ import 'package:drift/wasm.dart';
 ///   dart compile js -O4 web/drift_worker.dart -o web/drift_worker.dart.js
 ///
 /// Opción 3 - Script automatizado:
-///   ./setup_web.ps1 (Windows)
-///   ./setup_web.sh (Linux/Mac)
+///   ../scripts/setup_web.ps1 (Windows)
+///   ../scripts/setup_web.sh (Linux/Mac)
 ///
 /// IMPORTANTE:
 /// -----------

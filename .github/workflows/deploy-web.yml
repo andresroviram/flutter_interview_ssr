@@ -41,8 +41,8 @@ jobs:
 
       - name: Setup web assets
         run: |
-          chmod +x setup_web.sh
-          ./setup_web.sh
+          chmod +x scripts/setup_web.sh
+          ./scripts/setup_web.sh
 
       - name: Run tests
         run: flutter test

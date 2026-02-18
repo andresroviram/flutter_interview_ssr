@@ -23,7 +23,7 @@ Versión compilada del worker. Este archivo se genera automáticamente.
 
 **NO editar manualmente** - es generado por:
 - `dart run build_runner build -o web:build_web`
-- O usando `./setup_web.ps1` / `./setup_web.sh`
+- O usando `../scripts/setup_web.ps1` / `../scripts/setup_web.sh`
 
 **Formato:** JavaScript compilado con dart2js
 **Optimización:** `-O4` para producción, `--no-minify` para debug
@@ -79,7 +79,7 @@ Test-Path web/drift_worker.dart.js  # Debe ser True
 ## Troubleshooting
 
 ### "sqlite3.wasm not found"
-Ejecuta `.\setup_web.ps1` o descarga manualmente
+Ejecuta `..\scripts\setup_web.ps1` o descarga manualmente
 
 ### "drift_worker.dart.js not found"
 Compila con `dart run build_runner build -o web:build_web`
