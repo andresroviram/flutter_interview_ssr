@@ -10926,6 +10926,7 @@
         new A.DedicatedDriftWorker($self, new A.Lock(), new A.DriftServerController(A.LinkedHashMap_LinkedHashMap$_empty(type$.String, type$.RunningWasmServer), null)).start$0();
       else if (A.JSAnyUtilityExtension_instanceOfString($self, "SharedWorkerGlobalScope"))
         new A.SharedDriftWorker($self, new A.DriftServerController(A.LinkedHashMap_LinkedHashMap$_empty(type$.String, type$.RunningWasmServer), null)).start$0();
+      return null;
     }
   },
   B = {};
