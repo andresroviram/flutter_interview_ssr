@@ -1,0 +1,2 @@
+json_key_file("") # Path to the json secret file - Set in CI/CD environment or locally
+package_name("com.example.flutter_interview_ssr") # e.g. com.krausefx.app

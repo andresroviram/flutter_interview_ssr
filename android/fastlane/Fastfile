@@ -1,0 +1,80 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+
+default_platform(:android)
+
+platform :android do
+  desc "Build Android APK"
+  lane :build_apk do
+    flutter_build_apk(
+      build_number: ENV["BUILD_NUMBER"] || "1"
+    )
+  end
+
+  desc "Build Android App Bundle (AAB)"
+  lane :build_aab do
+    flutter_build_appbundle(
+      build_number: ENV["BUILD_NUMBER"] || "1"
+    )
+  end
+
+  desc "Deploy to Google Play Internal Testing"
+  lane :internal do
+    # Build the app bundle
+    flutter_build_appbundle(
+      build_number: ENV["BUILD_NUMBER"] || "1"
+    )
+
+    # Upload to Google Play Internal Testing track
+    upload_to_play_store(
+      track: 'internal',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+
+  desc "Deploy to Google Play Beta Testing"
+  lane :beta do
+    # Build the app bundle
+    flutter_build_appbundle(
+      build_number: ENV["BUILD_NUMBER"] || "1"
+    )
+
+    # Upload to Google Play Beta track
+    upload_to_play_store(
+      track: 'beta',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      skip_upload_metadata: true,
+      skip_upload_images: true,
+      skip_upload_screenshots: true
+    )
+  end
+
+  desc "Deploy to Google Play Production"
+  lane :production do
+    # Build the app bundle
+    flutter_build_appbundle(
+      build_number: ENV["BUILD_NUMBER"] || "1"
+    )
+
+    # Upload to Google Play Production track
+    upload_to_play_store(
+      track: 'production',
+      aab: '../build/app/outputs/bundle/release/app-release.aab',
+      skip_upload_metadata: false,
+      skip_upload_images: false,
+      skip_upload_screenshots: false
+    )
+  end
+
+  # Private helper functions
+  private_lane :flutter_build_apk do |options|
+    sh("cd ../.. && flutter build apk --release --build-number=#{options[:build_number]}")
+  end
+
+  private_lane :flutter_build_appbundle do |options|
+    sh("cd ../.. && flutter build appbundle --release --build-number=#{options[:build_number]}")
+  end
+end

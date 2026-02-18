@@ -288,3 +288,34 @@ flutter build web --release
 ```
 
 Para más detalles sobre la configuración web, consulta [WEB_SUPPORT.md](WEB_SUPPORT.md).
+
+## 🚀 Deployment
+
+Este proyecto incluye configuración completa de CI/CD con **Fastlane** y **GitHub Actions** para despliegue automatizado a:
+
+✅ **Google Play Store** (Internal, Beta, Production)  
+✅ **Apple App Store** (TestFlight, App Store)  
+✅ **Web Hosting** (GitHub Pages, Firebase, Vercel)
+
+### Quick Start
+
+```bash
+# Android
+cd android
+bundle install
+bundle exec fastlane internal  # Deploy to Internal Testing
+
+# iOS (macOS only)
+cd ios
+bundle install  
+bundle exec fastlane beta  # Deploy to TestFlight
+```
+
+### CI/CD Workflows
+
+- **CI** - Tests, análisis y cobertura en cada push
+- **Deploy Android** - Despliegue automático a Google Play
+- **Deploy iOS** - Despliegue automático a App Store  
+- **Deploy Web** - Despliegue automático a hosting web
+
+Para configuración detallada, consulta [DEPLOYMENT.md](DEPLOYMENT.md).

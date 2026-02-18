@@ -1,0 +1,11 @@
+git_url("") # URL of the git repo containing all the certificates
+
+storage_mode("git")
+
+type("development") # The default type, can be: appstore, adhoc, enterprise or development
+
+app_identifier(["com.example.flutterInterviewSsr"])
+username("") # Your Apple Developer Portal username
+
+# For more information, see:
+#     https://docs.fastlane.tools/actions/match/

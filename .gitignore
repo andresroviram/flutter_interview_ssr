@@ -48,5 +48,33 @@ app.*.map.json
 # FVM Version Cache
 .fvm/
 
+# Fastlane sensitive files
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+**/fastlane/README.md
+**/fastlane/logs
+
+# Android signing files
+*.jks
+*.keystore
+key.properties
+android/app/upload-keystore.jks
+android/key.properties
+android/play-store-credentials.json
+
+# iOS signing files
+*.mobileprovision
+*.cer
+*.p12
+*.p8
+*.certSigningRequest
+
+# Bundler
+vendor/bundle
+.bundle/
+Gemfile.lock
+
 # Claude AI folder
 .claude/

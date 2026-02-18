@@ -1,0 +1,15 @@
+# fastlane specific
+**/fastlane/report.xml
+**/fastlane/Preview.html
+**/fastlane/screenshots
+**/fastlane/test_output
+
+# Sensitive files
+*.p8
+*.mobileprovision
+*.cer
+*.p12
+*.certSigningRequest
+
+# Fastlane logs
+fastlane/logs
