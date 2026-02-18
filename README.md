@@ -45,6 +45,22 @@ Sistema profesional de gestión de usuarios y direcciones desarrollado con Flutt
 
 </div>
 
+## 🚀 Inicio Rápido
+
+```bash
+# 1. Instalar dependencias
+flutter pub get
+
+# 2. Generar código (IMPORTANTE: requerido antes de ejecutar)
+dart run build_runner build --delete-conflicting-outputs
+
+# 3. Ejecutar aplicación
+flutter run
+```
+
+> **📖 Nota**: Este proyecto usa generación de código. Los archivos `*.g.dart` y `*.freezed.dart` no están en git.  
+> Ver [SETUP.md](SETUP.md) para instrucciones detalladas de configuración inicial.
+
 ## 🏗️ Arquitectura
 
 Este proyecto implementa **Feature-First Clean Architecture** con separación en 3 capas:
@@ -214,16 +230,33 @@ shimmer: ^3.0.0
 mocktail: ^1.0.4
 ```
 
+## ⚙️ Archivos Generados
+
+Este proyecto utiliza generadores de código que **NO** están incluidos en git:
+
+- `*.g.dart` - Generados por `json_serializable` y `drift`
+- `*.freezed.dart` - Generados por `freezed`
+
+**⚠️ Importante**: Después de clonar el repositorio, debes ejecutar:
+
+```bash
+flutter pub get
+dart run build_runner build --delete-conflicting-outputs
+```
+
+Los archivos generados se crean automáticamente y están excluidos en `.gitignore`.
+
 ## 🚀 Comandos Útiles
 
 ```bash
 # Instalar dependencias
 flutter pub get
 
-# Generar código (models, freezed)
+# Generar código (models, freezed, drift)
+# ⚠️ IMPORTANTE: Esto es necesario antes de ejecutar la app
 dart run build_runner build --delete-conflicting-outputs
 
-# Watch mode para desarrollo
+# Watch mode para desarrollo (recomendado)
 dart run build_runner watch
 
 # Run app
@@ -235,11 +268,67 @@ flutter test
 # Tests con cobertura
 flutter test --coverage
 
+# Verificar umbral de cobertura (Windows)
+.\check_coverage.ps1
+# o con umbral personalizado
+.\check_coverage.ps1 -Threshold 70
+
+# Verificar umbral de cobertura (Linux/Mac)
+./check_coverage.sh
+# o con umbral personalizado
+./check_coverage.sh 70
+
+# Generar reporte HTML de cobertura (requiere lcov)
+genhtml coverage/lcov.info -o coverage/html
+# Abrir en navegador: coverage/html/index.html
+
 # Análisis de código
 flutter analyze
 ```
 
-## 📝 Validaciones Implementadas
+## � Cobertura de Tests
+
+[![codecov](https://codecov.io/gh/[usuario]/flutter_interview_ssr/branch/main/graph/badge.svg)](https://codecov.io/gh/[usuario]/flutter_interview_ssr)
+
+El proyecto mantiene un umbral mínimo de cobertura del **60%** en el CI/CD.
+
+### Estado Actual
+
+```
+Total:               61.87%
+├─ features/         93.81% ✅
+├─ core/             48.01% ⚠️
+└─ components/       11.43% ❌
+```
+
+### Archivos Core sin Tests
+
+Ver [COVERAGE_ANALYSIS.md](COVERAGE_ANALYSIS.md) para análisis detallado.
+
+**Alta prioridad:**
+- `core/database/*` - Tests de base de datos
+- `core/router/app_router.dart` - Tests de rutas
+- `core/utils/input_formatters.dart` - Tests de formatters
+
+### Scripts de Cobertura
+
+```bash
+# Windows
+.\check_coverage.ps1              # Umbral: 60%
+.\check_coverage.ps1 -Threshold 70 # Umbral personalizado
+
+# Linux/Mac
+./check_coverage.sh               # Umbral: 60%
+./check_coverage.sh 70            # Umbral personalizado
+```
+
+Los scripts verifican automáticamente:
+- ✅ Ejecutan todos los tests
+- ✅ Generan reporte de cobertura
+- ✅ Comparan con umbral mínimo
+- ✅ Fallan si está por debajo del umbral
+
+## �📝 Validaciones Implementadas
 
 ### Usuario
 - **Nombre**: Requerido, mín. 2 caracteres
