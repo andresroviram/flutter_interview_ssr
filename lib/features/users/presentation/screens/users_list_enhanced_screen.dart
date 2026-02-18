@@ -72,11 +72,12 @@ class _UsersListEnhancedScreenState
     });
   }
 
-  void _resetUsersList() {
-    ref.invalidate(searchUsersProvider);
+  Future<void> _resetUsersList() async {
+    final data = await ref.refresh(searchUsersProvider.future);
+    if (!mounted) return;
     setState(() {
       _currentPage = 1;
-      _displayedUsers = [];
+      _displayedUsers = data.paginate(_currentPage, _itemsPerPage);
     });
   }
 
@@ -212,9 +213,7 @@ class _UsersListEnhancedScreenState
                 );
 
                 return RefreshIndicator(
-                  onRefresh: () async {
-                    _resetUsersList();
-                  },
+                  onRefresh: _resetUsersList,
                   child: PaginatedListView<UserEntity>(
                     items: _displayedUsers.isEmpty
                         ? users.paginate(1, _itemsPerPage)
@@ -235,11 +234,11 @@ class _UsersListEnhancedScreenState
                               '/user/${user.id}/detail',
                               extra: user,
                             );
-                            _resetUsersList();
+                            await _resetUsersList();
                           },
                           onEdit: () async {
                             await context.push('/user/edit', extra: user);
-                            _resetUsersList();
+                            await _resetUsersList();
                           },
                           onViewAddresses: () {
                             context.push(
@@ -291,7 +290,7 @@ class _UsersListEnhancedScreenState
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           await context.push('/user/new');
-          _resetUsersList();
+          await _resetUsersList();
         },
         icon: const Icon(Icons.add),
         label: const Text('Nuevo Usuario'),
