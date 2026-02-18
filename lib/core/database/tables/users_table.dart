@@ -11,9 +11,6 @@ class Users extends Table {
   TextColumn get phone => text()();
   DateTimeColumn get createdAt => dateTime().named('created_at')();
   DateTimeColumn get updatedAt => dateTime().nullable().named('updated_at')();
-
-  @override
-  Set<Column> get primaryKey => {id};
 }
 
 extension UserDriftMapper on User {
