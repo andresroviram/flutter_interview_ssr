@@ -18,12 +18,12 @@ void main() {
       expect(find.byType(GlassAppBar), findsOneWidget);
     });
 
-    testWidgets('implements PreferredSizeWidget',
-        (WidgetTester tester) async {
+    testWidgets('implements PreferredSizeWidget', (WidgetTester tester) async {
       const appBar = GlassAppBar(title: 'Test');
 
       expect(appBar, isA<PreferredSizeWidget>());
-      expect(appBar.preferredSize, equals(const Size.fromHeight(kToolbarHeight)));
+      expect(
+          appBar.preferredSize, equals(const Size.fromHeight(kToolbarHeight)));
     });
 
     testWidgets('uses BackdropFilter for glass effect',
@@ -53,8 +53,7 @@ void main() {
       expect(find.byType(AppBar), findsOneWidget);
     });
 
-    testWidgets('displays actions when provided',
-        (WidgetTester tester) async {
+    testWidgets('displays actions when provided', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(

@@ -21,8 +21,7 @@ void main() {
       expect(find.byType(GlassCard), findsOneWidget);
     });
 
-    testWidgets('uses GlassContainer internally',
-        (WidgetTester tester) async {
+    testWidgets('uses GlassContainer internally', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -88,7 +87,7 @@ void main() {
       await tester.pump();
 
       expect(find.byType(InkWell), findsOneWidget);
-      
+
       await tester.tap(find.byType(GlassCard));
       await tester.pump();
 

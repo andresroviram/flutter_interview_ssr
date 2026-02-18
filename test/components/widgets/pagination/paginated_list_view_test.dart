@@ -361,8 +361,7 @@ void main() {
                   height: 50,
                   child: Text(item),
                 ),
-                onLoadMore: () async {
-                },
+                onLoadMore: () async {},
                 loadMoreThreshold: 500, // Large threshold
               ),
             ),
