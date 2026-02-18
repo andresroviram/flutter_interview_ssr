@@ -249,7 +249,9 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
       updatedAt: DateTime.now(),
     );
 
-    await ref.read(addressFormNotifierProvider.notifier).saveAddress(
+    await ref
+        .read(addressFormNotifierProvider.notifier)
+        .saveAddress(
           address: address,
           isUpdate: widget.addressToEdit != null,
           userId: widget.user.id,

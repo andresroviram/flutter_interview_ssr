@@ -131,7 +131,8 @@ void main() {
           createdAt: DateTime(2024, 1, 1),
         );
 
-        final expectedAge = DateTime.now().year -
+        final expectedAge =
+            DateTime.now().year -
             1990 -
             (DateTime.now().month < 5 ||
                     (DateTime.now().month == 5 && DateTime.now().day < 15)

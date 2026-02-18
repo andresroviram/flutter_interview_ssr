@@ -7,11 +7,7 @@ void main() {
   group('UserListShimmer', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserListShimmer())),
       );
       await tester.pump();
 
@@ -21,11 +17,7 @@ void main() {
 
     testWidgets('renders default number of items', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserListShimmer())),
       );
       await tester.pump();
 
@@ -35,11 +27,7 @@ void main() {
 
     testWidgets('renders custom number of items', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserListShimmer(itemCount: 3),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserListShimmer(itemCount: 3))),
       );
       await tester.pump();
 
@@ -48,11 +36,7 @@ void main() {
 
     testWidgets('uses ListView.builder', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserListShimmer())),
       );
       await tester.pump();
 
@@ -62,11 +46,7 @@ void main() {
 
     testWidgets('has proper padding', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserListShimmer())),
       );
       await tester.pump();
 
@@ -74,14 +54,11 @@ void main() {
       expect(listView.padding, equals(const EdgeInsets.all(16)));
     });
 
-    testWidgets('renders zero items when itemCount is 0',
-        (WidgetTester tester) async {
+    testWidgets('renders zero items when itemCount is 0', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserListShimmer(itemCount: 0),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserListShimmer(itemCount: 0))),
       );
       await tester.pump();
 
@@ -90,11 +67,7 @@ void main() {
 
     testWidgets('can render many items', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserListShimmer(itemCount: 10),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserListShimmer(itemCount: 10))),
       );
       await tester.pump();
 

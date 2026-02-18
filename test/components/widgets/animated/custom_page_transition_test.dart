@@ -4,18 +4,14 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CustomPageTransition', () {
-    testWidgets('creates a route with the child widget',
-        (WidgetTester tester) async {
-      const testPage = CustomPageTransition(
-        child: Text('Test Page'),
-      );
+    testWidgets('creates a route with the child widget', (
+      WidgetTester tester,
+    ) async {
+      const testPage = CustomPageTransition(child: Text('Test Page'));
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Navigator(
-            pages: const [testPage],
-            onDidRemovePage: (route) {},
-          ),
+          home: Navigator(pages: const [testPage], onDidRemovePage: (route) {}),
         ),
       );
 
@@ -27,9 +23,7 @@ void main() {
         MaterialApp(
           home: Navigator(
             pages: const [
-              CustomPageTransition(
-                child: Scaffold(body: Text('Page 1')),
-              ),
+              CustomPageTransition(child: Scaffold(body: Text('Page 1'))),
             ],
             onDidRemovePage: (route) {},
           ),
@@ -48,9 +42,7 @@ void main() {
         MaterialApp(
           home: Navigator(
             pages: const [
-              CustomPageTransition(
-                child: Scaffold(body: Text('Page 1')),
-              ),
+              CustomPageTransition(child: Scaffold(body: Text('Page 1'))),
             ],
             onDidRemovePage: (route) {},
           ),
@@ -74,10 +66,7 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Navigator(
-            pages: const [testPage],
-            onDidRemovePage: (route) {},
-          ),
+          home: Navigator(pages: const [testPage], onDidRemovePage: (route) {}),
         ),
       );
 
@@ -86,8 +75,9 @@ void main() {
       expect(find.text('Test Page'), findsOneWidget);
     });
 
-    testWidgets('respects custom reverse duration',
-        (WidgetTester tester) async {
+    testWidgets('respects custom reverse duration', (
+      WidgetTester tester,
+    ) async {
       const customReverseDuration = Duration(milliseconds: 100);
 
       const testPage = CustomPageTransition(
@@ -97,10 +87,7 @@ void main() {
 
       await tester.pumpWidget(
         MaterialApp(
-          home: Navigator(
-            pages: const [testPage],
-            onDidRemovePage: (route) {},
-          ),
+          home: Navigator(pages: const [testPage], onDidRemovePage: (route) {}),
         ),
       );
 
@@ -109,12 +96,11 @@ void main() {
       expect(find.text('Test Page'), findsOneWidget);
     });
 
-    testWidgets('handles navigation between pages',
-        (WidgetTester tester) async {
+    testWidgets('handles navigation between pages', (
+      WidgetTester tester,
+    ) async {
       final pages = <Page>[
-        const MaterialPage(
-          child: Scaffold(body: Text('Page 1')),
-        ),
+        const MaterialPage(child: Scaffold(body: Text('Page 1'))),
       ];
 
       await tester.pumpWidget(
@@ -143,9 +129,7 @@ void main() {
             builder: (context, setState) {
               return Navigator(
                 pages: [
-                  const MaterialPage(
-                    child: Scaffold(body: Text('Page 1')),
-                  ),
+                  const MaterialPage(child: Scaffold(body: Text('Page 1'))),
                   const CustomPageTransition(
                     child: Scaffold(body: Text('Page 2')),
                   ),
@@ -166,8 +150,9 @@ void main() {
       expect(find.text('Page 2'), findsOneWidget);
     });
 
-    testWidgets('can be used with MaterialApp onGenerateRoute',
-        (WidgetTester tester) async {
+    testWidgets('can be used with MaterialApp onGenerateRoute', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           onGenerateRoute: (settings) {
@@ -193,16 +178,13 @@ void main() {
       expect(find.text('Test Route'), findsOneWidget);
     });
 
-    testWidgets('createRoute returns PageRouteBuilder',
-        (WidgetTester tester) async {
-      const transition = CustomPageTransition(
-        child: Text('Test'),
-      );
+    testWidgets('createRoute returns PageRouteBuilder', (
+      WidgetTester tester,
+    ) async {
+      const transition = CustomPageTransition(child: Text('Test'));
 
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(body: Text('Home')),
-        ),
+        const MaterialApp(home: Scaffold(body: Text('Home'))),
       );
 
       final context = tester.element(find.text('Home'));
@@ -216,9 +198,7 @@ void main() {
         MaterialApp(
           home: Navigator(
             pages: const [
-              CustomPageTransition(
-                child: Scaffold(body: Text('Page 1')),
-              ),
+              CustomPageTransition(child: Scaffold(body: Text('Page 1'))),
             ],
             onDidRemovePage: (route) {},
           ),

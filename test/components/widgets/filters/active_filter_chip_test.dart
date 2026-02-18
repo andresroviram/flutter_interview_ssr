@@ -8,10 +8,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: 'Edad: 18-30',
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: 'Edad: 18-30', onDeleted: () {}),
           ),
         ),
       );
@@ -25,10 +22,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: 'Test Filter',
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: 'Test Filter', onDeleted: () {}),
           ),
         ),
       );
@@ -41,10 +35,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: 'Test Filter',
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: 'Test Filter', onDeleted: () {}),
           ),
         ),
       );
@@ -53,8 +44,9 @@ void main() {
       expect(find.byIcon(Icons.close), findsOneWidget);
     });
 
-    testWidgets('triggers onDeleted when close icon is tapped',
-        (WidgetTester tester) async {
+    testWidgets('triggers onDeleted when close icon is tapped', (
+      WidgetTester tester,
+    ) async {
       var deletedCalled = false;
 
       await tester.pumpWidget(
@@ -81,10 +73,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: 'Test Filter',
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: 'Test Filter', onDeleted: () {}),
           ),
         ),
       );
@@ -97,10 +86,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: 'Test Filter',
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: 'Test Filter', onDeleted: () {}),
           ),
         ),
       );
@@ -116,10 +102,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: customLabel,
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: customLabel, onDeleted: () {}),
           ),
         ),
       );
@@ -128,15 +111,13 @@ void main() {
       expect(find.text(customLabel), findsOneWidget);
     });
 
-    testWidgets('creates chip with proper padding',
-        (WidgetTester tester) async {
+    testWidgets('creates chip with proper padding', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: 'Test Filter',
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: 'Test Filter', onDeleted: () {}),
           ),
         ),
       );
@@ -151,10 +132,7 @@ void main() {
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: ActiveFilterChip(
-              label: 'Test Filter',
-              onDeleted: () {},
-            ),
+            body: ActiveFilterChip(label: 'Test Filter', onDeleted: () {}),
           ),
         ),
       );

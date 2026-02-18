@@ -4,15 +4,13 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('LoadMoreIndicator', () {
-    testWidgets('shows CircularProgressIndicator when loading more',
-        (WidgetTester tester) async {
+    testWidgets('shows CircularProgressIndicator when loading more', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LoadMoreIndicator(
-              isLoadingMore: true,
-              hasMoreItems: true,
-            ),
+            body: LoadMoreIndicator(isLoadingMore: true, hasMoreItems: true),
           ),
         ),
       );
@@ -23,15 +21,13 @@ void main() {
       expect(find.text('Cargar más'), findsNothing);
     });
 
-    testWidgets('shows "No hay más elementos" when no more items',
-        (WidgetTester tester) async {
+    testWidgets('shows "No hay más elementos" when no more items', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LoadMoreIndicator(
-              isLoadingMore: false,
-              hasMoreItems: false,
-            ),
+            body: LoadMoreIndicator(isLoadingMore: false, hasMoreItems: false),
           ),
         ),
       );
@@ -42,8 +38,9 @@ void main() {
       expect(find.text('Cargar más'), findsNothing);
     });
 
-    testWidgets('shows "Cargar más" button when onLoadMore provided',
-        (WidgetTester tester) async {
+    testWidgets('shows "Cargar más" button when onLoadMore provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -63,15 +60,13 @@ void main() {
       expect(find.text('No hay más elementos'), findsNothing);
     });
 
-    testWidgets('shows nothing when no items and no callback',
-        (WidgetTester tester) async {
+    testWidgets('shows nothing when no items and no callback', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LoadMoreIndicator(
-              isLoadingMore: false,
-              hasMoreItems: true,
-            ),
+            body: LoadMoreIndicator(isLoadingMore: false, hasMoreItems: true),
           ),
         ),
       );
@@ -83,8 +78,9 @@ void main() {
       expect(find.text('No hay más elementos'), findsNothing);
     });
 
-    testWidgets('executes onLoadMore callback when button pressed',
-        (WidgetTester tester) async {
+    testWidgets('executes onLoadMore callback when button pressed', (
+      WidgetTester tester,
+    ) async {
       bool callbackExecuted = false;
 
       await tester.pumpWidget(
@@ -112,10 +108,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LoadMoreIndicator(
-              isLoadingMore: true,
-              hasMoreItems: true,
-            ),
+            body: LoadMoreIndicator(isLoadingMore: true, hasMoreItems: true),
           ),
         ),
       );
@@ -124,8 +117,9 @@ void main() {
       expect(find.byType(Padding), findsOneWidget);
     });
 
-    testWidgets('prioritizes loading state over other states',
-        (WidgetTester tester) async {
+    testWidgets('prioritizes loading state over other states', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -149,10 +143,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LoadMoreIndicator(
-              isLoadingMore: false,
-              hasMoreItems: false,
-            ),
+            body: LoadMoreIndicator(isLoadingMore: false, hasMoreItems: false),
           ),
         ),
       );
@@ -161,15 +152,13 @@ void main() {
       expect(find.byType(Center), findsOneWidget);
     });
 
-    testWidgets('has styled text for no more items',
-        (WidgetTester tester) async {
+    testWidgets('has styled text for no more items', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: LoadMoreIndicator(
-              isLoadingMore: false,
-              hasMoreItems: false,
-            ),
+            body: LoadMoreIndicator(isLoadingMore: false, hasMoreItems: false),
           ),
         ),
       );

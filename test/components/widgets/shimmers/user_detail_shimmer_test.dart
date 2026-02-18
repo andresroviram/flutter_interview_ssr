@@ -7,11 +7,7 @@ void main() {
   group('UserDetailShimmer', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 
@@ -19,21 +15,16 @@ void main() {
       expect(find.byType(SingleChildScrollView), findsOneWidget);
     });
 
-    testWidgets('contains large circular avatar shimmer',
-        (WidgetTester tester) async {
+    testWidgets('contains large circular avatar shimmer', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 
       final shimmerWidgets = tester
-          .widgetList<ShimmerLoading>(
-            find.byType(ShimmerLoading),
-          )
+          .widgetList<ShimmerLoading>(find.byType(ShimmerLoading))
           .toList();
 
       // First shimmer should be large circular avatar
@@ -45,14 +36,11 @@ void main() {
       );
     });
 
-    testWidgets('contains multiple shimmer elements',
-        (WidgetTester tester) async {
+    testWidgets('contains multiple shimmer elements', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 
@@ -63,11 +51,7 @@ void main() {
 
     testWidgets('uses Column layout', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 
@@ -76,11 +60,7 @@ void main() {
 
     testWidgets('contains multiple cards', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 
@@ -90,11 +70,7 @@ void main() {
 
     testWidgets('has proper padding', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 
@@ -106,11 +82,7 @@ void main() {
 
     testWidgets('cards have proper structure', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 
@@ -121,11 +93,7 @@ void main() {
 
     testWidgets('is scrollable', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: UserDetailShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: UserDetailShimmer())),
       );
       await tester.pump();
 

@@ -8,9 +8,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Bottom Sheet Content'),
-            ),
+            body: GlassBottomSheet(child: const Text('Bottom Sheet Content')),
           ),
         ),
       );
@@ -20,14 +18,13 @@ void main() {
       expect(find.byType(GlassBottomSheet), findsOneWidget);
     });
 
-    testWidgets('uses BackdropFilter for glass effect',
-        (WidgetTester tester) async {
+    testWidgets('uses BackdropFilter for glass effect', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Blur Test'),
-            ),
+            body: GlassBottomSheet(child: const Text('Blur Test')),
           ),
         ),
       );
@@ -36,15 +33,12 @@ void main() {
       expect(find.byType(BackdropFilter), findsOneWidget);
     });
 
-    testWidgets('uses ClipRRect for rounded top corners',
-        (WidgetTester tester) async {
+    testWidgets('uses ClipRRect for rounded top corners', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Rounded'),
-            ),
-          ),
+          home: Scaffold(body: GlassBottomSheet(child: const Text('Rounded'))),
         ),
       );
       await tester.pump();
@@ -56,9 +50,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Gradient Test'),
-            ),
+            body: GlassBottomSheet(child: const Text('Gradient Test')),
           ),
         ),
       );
@@ -72,9 +64,7 @@ void main() {
         MaterialApp(
           theme: ThemeData.light(),
           home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Light Theme'),
-            ),
+            body: GlassBottomSheet(child: const Text('Light Theme')),
           ),
         ),
       );
@@ -88,9 +78,7 @@ void main() {
         MaterialApp(
           theme: ThemeData.dark(),
           home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Dark Theme'),
-            ),
+            body: GlassBottomSheet(child: const Text('Dark Theme')),
           ),
         ),
       );
@@ -115,8 +103,9 @@ void main() {
       expect(find.byType(BackdropFilter), findsOneWidget);
     });
 
-    testWidgets('accepts custom opacity parameter',
-        (WidgetTester tester) async {
+    testWidgets('accepts custom opacity parameter', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -136,9 +125,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Border Test'),
-            ),
+            body: GlassBottomSheet(child: const Text('Border Test')),
           ),
         ),
       );
@@ -152,9 +139,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassBottomSheet(
-              child: const Text('Corners Test'),
-            ),
+            body: GlassBottomSheet(child: const Text('Corners Test')),
           ),
         ),
       );

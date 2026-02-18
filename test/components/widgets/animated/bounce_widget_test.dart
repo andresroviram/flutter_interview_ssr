@@ -45,11 +45,7 @@ void main() {
     testWidgets('works without onTap callback', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: BounceWidget(
-              child: Text('Test'),
-            ),
-          ),
+          home: Scaffold(body: BounceWidget(child: Text('Test'))),
         ),
       );
 
@@ -63,16 +59,14 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: BounceWidget(
-              child: const Text('Test'),
-              onTap: () {},
-            ),
+            body: BounceWidget(child: const Text('Test'), onTap: () {}),
           ),
         ),
       );
 
-      final gesture =
-          await tester.startGesture(tester.getCenter(find.text('Test')));
+      final gesture = await tester.startGesture(
+        tester.getCenter(find.text('Test')),
+      );
       await tester.pump(const Duration(milliseconds: 50));
 
       // Move finger away to cancel

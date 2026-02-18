@@ -32,6 +32,10 @@ class PaginateState<T> extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [currentPage, itemsPerPage, displayedItems, isLoading];
+  List<Object?> get props => [
+    currentPage,
+    itemsPerPage,
+    displayedItems,
+    isLoading,
+  ];
 }

@@ -7,11 +7,7 @@ void main() {
     testWidgets('renders child widget', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassContainer(
-              child: const Text('Test Child'),
-            ),
-          ),
+          home: Scaffold(body: GlassContainer(child: const Text('Test Child'))),
         ),
       );
       await tester.pump();
@@ -20,15 +16,13 @@ void main() {
       expect(find.byType(GlassContainer), findsOneWidget);
     });
 
-    testWidgets('applies BackdropFilter with blur',
-        (WidgetTester tester) async {
+    testWidgets('applies BackdropFilter with blur', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassContainer(
-              blur: 15.0,
-              child: const Text('Blur Test'),
-            ),
+            body: GlassContainer(blur: 15.0, child: const Text('Blur Test')),
           ),
         ),
       );
@@ -37,15 +31,12 @@ void main() {
       expect(find.byType(BackdropFilter), findsOneWidget);
     });
 
-    testWidgets('uses ClipRRect for rounded corners',
-        (WidgetTester tester) async {
+    testWidgets('uses ClipRRect for rounded corners', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassContainer(
-              child: const Text('Clip Test'),
-            ),
-          ),
+          home: Scaffold(body: GlassContainer(child: const Text('Clip Test'))),
         ),
       );
       await tester.pump();
@@ -111,8 +102,9 @@ void main() {
       expect(container.margin, equals(customMargin));
     });
 
-    testWidgets('uses custom borderRadius when provided',
-        (WidgetTester tester) async {
+    testWidgets('uses custom borderRadius when provided', (
+      WidgetTester tester,
+    ) async {
       const customRadius = BorderRadius.all(Radius.circular(24));
 
       await tester.pumpWidget(
@@ -130,14 +122,13 @@ void main() {
       expect(find.byType(ClipRRect), findsOneWidget);
     });
 
-    testWidgets('uses default borderRadius when not provided',
-        (WidgetTester tester) async {
+    testWidgets('uses default borderRadius when not provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassContainer(
-              child: const Text('Default Border'),
-            ),
+            body: GlassContainer(child: const Text('Default Border')),
           ),
         ),
       );
@@ -151,11 +142,7 @@ void main() {
         MaterialApp(
           themeMode: ThemeMode.light,
           theme: ThemeData.light(),
-          home: Scaffold(
-            body: GlassContainer(
-              child: const Text('Theme Test'),
-            ),
-          ),
+          home: Scaffold(body: GlassContainer(child: const Text('Theme Test'))),
         ),
       );
       await tester.pump();
@@ -168,11 +155,7 @@ void main() {
         MaterialApp(
           themeMode: ThemeMode.dark,
           theme: ThemeData.dark(),
-          home: Scaffold(
-            body: GlassContainer(
-              child: const Text('Dark Theme'),
-            ),
-          ),
+          home: Scaffold(body: GlassContainer(child: const Text('Dark Theme'))),
         ),
       );
       await tester.pump();
@@ -180,8 +163,9 @@ void main() {
       expect(find.text('Dark Theme'), findsOneWidget);
     });
 
-    testWidgets('applies custom gradient when provided',
-        (WidgetTester tester) async {
+    testWidgets('applies custom gradient when provided', (
+      WidgetTester tester,
+    ) async {
       const customGradient = LinearGradient(
         colors: [Colors.blue, Colors.purple],
       );
@@ -205,9 +189,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassContainer(
-              child: const Text('Structure Test'),
-            ),
+            body: GlassContainer(child: const Text('Structure Test')),
           ),
         ),
       );

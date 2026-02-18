@@ -97,13 +97,12 @@ class _AddressFormFieldsState extends State<AddressFormFields> {
                     hintText: 'Ej: Av. Reforma 123',
                     prefixIcon: Icon(Icons.home_outlined),
                   ),
-                  validator: _isExpanded &&
-                          widget.streetController.text.isNotEmpty
+                  validator:
+                      _isExpanded && widget.streetController.text.isNotEmpty
                       ? (value) => Validators.combine([
-                            (v) => Validators.required(v, fieldName: 'Calle'),
-                            (v) =>
-                                Validators.minLength(v, 5, fieldName: 'Calle'),
-                          ])(value)
+                          (v) => Validators.required(v, fieldName: 'Calle'),
+                          (v) => Validators.minLength(v, 5, fieldName: 'Calle'),
+                        ])(value)
                       : null,
                 ),
                 const SizedBox(height: 16),
@@ -114,13 +113,13 @@ class _AddressFormFieldsState extends State<AddressFormFields> {
                     hintText: 'Ej: Centro',
                     prefixIcon: Icon(Icons.location_city),
                   ),
-                  validator: _isExpanded &&
-                          widget.streetController.text.isNotEmpty
+                  validator:
+                      _isExpanded && widget.streetController.text.isNotEmpty
                       ? (value) => Validators.combine([
-                            (v) => Validators.required(v, fieldName: 'Colonia'),
-                            (v) => Validators.minLength(v, 3,
-                                fieldName: 'Colonia'),
-                          ])(value)
+                          (v) => Validators.required(v, fieldName: 'Colonia'),
+                          (v) =>
+                              Validators.minLength(v, 3, fieldName: 'Colonia'),
+                        ])(value)
                       : null,
                 ),
                 const SizedBox(height: 16),
@@ -134,12 +133,13 @@ class _AddressFormFieldsState extends State<AddressFormFields> {
                           labelText: 'Ciudad',
                           prefixIcon: Icon(Icons.location_city_outlined),
                         ),
-                        validator: _isExpanded &&
+                        validator:
+                            _isExpanded &&
                                 widget.streetController.text.isNotEmpty
                             ? (value) => Validators.required(
-                                  value,
-                                  fieldName: 'Ciudad',
-                                )
+                                value,
+                                fieldName: 'Ciudad',
+                              )
                             : null,
                       ),
                     ),
@@ -151,12 +151,13 @@ class _AddressFormFieldsState extends State<AddressFormFields> {
                           labelText: 'Estado',
                           prefixIcon: Icon(Icons.map),
                         ),
-                        validator: _isExpanded &&
+                        validator:
+                            _isExpanded &&
                                 widget.streetController.text.isNotEmpty
                             ? (value) => Validators.required(
-                                  value,
-                                  fieldName: 'Estado',
-                                )
+                                value,
+                                fieldName: 'Estado',
+                              )
                             : null,
                       ),
                     ),
@@ -174,8 +175,8 @@ class _AddressFormFieldsState extends State<AddressFormFields> {
                   maxLength: 5,
                   validator:
                       _isExpanded && widget.streetController.text.isNotEmpty
-                          ? Validators.postalCode
-                          : null,
+                      ? Validators.postalCode
+                      : null,
                 ),
               ],
             ),

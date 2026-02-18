@@ -38,26 +38,26 @@ class UserModel {
 
 extension UserModelMapper on UserModel {
   UserEntity toEntity() => UserEntity(
-        id: id,
-        firstName: firstName,
-        lastName: lastName,
-        birthDate: birthDate,
-        email: email,
-        phone: phone,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
-      );
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    birthDate: birthDate,
+    email: email,
+    phone: phone,
+    createdAt: createdAt,
+    updatedAt: updatedAt,
+  );
 }
 
 extension UserEntityMapper on UserEntity {
   UserModel toModel() => UserModel(
-        id: id,
-        firstName: firstName,
-        lastName: lastName,
-        birthDate: birthDate,
-        email: email,
-        phone: phone,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
-      );
+    id: id,
+    firstName: firstName,
+    lastName: lastName,
+    birthDate: birthDate,
+    email: email,
+    phone: phone,
+    createdAt: createdAt,
+    updatedAt: updatedAt,
+  );
 }

@@ -7,9 +7,7 @@ void main() {
     testWidgets('renders with title', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            appBar: GlassAppBar(title: 'Test Title'),
-          ),
+          home: Scaffold(appBar: GlassAppBar(title: 'Test Title')),
         ),
       );
       await tester.pump();
@@ -23,16 +21,17 @@ void main() {
 
       expect(appBar, isA<PreferredSizeWidget>());
       expect(
-          appBar.preferredSize, equals(const Size.fromHeight(kToolbarHeight)));
+        appBar.preferredSize,
+        equals(const Size.fromHeight(kToolbarHeight)),
+      );
     });
 
-    testWidgets('uses BackdropFilter for glass effect',
-        (WidgetTester tester) async {
+    testWidgets('uses BackdropFilter for glass effect', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            appBar: GlassAppBar(title: 'Blur Test'),
-          ),
+          home: Scaffold(appBar: GlassAppBar(title: 'Blur Test')),
         ),
       );
       await tester.pump();
@@ -43,9 +42,7 @@ void main() {
     testWidgets('renders AppBar internally', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            appBar: GlassAppBar(title: 'Internal AppBar'),
-          ),
+          home: Scaffold(appBar: GlassAppBar(title: 'Internal AppBar')),
         ),
       );
       await tester.pump();
@@ -60,14 +57,8 @@ void main() {
             appBar: GlassAppBar(
               title: 'Actions Test',
               actions: [
-                IconButton(
-                  icon: const Icon(Icons.search),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: const Icon(Icons.more_vert),
-                  onPressed: () {},
-                ),
+                IconButton(icon: const Icon(Icons.search), onPressed: () {}),
+                IconButton(icon: const Icon(Icons.more_vert), onPressed: () {}),
               ],
             ),
           ),
@@ -79,8 +70,9 @@ void main() {
       expect(find.byIcon(Icons.more_vert), findsOneWidget);
     });
 
-    testWidgets('displays custom leading widget when provided',
-        (WidgetTester tester) async {
+    testWidgets('displays custom leading widget when provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -99,8 +91,9 @@ void main() {
       expect(find.byIcon(Icons.menu), findsOneWidget);
     });
 
-    testWidgets('respects automaticallyImplyLeading parameter',
-        (WidgetTester tester) async {
+    testWidgets('respects automaticallyImplyLeading parameter', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -116,13 +109,12 @@ void main() {
       expect(find.byType(GlassAppBar), findsOneWidget);
     });
 
-    testWidgets('uses ClipRRect for rounded effect',
-        (WidgetTester tester) async {
+    testWidgets('uses ClipRRect for rounded effect', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            appBar: GlassAppBar(title: 'Clip Test'),
-          ),
+          home: Scaffold(appBar: GlassAppBar(title: 'Clip Test')),
         ),
       );
       await tester.pump();
@@ -133,9 +125,7 @@ void main() {
     testWidgets('has zero elevation', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            appBar: GlassAppBar(title: 'Elevation Test'),
-          ),
+          home: Scaffold(appBar: GlassAppBar(title: 'Elevation Test')),
         ),
       );
       await tester.pump();
@@ -148,9 +138,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.dark(),
-          home: const Scaffold(
-            appBar: GlassAppBar(title: 'Theme Test'),
-          ),
+          home: const Scaffold(appBar: GlassAppBar(title: 'Theme Test')),
         ),
       );
       await tester.pump();
@@ -161,12 +149,7 @@ void main() {
     testWidgets('accepts custom blur parameter', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            appBar: GlassAppBar(
-              title: 'Custom Blur',
-              blur: 20.0,
-            ),
-          ),
+          home: Scaffold(appBar: GlassAppBar(title: 'Custom Blur', blur: 20.0)),
         ),
       );
       await tester.pump();
@@ -174,15 +157,13 @@ void main() {
       expect(find.byType(BackdropFilter), findsOneWidget);
     });
 
-    testWidgets('accepts custom opacity parameter',
-        (WidgetTester tester) async {
+    testWidgets('accepts custom opacity parameter', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            appBar: GlassAppBar(
-              title: 'Custom Opacity',
-              opacity: 0.3,
-            ),
+            appBar: GlassAppBar(title: 'Custom Opacity', opacity: 0.3),
           ),
         ),
       );

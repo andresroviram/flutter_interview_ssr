@@ -37,7 +37,9 @@ class UserDataSourceImpl implements IUserDataSource {
   @override
   Future<UserEntity> createUser(UserEntity user) async {
     try {
-      final id = await _database.into(_database.users).insert(
+      final id = await _database
+          .into(_database.users)
+          .insert(
             UsersCompanion.insert(
               firstName: user.firstName,
               lastName: user.lastName,
@@ -74,8 +76,7 @@ class UserDataSourceImpl implements IUserDataSource {
 
       await (_database.update(
         _database.users,
-      )..where((tbl) => tbl.id.equals(user.id)))
-          .write(
+      )..where((tbl) => tbl.id.equals(user.id))).write(
         UsersCompanion(
           firstName: drift.Value(user.firstName),
           lastName: drift.Value(user.lastName),
@@ -103,8 +104,7 @@ class UserDataSourceImpl implements IUserDataSource {
 
       await (_database.delete(
         _database.users,
-      )..where((tbl) => tbl.id.equals(id)))
-          .go();
+      )..where((tbl) => tbl.id.equals(id))).go();
     } catch (e) {
       if (e is NotFoundException) rethrow;
       throw StorageException(message: 'Error al eliminar usuario: $e');

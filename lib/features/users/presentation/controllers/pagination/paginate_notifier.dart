@@ -49,5 +49,5 @@ class PaginateNotifier<T> extends Notifier<PaginateState<T>> {
 
 final usersPaginateProvider =
     NotifierProvider<PaginateNotifier<UserEntity>, PaginateState<UserEntity>>(
-  PaginateNotifier<UserEntity>.new,
-);
+      PaginateNotifier<UserEntity>.new,
+    );

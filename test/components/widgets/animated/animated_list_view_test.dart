@@ -53,10 +53,8 @@ void main() {
             body: AnimatedListView(
               itemCount: 20,
               controller: controller,
-              itemBuilder: (context, index) => SizedBox(
-                height: 100,
-                child: Text('Item $index'),
-              ),
+              itemBuilder: (context, index) =>
+                  SizedBox(height: 100, child: Text('Item $index')),
             ),
           ),
         ),
@@ -150,10 +148,8 @@ void main() {
             body: AnimatedListView(
               itemCount: 10,
               staggerDuration: Duration.zero, // Disable stagger for this test
-              itemBuilder: (context, index) => SizedBox(
-                height: 100,
-                child: Text('Item $index'),
-              ),
+              itemBuilder: (context, index) =>
+                  SizedBox(height: 100, child: Text('Item $index')),
             ),
           ),
         ),
@@ -166,8 +162,9 @@ void main() {
       expect(find.byType(ListView), findsOneWidget);
     });
 
-    testWidgets('itemBuilder receives correct index',
-        (WidgetTester tester) async {
+    testWidgets('itemBuilder receives correct index', (
+      WidgetTester tester,
+    ) async {
       final builtIndices = <int>[];
 
       await tester.pumpWidget(

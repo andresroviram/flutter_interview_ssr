@@ -25,8 +25,9 @@ void main() {
       expect(find.text('Item 4'), findsOneWidget);
     });
 
-    testWidgets('displays LoadMoreIndicator at the end',
-        (WidgetTester tester) async {
+    testWidgets('displays LoadMoreIndicator at the end', (
+      WidgetTester tester,
+    ) async {
       final items = List.generate(3, (index) => 'Item $index');
 
       await tester.pumpWidget(
@@ -44,8 +45,9 @@ void main() {
       expect(find.byType(LoadMoreIndicator), findsOneWidget);
     });
 
-    testWidgets('displays emptyWidget when items list is empty',
-        (WidgetTester tester) async {
+    testWidgets('displays emptyWidget when items list is empty', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -92,10 +94,8 @@ void main() {
           home: Scaffold(
             body: PaginatedListView<String>(
               items: items,
-              itemBuilder: (context, item, index) => SizedBox(
-                height: 50,
-                child: Text(item),
-              ),
+              itemBuilder: (context, item, index) =>
+                  SizedBox(height: 50, child: Text(item)),
               controller: controller,
             ),
           ),
@@ -108,8 +108,9 @@ void main() {
       controller.dispose();
     });
 
-    testWidgets('passes isLoadingMore to LoadMoreIndicator',
-        (WidgetTester tester) async {
+    testWidgets('passes isLoadingMore to LoadMoreIndicator', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -123,13 +124,15 @@ void main() {
       );
       await tester.pump();
 
-      final indicator =
-          tester.widget<LoadMoreIndicator>(find.byType(LoadMoreIndicator));
+      final indicator = tester.widget<LoadMoreIndicator>(
+        find.byType(LoadMoreIndicator),
+      );
       expect(indicator.isLoadingMore, isTrue);
     });
 
-    testWidgets('passes hasMoreItems to LoadMoreIndicator',
-        (WidgetTester tester) async {
+    testWidgets('passes hasMoreItems to LoadMoreIndicator', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -143,13 +146,15 @@ void main() {
       );
       await tester.pump();
 
-      final indicator =
-          tester.widget<LoadMoreIndicator>(find.byType(LoadMoreIndicator));
+      final indicator = tester.widget<LoadMoreIndicator>(
+        find.byType(LoadMoreIndicator),
+      );
       expect(indicator.hasMoreItems, isFalse);
     });
 
-    testWidgets('renders correct item count including indicator',
-        (WidgetTester tester) async {
+    testWidgets('renders correct item count including indicator', (
+      WidgetTester tester,
+    ) async {
       final items = List.generate(5, (index) => 'Item $index');
 
       await tester.pumpWidget(
@@ -169,8 +174,9 @@ void main() {
       expect(listView.semanticChildCount, equals(6));
     });
 
-    testWidgets('creates internal ScrollController when none provided',
-        (WidgetTester tester) async {
+    testWidgets('creates internal ScrollController when none provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -187,8 +193,9 @@ void main() {
       expect(listView.controller, isNotNull);
     });
 
-    testWidgets('calls onLoadMore when scrolling near bottom',
-        (WidgetTester tester) async {
+    testWidgets('calls onLoadMore when scrolling near bottom', (
+      WidgetTester tester,
+    ) async {
       bool loadMoreCalled = false;
       final items = List.generate(20, (index) => 'Item $index');
 
@@ -199,10 +206,8 @@ void main() {
               height: 400,
               child: PaginatedListView<String>(
                 items: items,
-                itemBuilder: (context, item, index) => SizedBox(
-                  height: 50,
-                  child: Text(item),
-                ),
+                itemBuilder: (context, item, index) =>
+                    SizedBox(height: 50, child: Text(item)),
                 onLoadMore: () async {
                   loadMoreCalled = true;
                 },
@@ -221,8 +226,9 @@ void main() {
       expect(loadMoreCalled, isTrue);
     });
 
-    testWidgets('does not call onLoadMore multiple times simultaneously',
-        (WidgetTester tester) async {
+    testWidgets('does not call onLoadMore multiple times simultaneously', (
+      WidgetTester tester,
+    ) async {
       int loadMoreCallCount = 0;
       final items = List.generate(20, (index) => 'Item $index');
 
@@ -233,10 +239,8 @@ void main() {
               height: 400,
               child: PaginatedListView<String>(
                 items: items,
-                itemBuilder: (context, item, index) => SizedBox(
-                  height: 50,
-                  child: Text(item),
-                ),
+                itemBuilder: (context, item, index) =>
+                    SizedBox(height: 50, child: Text(item)),
                 onLoadMore: () async {
                   loadMoreCallCount++;
                   // Simulate async operation
@@ -264,8 +268,9 @@ void main() {
       expect(loadMoreCallCount, equals(1));
     });
 
-    testWidgets('does not call onLoadMore when no more items',
-        (WidgetTester tester) async {
+    testWidgets('does not call onLoadMore when no more items', (
+      WidgetTester tester,
+    ) async {
       int loadMoreCallCount = 0;
       final items = List.generate(20, (index) => 'Item $index');
 
@@ -276,10 +281,8 @@ void main() {
               height: 400,
               child: PaginatedListView<String>(
                 items: items,
-                itemBuilder: (context, item, index) => SizedBox(
-                  height: 50,
-                  child: Text(item),
-                ),
+                itemBuilder: (context, item, index) =>
+                    SizedBox(height: 50, child: Text(item)),
                 hasMoreItems: false, // No more items
                 onLoadMore: () async {
                   loadMoreCallCount++;
@@ -320,8 +323,9 @@ void main() {
       expect(find.text('Bob'), findsOneWidget);
     });
 
-    testWidgets('itemBuilder receives correct index',
-        (WidgetTester tester) async {
+    testWidgets('itemBuilder receives correct index', (
+      WidgetTester tester,
+    ) async {
       final items = ['A', 'B', 'C'];
       final receivedIndices = <int>[];
 
@@ -346,8 +350,9 @@ void main() {
       expect(find.text('C-2'), findsOneWidget);
     });
 
-    testWidgets('respects loadMoreThreshold parameter',
-        (WidgetTester tester) async {
+    testWidgets('respects loadMoreThreshold parameter', (
+      WidgetTester tester,
+    ) async {
       final items = List.generate(30, (index) => 'Item $index');
 
       await tester.pumpWidget(
@@ -357,10 +362,8 @@ void main() {
               height: 400,
               child: PaginatedListView<String>(
                 items: items,
-                itemBuilder: (context, item, index) => SizedBox(
-                  height: 50,
-                  child: Text(item),
-                ),
+                itemBuilder: (context, item, index) =>
+                    SizedBox(height: 50, child: Text(item)),
                 onLoadMore: () async {},
                 loadMoreThreshold: 500, // Large threshold
               ),

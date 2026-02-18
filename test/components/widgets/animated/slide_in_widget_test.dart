@@ -10,9 +10,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: SlideInWidget(
-              child: Text('Test', key: testKey),
-            ),
+            body: SlideInWidget(child: Text('Test', key: testKey)),
           ),
         ),
       );
@@ -23,8 +21,9 @@ void main() {
       expect(find.text('Test'), findsOneWidget);
     });
 
-    testWidgets('applies slide and fade animation',
-        (WidgetTester tester) async {
+    testWidgets('applies slide and fade animation', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -112,23 +111,21 @@ void main() {
       expect(find.text('Test'), findsOneWidget);
     });
 
-    testWidgets('handles widget disposal correctly',
-        (WidgetTester tester) async {
+    testWidgets('handles widget disposal correctly', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: SlideInWidget(
-              child: Text('Test'),
-            ),
-          ),
+          home: Scaffold(body: SlideInWidget(child: Text('Test'))),
         ),
       );
 
       await tester.pumpAndSettle();
 
       // Remove the widget
-      await tester
-          .pumpWidget(const MaterialApp(home: Scaffold(body: SizedBox())));
+      await tester.pumpWidget(
+        const MaterialApp(home: Scaffold(body: SizedBox())),
+      );
 
       expect(find.text('Test'), findsNothing);
     });

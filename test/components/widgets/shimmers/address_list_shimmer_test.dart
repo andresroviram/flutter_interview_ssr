@@ -7,11 +7,7 @@ void main() {
   group('AddressListShimmer', () {
     testWidgets('renders correctly', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: AddressListShimmer())),
       );
       await tester.pump();
 
@@ -21,11 +17,7 @@ void main() {
 
     testWidgets('renders default number of items', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: AddressListShimmer())),
       );
       await tester.pump();
 
@@ -36,9 +28,7 @@ void main() {
     testWidgets('renders custom number of items', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(itemCount: 5),
-          ),
+          home: Scaffold(body: AddressListShimmer(itemCount: 5)),
         ),
       );
       await tester.pump();
@@ -48,11 +38,7 @@ void main() {
 
     testWidgets('uses ListView.builder', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: AddressListShimmer())),
       );
       await tester.pump();
 
@@ -62,11 +48,7 @@ void main() {
 
     testWidgets('has proper padding', (WidgetTester tester) async {
       await tester.pumpWidget(
-        const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(),
-          ),
-        ),
+        const MaterialApp(home: Scaffold(body: AddressListShimmer())),
       );
       await tester.pump();
 
@@ -74,13 +56,12 @@ void main() {
       expect(listView.padding, equals(const EdgeInsets.all(16)));
     });
 
-    testWidgets('renders zero items when itemCount is 0',
-        (WidgetTester tester) async {
+    testWidgets('renders zero items when itemCount is 0', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(itemCount: 0),
-          ),
+          home: Scaffold(body: AddressListShimmer(itemCount: 0)),
         ),
       );
       await tester.pump();
@@ -91,9 +72,7 @@ void main() {
     testWidgets('renders single item', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(itemCount: 1),
-          ),
+          home: Scaffold(body: AddressListShimmer(itemCount: 1)),
         ),
       );
       await tester.pump();
@@ -104,9 +83,7 @@ void main() {
     testWidgets('can render many items', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: AddressListShimmer(itemCount: 10),
-          ),
+          home: Scaffold(body: AddressListShimmer(itemCount: 10)),
         ),
       );
       await tester.pump();

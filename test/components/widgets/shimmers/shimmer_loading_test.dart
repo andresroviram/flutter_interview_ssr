@@ -5,16 +5,12 @@ import 'package:shimmer/shimmer.dart';
 
 void main() {
   group('ShimmerLoading', () {
-    testWidgets('renders with required dimensions',
-        (WidgetTester tester) async {
+    testWidgets('renders with required dimensions', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: ShimmerLoading(
-              width: 100,
-              height: 50,
-            ),
-          ),
+          home: Scaffold(body: ShimmerLoading(width: 100, height: 50)),
         ),
       );
       await tester.pump();
@@ -52,16 +48,12 @@ void main() {
       );
     });
 
-    testWidgets('uses default border radius when not specified',
-        (WidgetTester tester) async {
+    testWidgets('uses default border radius when not specified', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: ShimmerLoading(
-              width: 100,
-              height: 50,
-            ),
-          ),
+          home: Scaffold(body: ShimmerLoading(width: 100, height: 50)),
         ),
       );
       await tester.pump();
@@ -83,12 +75,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.light(),
-          home: const Scaffold(
-            body: ShimmerLoading(
-              width: 100,
-              height: 50,
-            ),
-          ),
+          home: const Scaffold(body: ShimmerLoading(width: 100, height: 50)),
         ),
       );
       await tester.pump();
@@ -100,12 +87,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.dark(),
-          home: const Scaffold(
-            body: ShimmerLoading(
-              width: 100,
-              height: 50,
-            ),
-          ),
+          home: const Scaffold(body: ShimmerLoading(width: 100, height: 50)),
         ),
       );
       await tester.pump();
@@ -113,8 +95,9 @@ void main() {
       expect(find.byType(Shimmer), findsOneWidget);
     });
 
-    testWidgets('uses custom base color when provided',
-        (WidgetTester tester) async {
+    testWidgets('uses custom base color when provided', (
+      WidgetTester tester,
+    ) async {
       const customBaseColor = Colors.red;
 
       await tester.pumpWidget(
@@ -134,8 +117,9 @@ void main() {
       expect(shimmer.gradient.colors, contains(customBaseColor));
     });
 
-    testWidgets('uses custom highlight color when provided',
-        (WidgetTester tester) async {
+    testWidgets('uses custom highlight color when provided', (
+      WidgetTester tester,
+    ) async {
       const customHighlightColor = Colors.blue;
 
       await tester.pumpWidget(
@@ -155,16 +139,12 @@ void main() {
       expect(shimmer.gradient.colors, contains(customHighlightColor));
     });
 
-    testWidgets('renders container with specified dimensions',
-        (WidgetTester tester) async {
+    testWidgets('renders container with specified dimensions', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: ShimmerLoading(
-              width: 200,
-              height: 100,
-            ),
-          ),
+          home: Scaffold(body: ShimmerLoading(width: 200, height: 100)),
         ),
       );
       await tester.pump();

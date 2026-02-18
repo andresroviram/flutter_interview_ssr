@@ -70,9 +70,7 @@ void main() {
     test('exception should have descriptive message', () {
       const Map? map = null;
       try {
-        map.toEntity<TestEntity>(
-          callback: (json) => TestEntity.fromJson(json),
-        );
+        map.toEntity<TestEntity>(callback: (json) => TestEntity.fromJson(json));
         fail('Should have thrown exception');
       } catch (e) {
         expect(e.toString(), contains('Cannot convert null Map to entity'));

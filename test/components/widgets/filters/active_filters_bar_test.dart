@@ -6,17 +6,15 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('ActiveFiltersBar', () {
-    testWidgets('renders nothing when no filters are active',
-        (WidgetTester tester) async {
+    testWidgets('renders nothing when no filters are active', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState();
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFiltersBar(
-              filters: filters,
-              onUpdateFilters: (_) {},
-            ),
+            body: ActiveFiltersBar(filters: filters, onUpdateFilters: (_) {}),
           ),
         ),
       );
@@ -26,17 +24,15 @@ void main() {
       expect(find.byType(ActiveFilterChip), findsNothing);
     });
 
-    testWidgets('displays age filter chip when age range is set',
-        (WidgetTester tester) async {
+    testWidgets('displays age filter chip when age range is set', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState(minAge: 25, maxAge: 35);
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFiltersBar(
-              filters: filters,
-              onUpdateFilters: (_) {},
-            ),
+            body: ActiveFiltersBar(filters: filters, onUpdateFilters: (_) {}),
           ),
         ),
       );
@@ -46,17 +42,15 @@ void main() {
       expect(find.text('Edad: 25-35'), findsOneWidget);
     });
 
-    testWidgets('displays clear all button when filters are active',
-        (WidgetTester tester) async {
+    testWidgets('displays clear all button when filters are active', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState(minAge: 18, maxAge: 30);
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFiltersBar(
-              filters: filters,
-              onUpdateFilters: (_) {},
-            ),
+            body: ActiveFiltersBar(filters: filters, onUpdateFilters: (_) {}),
           ),
         ),
       );
@@ -66,8 +60,9 @@ void main() {
       expect(find.byIcon(Icons.clear_all), findsOneWidget);
     });
 
-    testWidgets('triggers onUpdateFilters when age filter is deleted',
-        (WidgetTester tester) async {
+    testWidgets('triggers onUpdateFilters when age filter is deleted', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState(minAge: 20, maxAge: 40);
       var callbackCalled = false;
 
@@ -92,8 +87,9 @@ void main() {
       expect(callbackCalled, isTrue);
     });
 
-    testWidgets('triggers onUpdateFilters when clear all is pressed',
-        (WidgetTester tester) async {
+    testWidgets('triggers onUpdateFilters when clear all is pressed', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState(
         minAge: 25,
         maxAge: 50,
@@ -128,10 +124,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFiltersBar(
-              filters: filters,
-              onUpdateFilters: (_) {},
-            ),
+            body: ActiveFiltersBar(filters: filters, onUpdateFilters: (_) {}),
           ),
         ),
       );
@@ -140,17 +133,15 @@ void main() {
       expect(find.byType(SingleChildScrollView), findsOneWidget);
     });
 
-    testWidgets('applies proper padding to container',
-        (WidgetTester tester) async {
+    testWidgets('applies proper padding to container', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState(minAge: 18, maxAge: 25);
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFiltersBar(
-              filters: filters,
-              onUpdateFilters: (_) {},
-            ),
+            body: ActiveFiltersBar(filters: filters, onUpdateFilters: (_) {}),
           ),
         ),
       );
@@ -163,17 +154,15 @@ void main() {
       );
     });
 
-    testWidgets('displays default age values when only minAge is set',
-        (WidgetTester tester) async {
+    testWidgets('displays default age values when only minAge is set', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState(minAge: 30);
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFiltersBar(
-              filters: filters,
-              onUpdateFilters: (_) {},
-            ),
+            body: ActiveFiltersBar(filters: filters, onUpdateFilters: (_) {}),
           ),
         ),
       );
@@ -182,17 +171,15 @@ void main() {
       expect(find.text('Edad: 30-100'), findsOneWidget);
     });
 
-    testWidgets('displays default age values when only maxAge is set',
-        (WidgetTester tester) async {
+    testWidgets('displays default age values when only maxAge is set', (
+      WidgetTester tester,
+    ) async {
       const filters = UserFiltersState(maxAge: 50);
 
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: ActiveFiltersBar(
-              filters: filters,
-              onUpdateFilters: (_) {},
-            ),
+            body: ActiveFiltersBar(filters: filters, onUpdateFilters: (_) {}),
           ),
         ),
       );

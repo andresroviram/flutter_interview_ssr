@@ -77,5 +77,5 @@ class AddressFormNotifier extends Notifier<AddressFormState> {
 
 final addressFormNotifierProvider =
     NotifierProvider<AddressFormNotifier, AddressFormState>(
-  AddressFormNotifier.new,
-);
+      AddressFormNotifier.new,
+    );

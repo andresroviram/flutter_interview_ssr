@@ -223,9 +223,9 @@ class _SectionHeader extends StatelessWidget {
         Text(
           title,
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: colorScheme.primary,
-              ),
+            fontWeight: FontWeight.bold,
+            color: colorScheme.primary,
+          ),
         ),
       ],
     );

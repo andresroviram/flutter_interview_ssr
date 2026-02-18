@@ -11,5 +11,5 @@ class SearchQueryNotifier extends Notifier<String> {
 
 final searchQueryProvider =
     NotifierProvider.autoDispose<SearchQueryNotifier, String>(
-  SearchQueryNotifier.new,
-);
+      SearchQueryNotifier.new,
+    );

@@ -27,15 +27,9 @@ void main() {
     });
 
     test('copyWith creates new instance with updated values', () {
-      const state = PaginationState(
-        currentPage: 1,
-        itemsPerPage: 10,
-      );
+      const state = PaginationState(currentPage: 1, itemsPerPage: 10);
 
-      final updated = state.copyWith(
-        currentPage: 2,
-        isLoadingMore: true,
-      );
+      final updated = state.copyWith(currentPage: 2, isLoadingMore: true);
 
       expect(updated.currentPage, equals(2));
       expect(updated.itemsPerPage, equals(10)); // unchanged
@@ -92,10 +86,7 @@ void main() {
     });
 
     test('copyWith updates multiple fields', () {
-      const state = PaginationState(
-        currentPage: 1,
-        itemsPerPage: 10,
-      );
+      const state = PaginationState(currentPage: 1, itemsPerPage: 10);
 
       final updated = state.copyWith(
         currentPage: 5,
@@ -111,10 +102,7 @@ void main() {
     });
 
     test('original state remains unchanged after copyWith', () {
-      const state = PaginationState(
-        currentPage: 2,
-        itemsPerPage: 15,
-      );
+      const state = PaginationState(currentPage: 2, itemsPerPage: 15);
 
       state.copyWith(currentPage: 10, isLoadingMore: true);
 

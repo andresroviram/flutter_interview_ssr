@@ -58,12 +58,12 @@ class UserFiltersState extends Equatable {
 
   @override
   List<Object?> get props => [
-        minAge,
-        maxAge,
-        searchQuery,
-        sortBy,
-        sortAscending,
-      ];
+    minAge,
+    maxAge,
+    searchQuery,
+    sortBy,
+    sortAscending,
+  ];
 }
 
 enum UserSortBy { name, age, email, createdDate }

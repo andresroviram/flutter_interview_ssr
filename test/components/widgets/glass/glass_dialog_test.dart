@@ -8,11 +8,7 @@ void main() {
     testWidgets('renders content widget', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: GlassDialog(
-              content: Text('Dialog Content'),
-            ),
-          ),
+          home: Scaffold(body: GlassDialog(content: Text('Dialog Content'))),
         ),
       );
       await tester.pump();
@@ -24,11 +20,7 @@ void main() {
     testWidgets('renders Dialog widget', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: GlassDialog(
-              content: Text('Test'),
-            ),
-          ),
+          home: Scaffold(body: GlassDialog(content: Text('Test'))),
         ),
       );
       await tester.pump();
@@ -39,11 +31,7 @@ void main() {
     testWidgets('uses GlassContainer internally', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: GlassDialog(
-              content: Text('Glass Test'),
-            ),
-          ),
+          home: Scaffold(body: GlassDialog(content: Text('Glass Test'))),
         ),
       );
       await tester.pump();
@@ -55,10 +43,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: GlassDialog(
-              title: 'Dialog Title',
-              content: Text('Content'),
-            ),
+            body: GlassDialog(title: 'Dialog Title', content: Text('Content')),
           ),
         ),
       );
@@ -68,15 +53,12 @@ void main() {
       expect(find.text('Content'), findsOneWidget);
     });
 
-    testWidgets('does not display title section when title is null',
-        (WidgetTester tester) async {
+    testWidgets('does not display title section when title is null', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: GlassDialog(
-              content: Text('No Title'),
-            ),
-          ),
+          home: Scaffold(body: GlassDialog(content: Text('No Title'))),
         ),
       );
       await tester.pump();
@@ -91,14 +73,8 @@ void main() {
             body: GlassDialog(
               content: const Text('Actions Test'),
               actions: [
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: const Text('OK'),
-                ),
+                TextButton(onPressed: () {}, child: const Text('Cancel')),
+                TextButton(onPressed: () {}, child: const Text('OK')),
               ],
             ),
           ),
@@ -114,10 +90,7 @@ void main() {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
-            body: GlassDialog(
-              title: 'Title',
-              content: Text('Content'),
-            ),
+            body: GlassDialog(title: 'Title', content: Text('Content')),
           ),
         ),
       );
@@ -129,11 +102,7 @@ void main() {
     testWidgets('has transparent background', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: GlassDialog(
-              content: Text('Transparent'),
-            ),
-          ),
+          home: Scaffold(body: GlassDialog(content: Text('Transparent'))),
         ),
       );
       await tester.pump();
@@ -145,11 +114,7 @@ void main() {
     testWidgets('has zero elevation', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
-          home: Scaffold(
-            body: GlassDialog(
-              content: Text('Elevation Test'),
-            ),
-          ),
+          home: Scaffold(body: GlassDialog(content: Text('Elevation Test'))),
         ),
       );
       await tester.pump();
@@ -162,11 +127,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.light(),
-          home: const Scaffold(
-            body: GlassDialog(
-              content: Text('Light Theme'),
-            ),
-          ),
+          home: const Scaffold(body: GlassDialog(content: Text('Light Theme'))),
         ),
       );
       await tester.pump();
@@ -178,11 +139,7 @@ void main() {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.dark(),
-          home: const Scaffold(
-            body: GlassDialog(
-              content: Text('Dark Theme'),
-            ),
-          ),
+          home: const Scaffold(body: GlassDialog(content: Text('Dark Theme'))),
         ),
       );
       await tester.pump();
@@ -215,9 +172,7 @@ void main() {
           home: Scaffold(
             body: GlassDialog(
               content: const Text('Alignment Test'),
-              actions: [
-                TextButton(onPressed: () {}, child: const Text('OK')),
-              ],
+              actions: [TextButton(onPressed: () {}, child: const Text('OK'))],
             ),
           ),
         ),

@@ -260,7 +260,9 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
       );
     }
 
-    await ref.read(userFormNotifierProvider.notifier).submitUserForm(
+    await ref
+        .read(userFormNotifierProvider.notifier)
+        .submitUserForm(
           user: user,
           isUpdate: widget.userToEdit != null,
           initialAddress: initialAddress,

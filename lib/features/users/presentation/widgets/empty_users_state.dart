@@ -7,10 +7,7 @@ import '../controllers/user_filters/user_filters_state.dart';
 class EmptyUsersState extends ConsumerWidget {
   final UserFiltersState currentFilters;
 
-  const EmptyUsersState({
-    super.key,
-    required this.currentFilters,
-  });
+  const EmptyUsersState({super.key, required this.currentFilters});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -30,10 +27,7 @@ class EmptyUsersState extends ConsumerWidget {
             currentFilters.hasActiveFilters
                 ? 'No se encontraron usuarios'
                 : 'No hay usuarios',
-            style: const TextStyle(
-              fontSize: 18,
-              color: Colors.grey,
-            ),
+            style: const TextStyle(fontSize: 18, color: Colors.grey),
           ),
           if (currentFilters.hasActiveFilters) ...[
             const SizedBox(height: 8),

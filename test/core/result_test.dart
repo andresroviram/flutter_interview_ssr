@@ -127,8 +127,9 @@ void main() {
 
     test('should work with chained operations', () {
       const result = Success(10);
-      final transformed =
-          result.flatMap((v) => Success(v + 5)).flatMap((v) => Success(v * 2));
+      final transformed = result
+          .flatMap((v) => Success(v + 5))
+          .flatMap((v) => Success(v * 2));
 
       expect(transformed, isA<Success<int>>());
       expect((transformed as Success).value, 30); // (10 + 5) * 2
@@ -225,7 +226,10 @@ void main() {
   group('Result complex scenarios', () {
     test('should handle chain of operations ending in Success', () {
       const result = Success(10);
-      final output = result.map((v) => v + 5).map((v) => v * 2).fold(
+      final output = result
+          .map((v) => v + 5)
+          .map((v) => v * 2)
+          .fold(
             onSuccess: (v) => 'Result: $v',
             onFailure: (e) => 'Error: ${e.message}',
           );
@@ -236,7 +240,10 @@ void main() {
     test('should handle chain of operations ending in Failure', () {
       const failure = ValidationFailure(message: 'Invalid input');
       const result = Failure<int>(failure);
-      final output = result.map((v) => v + 5).map((v) => v * 2).fold(
+      final output = result
+          .map((v) => v + 5)
+          .map((v) => v * 2)
+          .fold(
             onSuccess: (v) => 'Result: $v',
             onFailure: (e) => 'Error: ${e.message}',
           );

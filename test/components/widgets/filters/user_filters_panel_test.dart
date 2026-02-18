@@ -6,8 +6,9 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('UserFiltersPanel', () {
-    testWidgets('renders correctly with initial filters',
-        (WidgetTester tester) async {
+    testWidgets('renders correctly with initial filters', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState();
 
       await tester.pumpWidget(
@@ -111,8 +112,9 @@ void main() {
       expect(find.byType(SwitchListTile), findsOneWidget);
     });
 
-    testWidgets('displays clear and apply buttons',
-        (WidgetTester tester) async {
+    testWidgets('displays clear and apply buttons', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState();
 
       await tester.pumpWidget(
@@ -135,8 +137,9 @@ void main() {
       expect(find.byType(FilledButton), findsOneWidget);
     });
 
-    testWidgets('initializes with provided filters',
-        (WidgetTester tester) async {
+    testWidgets('initializes with provided filters', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState(
         minAge: 25,
         maxAge: 35,
@@ -161,8 +164,9 @@ void main() {
       expect(find.text('25 - 35 años'), findsOneWidget);
     });
 
-    testWidgets('clears filters when clear button is pressed',
-        (WidgetTester tester) async {
+    testWidgets('clears filters when clear button is pressed', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState(minAge: 30, maxAge: 50);
 
       await tester.pumpWidget(
@@ -187,8 +191,9 @@ void main() {
       expect(find.text('18 - 100 años'), findsOneWidget);
     });
 
-    testWidgets('calls onApplyFilters when apply is pressed',
-        (WidgetTester tester) async {
+    testWidgets('calls onApplyFilters when apply is pressed', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState(minAge: 20, maxAge: 40);
       UserFiltersState? appliedFilters;
 
@@ -216,8 +221,9 @@ void main() {
       expect(appliedFilters?.maxAge, equals(40));
     });
 
-    testWidgets('displays Z → A when sort ascending is false',
-        (WidgetTester tester) async {
+    testWidgets('displays Z → A when sort ascending is false', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState(sortAscending: false);
 
       await tester.pumpWidget(
@@ -237,8 +243,9 @@ void main() {
       expect(find.text('Z → A'), findsOneWidget);
     });
 
-    testWidgets('displays A → Z when sort ascending is true',
-        (WidgetTester tester) async {
+    testWidgets('displays A → Z when sort ascending is true', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState(sortAscending: true);
 
       await tester.pumpWidget(
@@ -258,8 +265,9 @@ void main() {
       expect(find.text('A → Z'), findsOneWidget);
     });
 
-    testWidgets('uses SafeArea for proper padding',
-        (WidgetTester tester) async {
+    testWidgets('uses SafeArea for proper padding', (
+      WidgetTester tester,
+    ) async {
       const initialFilters = UserFiltersState();
 
       await tester.pumpWidget(

@@ -8,11 +8,7 @@ void main() {
     testWidgets('renders child widget', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassCard(
-              child: const Text('Card Content'),
-            ),
-          ),
+          home: Scaffold(body: GlassCard(child: const Text('Card Content'))),
         ),
       );
       await tester.pump();
@@ -24,11 +20,7 @@ void main() {
     testWidgets('uses GlassContainer internally', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassCard(
-              child: const Text('Internal'),
-            ),
-          ),
+          home: Scaffold(body: GlassCard(child: const Text('Internal'))),
         ),
       );
       await tester.pump();
@@ -39,11 +31,7 @@ void main() {
     testWidgets('applies default padding', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassCard(
-              child: const Text('Padding Test'),
-            ),
-          ),
+          home: Scaffold(body: GlassCard(child: const Text('Padding Test'))),
         ),
       );
       await tester.pump();
@@ -51,8 +39,9 @@ void main() {
       expect(find.text('Padding Test'), findsOneWidget);
     });
 
-    testWidgets('applies custom padding when provided',
-        (WidgetTester tester) async {
+    testWidgets('applies custom padding when provided', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -68,8 +57,9 @@ void main() {
       expect(find.text('Custom Padding'), findsOneWidget);
     });
 
-    testWidgets('wraps with InkWell when onTap is provided',
-        (WidgetTester tester) async {
+    testWidgets('wraps with InkWell when onTap is provided', (
+      WidgetTester tester,
+    ) async {
       var tapped = false;
 
       await tester.pumpWidget(
@@ -94,15 +84,12 @@ void main() {
       expect(tapped, isTrue);
     });
 
-    testWidgets('does not wrap with InkWell when onTap is null',
-        (WidgetTester tester) async {
+    testWidgets('does not wrap with InkWell when onTap is null', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassCard(
-              child: const Text('Not Tappable'),
-            ),
-          ),
+          home: Scaffold(body: GlassCard(child: const Text('Not Tappable'))),
         ),
       );
       await tester.pump();
@@ -110,15 +97,13 @@ void main() {
       expect(find.byType(InkWell), findsNothing);
     });
 
-    testWidgets('passes blur parameter to GlassContainer',
-        (WidgetTester tester) async {
+    testWidgets('passes blur parameter to GlassContainer', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassCard(
-              blur: 15.0,
-              child: const Text('Blur Test'),
-            ),
+            body: GlassCard(blur: 15.0, child: const Text('Blur Test')),
           ),
         ),
       );
@@ -127,15 +112,13 @@ void main() {
       expect(find.byType(GlassContainer), findsOneWidget);
     });
 
-    testWidgets('passes opacity parameter to GlassContainer',
-        (WidgetTester tester) async {
+    testWidgets('passes opacity parameter to GlassContainer', (
+      WidgetTester tester,
+    ) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
-            body: GlassCard(
-              opacity: 0.3,
-              child: const Text('Opacity Test'),
-            ),
+            body: GlassCard(opacity: 0.3, child: const Text('Opacity Test')),
           ),
         ),
       );
@@ -163,11 +146,7 @@ void main() {
     testWidgets('has rounded borders', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
-          home: Scaffold(
-            body: GlassCard(
-              child: const Text('Borders'),
-            ),
-          ),
+          home: Scaffold(body: GlassCard(child: const Text('Borders'))),
         ),
       );
       await tester.pump();
