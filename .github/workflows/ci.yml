@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: ['**']
+    branches: ["**"]
   pull_request:
-    branches: ['**']
+    branches: ["**"]
 
 jobs:
   analyze-and-test:
@@ -18,8 +18,8 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.2'
-          channel: 'stable'
+          flutter-version: "3.27.2"
+          channel: "stable"
           cache: true
 
       - name: Install dependencies

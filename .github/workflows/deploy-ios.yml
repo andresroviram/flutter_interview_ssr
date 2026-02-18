@@ -11,9 +11,9 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Deployment environment (beta or production)'
+        description: "Deployment environment (beta or production)"
         required: true
-        default: 'beta'
+        default: "beta"
         type: choice
         options:
           - beta
@@ -31,8 +31,8 @@ jobs:
       - name: Setup Flutter
         uses: subosito/flutter-action@v2
         with:
-          flutter-version: '3.27.2'
-          channel: 'stable'
+          flutter-version: "3.27.2"
+          channel: "stable"
           cache: true
 
       - name: Install Flutter dependencies
@@ -48,7 +48,7 @@ jobs:
         if: github.event_name != 'pull_request'
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: "3.2"
           bundler-cache: true
           working-directory: ios
 
