@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../components/widgets/confirmation_dialog.dart';
 import '../../../../components/widgets/shimmers/shimmers.dart';
-import '../../data/datasources/address_datasource_impl.dart';
 import '../../domain/entities/address_entity.dart';
 import '../../../users/domain/entities/user_entity.dart';
 import '../providers/address_providers.dart';
@@ -21,21 +20,10 @@ class AddressesScreen extends ConsumerStatefulWidget {
 }
 
 class _AddressesScreenState extends ConsumerState<AddressesScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() async {
-      final dataSource = ref.read(addressDataSourceProvider);
-      if (dataSource is AddressDataSourceImpl) {
-        await dataSource.init();
-      }
-    });
-  }
-
   Future<void> _deleteAddress(String addressId) async {
     await ref
         .read(addressFormNotifierProvider.notifier)
-        .deleteAddress(addressId: addressId, userId: widget.user.id);
+        .deleteAddress(addressId: int.parse(addressId), userId: widget.user.id);
 
     if (mounted) {
       final state = ref.read(addressFormNotifierProvider);
@@ -144,7 +132,7 @@ class _AddressesScreenState extends ConsumerState<AddressesScreen> {
                       title: 'Eliminar Dirección',
                     );
                     if (confirmed == true) {
-                      await _deleteAddress(address.id);
+                      await _deleteAddress(address.id.toString());
                     }
                   },
                 );

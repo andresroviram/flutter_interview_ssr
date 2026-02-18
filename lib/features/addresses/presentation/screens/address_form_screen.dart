@@ -243,9 +243,7 @@ class _AddressFormScreenState extends ConsumerState<AddressFormScreen> {
     }
 
     final address = AddressEntity(
-      id:
-          widget.addressToEdit?.id ??
-          DateTime.now().millisecondsSinceEpoch.toString(),
+      id: widget.addressToEdit?.id ?? DateTime.now().millisecondsSinceEpoch,
       userId: widget.user.id,
       street: _streetController.text.trim(),
       neighborhood: _neighborhoodController.text.trim(),

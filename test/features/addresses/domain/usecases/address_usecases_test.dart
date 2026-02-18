@@ -20,8 +20,8 @@ void main() {
   setUpAll(() {
     registerFallbackValue(
       AddressEntity(
-        id: 'test',
-        userId: 'test',
+        id: 1,
+        userId: 1,
         street: 'test',
         neighborhood: 'test',
         city: 'test',
@@ -36,8 +36,8 @@ void main() {
   });
 
   final testAddress = AddressEntity(
-    id: 'address-123',
-    userId: 'user-123',
+    id: 123,
+    userId: 123,
     street: 'Calle Principal 123',
     neighborhood: 'Centro',
     city: 'Ciudad de México',
@@ -52,8 +52,8 @@ void main() {
   final testAddresses = [
     testAddress,
     AddressEntity(
-      id: 'address-456',
-      userId: 'user-123',
+      id: 456,
+      userId: 123,
       street: 'Av. Reforma 456',
       neighborhood: 'Polanco',
       city: 'Ciudad de México',
@@ -69,23 +69,23 @@ void main() {
   group('AddressUseCases.getAddressesByUserId', () {
     test('should return list of addresses from repository', () async {
       when(
-        () => mockRepository.getAddressesByUserId('user-123'),
+        () => mockRepository.getAddressesByUserId(123),
       ).thenAnswer((_) async => Success(testAddresses));
 
-      final result = await useCases.getAddressesByUserId('user-123');
+      final result = await useCases.getAddressesByUserId(123);
 
       expect(result.isSuccess, true);
       expect(result.valueOrNull, testAddresses);
-      verify(() => mockRepository.getAddressesByUserId('user-123')).called(1);
+      verify(() => mockRepository.getAddressesByUserId(123)).called(1);
     });
 
     test('should return failure when repository fails', () async {
       final failure = StorageFailure(message: 'Storage error');
       when(
-        () => mockRepository.getAddressesByUserId('user-123'),
+        () => mockRepository.getAddressesByUserId(123),
       ).thenAnswer((_) async => Failure(failure));
 
-      final result = await useCases.getAddressesByUserId('user-123');
+      final result = await useCases.getAddressesByUserId(123);
 
       expect(result.isFailure, true);
       expect(result.errorOrNull, failure);
@@ -95,23 +95,23 @@ void main() {
   group('AddressUseCases.getAddressById', () {
     test('should return address when found', () async {
       when(
-        () => mockRepository.getAddressById('address-123'),
+        () => mockRepository.getAddressById(123),
       ).thenAnswer((_) async => Success(testAddress));
 
-      final result = await useCases.getAddressById('address-123');
+      final result = await useCases.getAddressById(123);
 
       expect(result.isSuccess, true);
       expect(result.valueOrNull, testAddress);
-      verify(() => mockRepository.getAddressById('address-123')).called(1);
+      verify(() => mockRepository.getAddressById(123)).called(1);
     });
 
     test('should return failure when address not found', () async {
       final failure = NotFoundFailure(message: 'Address not found');
       when(
-        () => mockRepository.getAddressById('invalid-id'),
+        () => mockRepository.getAddressById(999),
       ).thenAnswer((_) async => Failure(failure));
 
-      final result = await useCases.getAddressById('invalid-id');
+      final result = await useCases.getAddressById(999);
 
       expect(result.isFailure, true);
       expect(result.errorOrNull, failure);
@@ -121,22 +121,22 @@ void main() {
   group('AddressUseCases.getPrimaryAddress', () {
     test('should return primary address when exists', () async {
       when(
-        () => mockRepository.getPrimaryAddress('user-123'),
+        () => mockRepository.getPrimaryAddress(123),
       ).thenAnswer((_) async => Success(testAddress));
 
-      final result = await useCases.getPrimaryAddress('user-123');
+      final result = await useCases.getPrimaryAddress(123);
 
       expect(result.isSuccess, true);
       expect(result.valueOrNull, testAddress);
-      verify(() => mockRepository.getPrimaryAddress('user-123')).called(1);
+      verify(() => mockRepository.getPrimaryAddress(123)).called(1);
     });
 
     test('should return null when no primary address', () async {
       when(
-        () => mockRepository.getPrimaryAddress('user-123'),
+        () => mockRepository.getPrimaryAddress(123),
       ).thenAnswer((_) async => const Success(null));
 
-      final result = await useCases.getPrimaryAddress('user-123');
+      final result = await useCases.getPrimaryAddress(123);
 
       expect(result.isSuccess, true);
       expect(result.valueOrNull, null);
@@ -146,8 +146,8 @@ void main() {
   group('AddressUseCases.createAddress', () {
     test('should mark first address as primary automatically', () async {
       final newAddress = AddressEntity(
-        id: 'address-789',
-        userId: 'user-123',
+        id: 789,
+        userId: 123,
         street: 'Nueva Calle',
         neighborhood: 'Nuevo Barrio',
         city: 'Ciudad',
@@ -160,7 +160,7 @@ void main() {
       );
 
       when(
-        () => mockRepository.getAddressesByUserId('user-123'),
+        () => mockRepository.getAddressesByUserId(123),
       ).thenAnswer((_) async => const Success([]));
       when(
         () => mockRepository.createAddress(any()),
@@ -169,14 +169,14 @@ void main() {
       final result = await useCases.createAddress(newAddress);
 
       expect(result.isSuccess, true);
-      verify(() => mockRepository.getAddressesByUserId('user-123')).called(1);
+      verify(() => mockRepository.getAddressesByUserId(123)).called(1);
       verify(() => mockRepository.createAddress(any())).called(1);
     });
 
     test('should create non-primary address when addresses exist', () async {
       final newAddress = AddressEntity(
-        id: 'address-789',
-        userId: 'user-123',
+        id: 789,
+        userId: 123,
         street: 'Nueva Calle',
         neighborhood: 'Nuevo Barrio',
         city: 'Ciudad',
@@ -189,7 +189,7 @@ void main() {
       );
 
       when(
-        () => mockRepository.getAddressesByUserId('user-123'),
+        () => mockRepository.getAddressesByUserId(123),
       ).thenAnswer((_) async => Success(testAddresses));
       when(
         () => mockRepository.createAddress(any()),
@@ -206,8 +206,8 @@ void main() {
       'should set new address as primary when explicitly requested',
       () async {
         final newAddress = AddressEntity(
-          id: 'address-789',
-          userId: 'user-123',
+          id: 789,
+          userId: 123,
           street: 'Nueva Calle',
           neighborhood: 'Nuevo Barrio',
           city: 'Ciudad',
@@ -220,29 +220,27 @@ void main() {
         );
 
         when(
-          () => mockRepository.getAddressesByUserId('user-123'),
+          () => mockRepository.getAddressesByUserId(123),
         ).thenAnswer((_) async => Success(testAddresses));
         when(
           () => mockRepository.createAddress(any()),
         ).thenAnswer((_) async => Success(newAddress));
         when(
-          () => mockRepository.setPrimaryAddress('user-123', 'address-789'),
+          () => mockRepository.setPrimaryAddress(123, 789),
         ).thenAnswer((_) async => const Success(null));
 
         final result = await useCases.createAddress(newAddress);
 
         expect(result.isSuccess, true);
         verify(() => mockRepository.createAddress(any())).called(1);
-        verify(
-          () => mockRepository.setPrimaryAddress('user-123', 'address-789'),
-        ).called(1);
+        verify(() => mockRepository.setPrimaryAddress(123, 789)).called(1);
       },
     );
 
     test('should return failure when repository fails', () async {
       final failure = StorageFailure(message: 'Create failed');
       when(
-        () => mockRepository.getAddressesByUserId('user-123'),
+        () => mockRepository.getAddressesByUserId(123),
       ).thenAnswer((_) async => Failure(failure));
 
       final result = await useCases.createAddress(testAddress);
@@ -255,8 +253,8 @@ void main() {
   group('AddressUseCases.updateAddress', () {
     test('should update address when not primary', () async {
       final address = AddressEntity(
-        id: 'address-456',
-        userId: 'user-123',
+        id: 456,
+        userId: 123,
         street: 'Updated Street',
         neighborhood: 'Updated Neighborhood',
         city: 'Updated City',
@@ -281,7 +279,7 @@ void main() {
 
     test('should call setPrimaryAddress when address is primary', () async {
       when(
-        () => mockRepository.setPrimaryAddress('user-123', 'address-123'),
+        () => mockRepository.setPrimaryAddress(123, 123),
       ).thenAnswer((_) async => const Success(null));
       when(
         () => mockRepository.updateAddress(any()),
@@ -290,16 +288,14 @@ void main() {
       final result = await useCases.updateAddress(testAddress);
 
       expect(result.isSuccess, true);
-      verify(
-        () => mockRepository.setPrimaryAddress('user-123', 'address-123'),
-      ).called(1);
+      verify(() => mockRepository.setPrimaryAddress(123, 123)).called(1);
       verify(() => mockRepository.updateAddress(any())).called(1);
     });
 
     test('should return failure when setPrimaryAddress fails', () async {
       final failure = StorageFailure(message: 'Set primary failed');
       when(
-        () => mockRepository.setPrimaryAddress('user-123', 'address-123'),
+        () => mockRepository.setPrimaryAddress(123, 123),
       ).thenAnswer((_) async => Failure(failure));
 
       final result = await useCases.updateAddress(testAddress);
@@ -313,8 +309,8 @@ void main() {
   group('AddressUseCases.deleteAddress', () {
     test('should delete non-primary address without promoting', () async {
       final nonPrimaryAddress = AddressEntity(
-        id: 'address-456',
-        userId: 'user-123',
+        id: 456,
+        userId: 123,
         street: 'Test Street',
         neighborhood: 'Test Neighborhood',
         city: 'Test City',
@@ -327,36 +323,36 @@ void main() {
       );
 
       when(
-        () => mockRepository.getAddressById('address-456'),
+        () => mockRepository.getAddressById(456),
       ).thenAnswer((_) async => Success(nonPrimaryAddress));
       when(
-        () => mockRepository.deleteAddress('address-456'),
+        () => mockRepository.deleteAddress(456),
       ).thenAnswer((_) async => const Success(null));
 
-      final result = await useCases.deleteAddress('address-456');
+      final result = await useCases.deleteAddress(456);
 
       expect(result.isSuccess, true);
-      verify(() => mockRepository.getAddressById('address-456')).called(1);
-      verify(() => mockRepository.deleteAddress('address-456')).called(1);
+      verify(() => mockRepository.getAddressById(456)).called(1);
+      verify(() => mockRepository.deleteAddress(456)).called(1);
       verifyNever(() => mockRepository.getAddressesByUserId(any()));
       verifyNever(() => mockRepository.setPrimaryAddress(any(), any()));
     });
 
     test('should delete last primary address without promoting', () async {
       when(
-        () => mockRepository.getAddressById('address-123'),
+        () => mockRepository.getAddressById(123),
       ).thenAnswer((_) async => Success(testAddress));
       when(
-        () => mockRepository.getAddressesByUserId('user-123'),
+        () => mockRepository.getAddressesByUserId(123),
       ).thenAnswer((_) async => Success([testAddress]));
       when(
-        () => mockRepository.deleteAddress('address-123'),
+        () => mockRepository.deleteAddress(123),
       ).thenAnswer((_) async => const Success(null));
 
-      final result = await useCases.deleteAddress('address-123');
+      final result = await useCases.deleteAddress(123);
 
       expect(result.isSuccess, true);
-      verify(() => mockRepository.deleteAddress('address-123')).called(1);
+      verify(() => mockRepository.deleteAddress(123)).called(1);
       verifyNever(() => mockRepository.setPrimaryAddress(any(), any()));
     });
 
@@ -364,37 +360,35 @@ void main() {
       'should promote next address when deleting primary with multiple addresses',
       () async {
         when(
-          () => mockRepository.getAddressById('address-123'),
+          () => mockRepository.getAddressById(123),
         ).thenAnswer((_) async => Success(testAddress));
         when(
-          () => mockRepository.getAddressesByUserId('user-123'),
+          () => mockRepository.getAddressesByUserId(123),
         ).thenAnswer((_) async => Success(testAddresses));
         when(
-          () => mockRepository.deleteAddress('address-123'),
+          () => mockRepository.deleteAddress(123),
         ).thenAnswer((_) async => const Success(null));
         when(
-          () => mockRepository.setPrimaryAddress('user-123', 'address-456'),
+          () => mockRepository.setPrimaryAddress(123, 456),
         ).thenAnswer((_) async => const Success(null));
 
-        final result = await useCases.deleteAddress('address-123');
+        final result = await useCases.deleteAddress(123);
 
         expect(result.isSuccess, true);
-        verify(() => mockRepository.getAddressById('address-123')).called(1);
-        verify(() => mockRepository.getAddressesByUserId('user-123')).called(1);
-        verify(() => mockRepository.deleteAddress('address-123')).called(1);
-        verify(
-          () => mockRepository.setPrimaryAddress('user-123', 'address-456'),
-        ).called(1);
+        verify(() => mockRepository.getAddressById(123)).called(1);
+        verify(() => mockRepository.getAddressesByUserId(123)).called(1);
+        verify(() => mockRepository.deleteAddress(123)).called(1);
+        verify(() => mockRepository.setPrimaryAddress(123, 456)).called(1);
       },
     );
 
     test('should return failure when address not found', () async {
       final failure = NotFoundFailure(message: 'Address not found');
       when(
-        () => mockRepository.getAddressById('invalid-id'),
+        () => mockRepository.getAddressById(999),
       ).thenAnswer((_) async => Failure(failure));
 
-      final result = await useCases.deleteAddress('invalid-id');
+      final result = await useCases.deleteAddress(999);
 
       expect(result.isFailure, true);
       expect(result.errorOrNull, failure);
@@ -402,8 +396,8 @@ void main() {
 
     test('should return failure when delete fails', () async {
       final nonPrimaryAddress = AddressEntity(
-        id: 'address-456',
-        userId: 'user-123',
+        id: 456,
+        userId: 123,
         street: 'Test Street',
         neighborhood: 'Test Neighborhood',
         city: 'Test City',
@@ -417,13 +411,13 @@ void main() {
 
       final failure = StorageFailure(message: 'Delete failed');
       when(
-        () => mockRepository.getAddressById('address-456'),
+        () => mockRepository.getAddressById(456),
       ).thenAnswer((_) async => Success(nonPrimaryAddress));
       when(
-        () => mockRepository.deleteAddress('address-456'),
+        () => mockRepository.deleteAddress(456),
       ).thenAnswer((_) async => Failure(failure));
 
-      final result = await useCases.deleteAddress('address-456');
+      final result = await useCases.deleteAddress(456);
 
       expect(result.isFailure, true);
       expect(result.errorOrNull, failure);
@@ -433,30 +427,22 @@ void main() {
   group('AddressUseCases.setPrimaryAddress', () {
     test('should set address as primary', () async {
       when(
-        () => mockRepository.setPrimaryAddress('user-123', 'address-456'),
+        () => mockRepository.setPrimaryAddress(123, 456),
       ).thenAnswer((_) async => const Success(null));
 
-      final result = await useCases.setPrimaryAddress(
-        'user-123',
-        'address-456',
-      );
+      final result = await useCases.setPrimaryAddress(123, 456);
 
       expect(result.isSuccess, true);
-      verify(
-        () => mockRepository.setPrimaryAddress('user-123', 'address-456'),
-      ).called(1);
+      verify(() => mockRepository.setPrimaryAddress(123, 456)).called(1);
     });
 
     test('should return failure when set primary fails', () async {
       final failure = StorageFailure(message: 'Set primary failed');
       when(
-        () => mockRepository.setPrimaryAddress('user-123', 'address-456'),
+        () => mockRepository.setPrimaryAddress(123, 456),
       ).thenAnswer((_) async => Failure(failure));
 
-      final result = await useCases.setPrimaryAddress(
-        'user-123',
-        'address-456',
-      );
+      final result = await useCases.setPrimaryAddress(123, 456);
 
       expect(result.isFailure, true);
       expect(result.errorOrNull, failure);

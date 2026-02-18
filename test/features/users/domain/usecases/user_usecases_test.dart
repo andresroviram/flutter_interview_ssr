@@ -18,7 +18,7 @@ void main() {
   });
 
   final testUser = UserEntity(
-    id: 'user-123',
+    id: 123,
     firstName: 'John',
     lastName: 'Doe',
     birthDate: DateTime(1990, 5, 20),
@@ -31,7 +31,7 @@ void main() {
   final testUsers = [
     testUser,
     UserEntity(
-      id: 'user-456',
+      id: 456,
       firstName: 'Jane',
       lastName: 'Smith',
       birthDate: DateTime(1992, 8, 10),
@@ -71,23 +71,23 @@ void main() {
   group('UserUseCases.getUserById', () {
     test('should return user when found', () async {
       when(
-        () => mockRepository.getUserById('user-123'),
+        () => mockRepository.getUserById(123),
       ).thenAnswer((_) async => Success(testUser));
 
-      final result = await useCases.getUserById('user-123');
+      final result = await useCases.getUserById(123);
 
       expect(result.isSuccess, true);
       expect(result.valueOrNull, testUser);
-      verify(() => mockRepository.getUserById('user-123')).called(1);
+      verify(() => mockRepository.getUserById(123)).called(1);
     });
 
     test('should return failure when user not found', () async {
       final failure = NotFoundFailure(message: 'User not found');
       when(
-        () => mockRepository.getUserById('invalid-id'),
+        () => mockRepository.getUserById(999),
       ).thenAnswer((_) async => Failure(failure));
 
-      final result = await useCases.getUserById('invalid-id');
+      final result = await useCases.getUserById(999);
 
       expect(result.isFailure, true);
       expect(result.errorOrNull, failure);
@@ -181,22 +181,22 @@ void main() {
   group('UserUseCases.deleteUser', () {
     test('should delete user successfully', () async {
       when(
-        () => mockRepository.deleteUser('user-123'),
+        () => mockRepository.deleteUser(123),
       ).thenAnswer((_) async => const Success(null));
 
-      final result = await useCases.deleteUser('user-123');
+      final result = await useCases.deleteUser(123);
 
       expect(result.isSuccess, true);
-      verify(() => mockRepository.deleteUser('user-123')).called(1);
+      verify(() => mockRepository.deleteUser(123)).called(1);
     });
 
     test('should return failure when delete fails', () async {
       final failure = StorageFailure(message: 'Delete failed');
       when(
-        () => mockRepository.deleteUser('user-123'),
+        () => mockRepository.deleteUser(123),
       ).thenAnswer((_) async => Failure(failure));
 
-      final result = await useCases.deleteUser('user-123');
+      final result = await useCases.deleteUser(123);
 
       expect(result.isFailure, true);
       expect(result.errorOrNull, failure);

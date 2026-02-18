@@ -14,7 +14,7 @@ class AddressFormNotifier extends Notifier<AddressFormState> {
   Future<void> saveAddress({
     required AddressEntity address,
     required bool isUpdate,
-    required String userId,
+    required int userId,
   }) async {
     state = const AddressFormState.saving();
 
@@ -34,8 +34,8 @@ class AddressFormNotifier extends Notifier<AddressFormState> {
   }
 
   Future<void> deleteAddress({
-    required String addressId,
-    required String userId,
+    required int addressId,
+    required int userId,
   }) async {
     state = const AddressFormState.saving();
 
@@ -54,7 +54,7 @@ class AddressFormNotifier extends Notifier<AddressFormState> {
 
   Future<void> setPrimaryAddress({
     required AddressEntity address,
-    required String userId,
+    required int userId,
   }) async {
     state = const AddressFormState.saving();
 

@@ -19,8 +19,8 @@ void main() {
   });
 
   final testAddress = AddressEntity(
-    id: '1',
-    userId: 'user1',
+    id: 1,
+    userId: 1,
     street: '123 Main St',
     neighborhood: 'Downtown',
     city: 'Springfield',
@@ -33,31 +33,34 @@ void main() {
 
   group('getAddressesByUserId', () {
     test('should return Success with addresses list', () async {
-      when(() => mockDataSource.getAddressesByUserId('user1'))
-          .thenAnswer((_) async => [testAddress]);
+      when(
+        () => mockDataSource.getAddressesByUserId(1),
+      ).thenAnswer((_) async => [testAddress]);
 
-      final result = await repository.getAddressesByUserId('user1');
+      final result = await repository.getAddressesByUserId(1);
 
       expect(result, isA<Success<List<AddressEntity>>>());
       expect((result as Success).value, [testAddress]);
-      verify(() => mockDataSource.getAddressesByUserId('user1')).called(1);
+      verify(() => mockDataSource.getAddressesByUserId(1)).called(1);
     });
 
     test('should return empty list when user has no addresses', () async {
-      when(() => mockDataSource.getAddressesByUserId('user1'))
-          .thenAnswer((_) async => []);
+      when(
+        () => mockDataSource.getAddressesByUserId(1),
+      ).thenAnswer((_) async => []);
 
-      final result = await repository.getAddressesByUserId('user1');
+      final result = await repository.getAddressesByUserId(1);
 
       expect(result, isA<Success<List<AddressEntity>>>());
       expect((result as Success).value, isEmpty);
     });
 
     test('should return StorageReadFailure on StorageException', () async {
-      when(() => mockDataSource.getAddressesByUserId('user1'))
-          .thenThrow(const StorageException(message: 'Read error'));
+      when(
+        () => mockDataSource.getAddressesByUserId(1),
+      ).thenThrow(const StorageException(message: 'Read error'));
 
-      final result = await repository.getAddressesByUserId('user1');
+      final result = await repository.getAddressesByUserId(1);
 
       expect(result, isA<Failure<List<AddressEntity>>>());
       final failure = (result as Failure).error;
@@ -66,10 +69,11 @@ void main() {
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.getAddressesByUserId('user1'))
-          .thenThrow(Exception('Boom'));
+      when(
+        () => mockDataSource.getAddressesByUserId(1),
+      ).thenThrow(Exception('Boom'));
 
-      final result = await repository.getAddressesByUserId('user1');
+      final result = await repository.getAddressesByUserId(1);
 
       expect(result, isA<Failure<List<AddressEntity>>>());
       expect((result as Failure).error, isA<UnknownFailure>());
@@ -78,21 +82,23 @@ void main() {
 
   group('getAddressById', () {
     test('should return Success with address when found', () async {
-      when(() => mockDataSource.getAddressById('1'))
-          .thenAnswer((_) async => testAddress);
+      when(
+        () => mockDataSource.getAddressById(1),
+      ).thenAnswer((_) async => testAddress);
 
-      final result = await repository.getAddressById('1');
+      final result = await repository.getAddressById(1);
 
       expect(result, isA<Success<AddressEntity>>());
       expect((result as Success).value, testAddress);
-      verify(() => mockDataSource.getAddressById('1')).called(1);
+      verify(() => mockDataSource.getAddressById(1)).called(1);
     });
 
     test('should return NotFoundFailure when address is null', () async {
-      when(() => mockDataSource.getAddressById('1'))
-          .thenAnswer((_) async => null);
+      when(
+        () => mockDataSource.getAddressById(1),
+      ).thenAnswer((_) async => null);
 
-      final result = await repository.getAddressById('1');
+      final result = await repository.getAddressById(1);
 
       expect(result, isA<Failure<AddressEntity>>());
       final failure = (result as Failure).error;
@@ -101,20 +107,20 @@ void main() {
     });
 
     test('should return StorageReadFailure on StorageException', () async {
-      when(() => mockDataSource.getAddressById('1'))
-          .thenThrow(const StorageException(message: 'Read error'));
+      when(
+        () => mockDataSource.getAddressById(1),
+      ).thenThrow(const StorageException(message: 'Read error'));
 
-      final result = await repository.getAddressById('1');
+      final result = await repository.getAddressById(1);
 
       expect(result, isA<Failure<AddressEntity>>());
       expect((result as Failure).error, isA<StorageReadFailure>());
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.getAddressById('1'))
-          .thenThrow(Exception('Boom'));
+      when(() => mockDataSource.getAddressById(1)).thenThrow(Exception('Boom'));
 
-      final result = await repository.getAddressById('1');
+      final result = await repository.getAddressById(1);
 
       expect(result, isA<Failure<AddressEntity>>());
       expect((result as Failure).error, isA<UnknownFailure>());
@@ -123,41 +129,45 @@ void main() {
 
   group('getPrimaryAddress', () {
     test('should return Success with primary address when found', () async {
-      when(() => mockDataSource.getPrimaryAddress('user1'))
-          .thenAnswer((_) async => testAddress);
+      when(
+        () => mockDataSource.getPrimaryAddress(1),
+      ).thenAnswer((_) async => testAddress);
 
-      final result = await repository.getPrimaryAddress('user1');
+      final result = await repository.getPrimaryAddress(1);
 
       expect(result, isA<Success<AddressEntity?>>());
       expect((result as Success).value, testAddress);
-      verify(() => mockDataSource.getPrimaryAddress('user1')).called(1);
+      verify(() => mockDataSource.getPrimaryAddress(1)).called(1);
     });
 
     test('should return Success with null when no primary address', () async {
-      when(() => mockDataSource.getPrimaryAddress('user1'))
-          .thenAnswer((_) async => null);
+      when(
+        () => mockDataSource.getPrimaryAddress(1),
+      ).thenAnswer((_) async => null);
 
-      final result = await repository.getPrimaryAddress('user1');
+      final result = await repository.getPrimaryAddress(1);
 
       expect(result, isA<Success<AddressEntity?>>());
       expect((result as Success).value, isNull);
     });
 
     test('should return StorageReadFailure on StorageException', () async {
-      when(() => mockDataSource.getPrimaryAddress('user1'))
-          .thenThrow(const StorageException(message: 'Read error'));
+      when(
+        () => mockDataSource.getPrimaryAddress(1),
+      ).thenThrow(const StorageException(message: 'Read error'));
 
-      final result = await repository.getPrimaryAddress('user1');
+      final result = await repository.getPrimaryAddress(1);
 
       expect(result, isA<Failure<AddressEntity?>>());
       expect((result as Failure).error, isA<StorageReadFailure>());
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.getPrimaryAddress('user1'))
-          .thenThrow(Exception('Boom'));
+      when(
+        () => mockDataSource.getPrimaryAddress(1),
+      ).thenThrow(Exception('Boom'));
 
-      final result = await repository.getPrimaryAddress('user1');
+      final result = await repository.getPrimaryAddress(1);
 
       expect(result, isA<Failure<AddressEntity?>>());
       expect((result as Failure).error, isA<UnknownFailure>());
@@ -166,8 +176,9 @@ void main() {
 
   group('createAddress', () {
     test('should return Success with created address', () async {
-      when(() => mockDataSource.createAddress(testAddress))
-          .thenAnswer((_) async => testAddress);
+      when(
+        () => mockDataSource.createAddress(testAddress),
+      ).thenAnswer((_) async => testAddress);
 
       final result = await repository.createAddress(testAddress);
 
@@ -177,8 +188,9 @@ void main() {
     });
 
     test('should return StorageFailure on StorageException', () async {
-      when(() => mockDataSource.createAddress(testAddress))
-          .thenThrow(const StorageException(message: 'Create error'));
+      when(
+        () => mockDataSource.createAddress(testAddress),
+      ).thenThrow(const StorageException(message: 'Create error'));
 
       final result = await repository.createAddress(testAddress);
 
@@ -189,8 +201,9 @@ void main() {
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.createAddress(testAddress))
-          .thenThrow(Exception('Boom'));
+      when(
+        () => mockDataSource.createAddress(testAddress),
+      ).thenThrow(Exception('Boom'));
 
       final result = await repository.createAddress(testAddress);
 
@@ -201,8 +214,9 @@ void main() {
 
   group('updateAddress', () {
     test('should return Success with updated address', () async {
-      when(() => mockDataSource.updateAddress(testAddress))
-          .thenAnswer((_) async => testAddress);
+      when(
+        () => mockDataSource.updateAddress(testAddress),
+      ).thenAnswer((_) async => testAddress);
 
       final result = await repository.updateAddress(testAddress);
 
@@ -212,8 +226,9 @@ void main() {
     });
 
     test('should return NotFoundFailure on NotFoundException', () async {
-      when(() => mockDataSource.updateAddress(testAddress))
-          .thenThrow(const NotFoundException(message: 'Address not found'));
+      when(
+        () => mockDataSource.updateAddress(testAddress),
+      ).thenThrow(const NotFoundException(message: 'Address not found'));
 
       final result = await repository.updateAddress(testAddress);
 
@@ -224,8 +239,9 @@ void main() {
     });
 
     test('should return StorageFailure on StorageException', () async {
-      when(() => mockDataSource.updateAddress(testAddress))
-          .thenThrow(const StorageException(message: 'Update error'));
+      when(
+        () => mockDataSource.updateAddress(testAddress),
+      ).thenThrow(const StorageException(message: 'Update error'));
 
       final result = await repository.updateAddress(testAddress);
 
@@ -234,8 +250,9 @@ void main() {
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.updateAddress(testAddress))
-          .thenThrow(Exception('Boom'));
+      when(
+        () => mockDataSource.updateAddress(testAddress),
+      ).thenThrow(Exception('Boom'));
 
       final result = await repository.updateAddress(testAddress);
 
@@ -246,40 +263,40 @@ void main() {
 
   group('deleteAddress', () {
     test('should return Success when deletion succeeds', () async {
-      when(() => mockDataSource.deleteAddress('1'))
-          .thenAnswer((_) async => {});
+      when(() => mockDataSource.deleteAddress(1)).thenAnswer((_) async => {});
 
-      final result = await repository.deleteAddress('1');
+      final result = await repository.deleteAddress(1);
 
       expect(result, isA<Success<void>>());
-      verify(() => mockDataSource.deleteAddress('1')).called(1);
+      verify(() => mockDataSource.deleteAddress(1)).called(1);
     });
 
     test('should return NotFoundFailure on NotFoundException', () async {
-      when(() => mockDataSource.deleteAddress('1'))
-          .thenThrow(const NotFoundException(message: 'Address not found'));
+      when(
+        () => mockDataSource.deleteAddress(1),
+      ).thenThrow(const NotFoundException(message: 'Address not found'));
 
-      final result = await repository.deleteAddress('1');
+      final result = await repository.deleteAddress(1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<NotFoundFailure>());
     });
 
     test('should return StorageFailure on StorageException', () async {
-      when(() => mockDataSource.deleteAddress('1'))
-          .thenThrow(const StorageException(message: 'Delete error'));
+      when(
+        () => mockDataSource.deleteAddress(1),
+      ).thenThrow(const StorageException(message: 'Delete error'));
 
-      final result = await repository.deleteAddress('1');
+      final result = await repository.deleteAddress(1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<StorageFailure>());
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.deleteAddress('1'))
-          .thenThrow(Exception('Boom'));
+      when(() => mockDataSource.deleteAddress(1)).thenThrow(Exception('Boom'));
 
-      final result = await repository.deleteAddress('1');
+      final result = await repository.deleteAddress(1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<UnknownFailure>());
@@ -288,30 +305,33 @@ void main() {
 
   group('setPrimaryAddress', () {
     test('should return Success when set primary succeeds', () async {
-      when(() => mockDataSource.setPrimaryAddress('user1', '1'))
-          .thenAnswer((_) async => {});
+      when(
+        () => mockDataSource.setPrimaryAddress(1, 1),
+      ).thenAnswer((_) async => {});
 
-      final result = await repository.setPrimaryAddress('user1', '1');
+      final result = await repository.setPrimaryAddress(1, 1);
 
       expect(result, isA<Success<void>>());
-      verify(() => mockDataSource.setPrimaryAddress('user1', '1')).called(1);
+      verify(() => mockDataSource.setPrimaryAddress(1, 1)).called(1);
     });
 
     test('should return StorageFailure on StorageException', () async {
-      when(() => mockDataSource.setPrimaryAddress('user1', '1'))
-          .thenThrow(const StorageException(message: 'Update error'));
+      when(
+        () => mockDataSource.setPrimaryAddress(1, 1),
+      ).thenThrow(const StorageException(message: 'Update error'));
 
-      final result = await repository.setPrimaryAddress('user1', '1');
+      final result = await repository.setPrimaryAddress(1, 1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<StorageFailure>());
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.setPrimaryAddress('user1', '1'))
-          .thenThrow(Exception('Boom'));
+      when(
+        () => mockDataSource.setPrimaryAddress(1, 1),
+      ).thenThrow(Exception('Boom'));
 
-      final result = await repository.setPrimaryAddress('user1', '1');
+      final result = await repository.setPrimaryAddress(1, 1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<UnknownFailure>());

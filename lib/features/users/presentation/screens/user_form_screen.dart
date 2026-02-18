@@ -244,9 +244,7 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
     }
 
     final user = UserEntity(
-      id:
-          widget.userToEdit?.id ??
-          DateTime.now().millisecondsSinceEpoch.toString(),
+      id: widget.userToEdit?.id ?? DateTime.now().millisecondsSinceEpoch,
       firstName: _firstNameController.text.trim(),
       lastName: _lastNameController.text.trim(),
       birthDate: _birthDate!,
@@ -259,7 +257,7 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
     AddressEntity? initialAddress;
     if (widget.userToEdit == null && _streetController.text.trim().isNotEmpty) {
       initialAddress = AddressEntity(
-        id: '${user.id}_address_${DateTime.now().millisecondsSinceEpoch}',
+        id: DateTime.now().millisecondsSinceEpoch,
         userId: user.id,
         street: _streetController.text.trim(),
         neighborhood: _neighborhoodController.text.trim(),

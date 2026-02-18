@@ -1,77 +1,50 @@
-import 'package:hive/hive.dart';
+import 'package:drift/drift.dart' as drift;
+import 'package:flutter_interview_ssr/core/database/tables/addresses_table.dart';
+import '../../../../core/database/app_database.dart';
 import '../../../../core/error/exceptions.dart';
-import '../../../../core/utils/box_converter.dart';
 import '../../domain/entities/address_entity.dart';
-import '../models/address_model.dart';
 import 'address_datasource.dart';
 
 class AddressDataSourceImpl implements IAddressDataSource {
-  static const String _boxName = 'addresses';
-  late Box<Map> _box;
-  bool _isInitialized = false;
+  final AppDatabase _database;
 
-  AddressDataSourceImpl({Box<Map>? box}) {
-    if (box != null) {
-      _box = box;
-      _isInitialized = true;
-    }
-  }
-
-  Future<void> init() async {
-    if (!_isInitialized) {
-      _box = await Hive.openBox<Map>(_boxName);
-      _isInitialized = true;
-    }
-  }
-
-  Future<void> _ensureInitialized() async {
-    if (!_isInitialized) {
-      await init();
-    }
-  }
+  AddressDataSourceImpl({required AppDatabase database}) : _database = database;
 
   @override
-  Future<List<AddressEntity>> getAddressesByUserId(String userId) async {
+  Future<List<AddressEntity>> getAddressesByUserId(int userId) async {
     try {
-      await _ensureInitialized();
+      final query = _database.select(_database.addresses)
+        ..where((tbl) => tbl.userId.equals(userId));
+      final addresses = await query.get();
+      final entities = addresses.map((address) => address.toEntity()).toList();
 
-      final addresses = _box.values.toEntityListWhere<AddressEntity>(
-        callback: (json) => AddressModel.fromJson(json).toEntity(),
-        test: (address) => address.userId == userId,
-      );
-
-      addresses.sort((a, b) {
+      entities.sort((a, b) {
         if (a.isPrimary && !b.isPrimary) return -1;
         if (!a.isPrimary && b.isPrimary) return 1;
         return b.createdAt.compareTo(a.createdAt);
       });
 
-      return addresses;
+      return entities;
     } catch (e) {
       throw StorageException(message: 'Error al obtener direcciones: $e');
     }
   }
 
   @override
-  Future<AddressEntity?> getAddressById(String id) async {
+  Future<AddressEntity?> getAddressById(int id) async {
     try {
-      await _ensureInitialized();
-
-      return _box
-          .get(id)
-          .toEntityOrNull<AddressEntity>(
-            callback: (json) => AddressModel.fromJson(json).toEntity(),
-          );
+      final query = _database.select(_database.addresses)
+        ..where((tbl) => tbl.id.equals(id));
+      final address = await query.getSingleOrNull();
+      return address?.toEntity();
     } catch (e) {
       throw StorageException(message: 'Error al obtener dirección: $e');
     }
   }
 
   @override
-  Future<AddressEntity?> getPrimaryAddress(String userId) async {
+  Future<AddressEntity?> getPrimaryAddress(int userId) async {
     try {
-      await _ensureInitialized();
-
       final addresses = await getAddressesByUserId(userId);
 
       for (final address in addresses) {
@@ -89,12 +62,36 @@ class AddressDataSourceImpl implements IAddressDataSource {
   @override
   Future<AddressEntity> createAddress(AddressEntity address) async {
     try {
-      await _ensureInitialized();
+      final id = await _database
+          .into(_database.addresses)
+          .insert(
+            AddressesCompanion.insert(
+              userId: address.userId,
+              street: address.street,
+              neighborhood: address.neighborhood,
+              city: address.city,
+              state: address.state,
+              postalCode: address.postalCode,
+              label: address.label.name,
+              isPrimary: address.isPrimary,
+              createdAt: address.createdAt,
+              updatedAt: drift.Value(address.updatedAt),
+            ),
+          );
 
-      final model = address.toModel();
-      await _box.put(address.id, model.toJson());
-
-      return address;
+      return AddressEntity(
+        id: id,
+        userId: address.userId,
+        street: address.street,
+        neighborhood: address.neighborhood,
+        city: address.city,
+        state: address.state,
+        postalCode: address.postalCode,
+        label: address.label,
+        isPrimary: address.isPrimary,
+        createdAt: address.createdAt,
+        updatedAt: address.updatedAt,
+      );
     } catch (e) {
       throw StorageException(message: 'Error al crear dirección: $e');
     }
@@ -103,14 +100,26 @@ class AddressDataSourceImpl implements IAddressDataSource {
   @override
   Future<AddressEntity> updateAddress(AddressEntity address) async {
     try {
-      await _ensureInitialized();
-
-      if (!_box.containsKey(address.id)) {
+      final existing = await getAddressById(address.id);
+      if (existing == null) {
         throw NotFoundException(message: 'Dirección no encontrada');
       }
 
-      final model = address.toModel();
-      await _box.put(address.id, model.toJson());
+      await (_database.update(
+        _database.addresses,
+      )..where((tbl) => tbl.id.equals(address.id))).write(
+        AddressesCompanion(
+          userId: drift.Value(address.userId),
+          street: drift.Value(address.street),
+          neighborhood: drift.Value(address.neighborhood),
+          city: drift.Value(address.city),
+          state: drift.Value(address.state),
+          postalCode: drift.Value(address.postalCode),
+          label: drift.Value(address.label.name),
+          isPrimary: drift.Value(address.isPrimary),
+          updatedAt: drift.Value(address.updatedAt),
+        ),
+      );
 
       return address;
     } catch (e) {
@@ -120,15 +129,16 @@ class AddressDataSourceImpl implements IAddressDataSource {
   }
 
   @override
-  Future<void> deleteAddress(String id) async {
+  Future<void> deleteAddress(int id) async {
     try {
-      await _ensureInitialized();
-
-      if (!_box.containsKey(id)) {
+      final existing = await getAddressById(id);
+      if (existing == null) {
         throw NotFoundException(message: 'Dirección no encontrada');
       }
 
-      await _box.delete(id);
+      await (_database.delete(
+        _database.addresses,
+      )..where((tbl) => tbl.id.equals(id))).go();
     } catch (e) {
       if (e is NotFoundException) rethrow;
       throw StorageException(message: 'Error al eliminar dirección: $e');
@@ -136,10 +146,8 @@ class AddressDataSourceImpl implements IAddressDataSource {
   }
 
   @override
-  Future<void> setPrimaryAddress(String userId, String addressId) async {
+  Future<void> setPrimaryAddress(int userId, int addressId) async {
     try {
-      await _ensureInitialized();
-
       final addresses = await getAddressesByUserId(userId);
 
       for (final address in addresses) {
@@ -147,25 +155,20 @@ class AddressDataSourceImpl implements IAddressDataSource {
           isPrimary: address.id == addressId,
           updatedAt: DateTime.now(),
         );
-        final model = updated.toModel();
-        await _box.put(address.id, model.toJson());
+
+        await (_database.update(
+          _database.addresses,
+        )..where((tbl) => tbl.id.equals(address.id))).write(
+          AddressesCompanion(
+            isPrimary: drift.Value(updated.isPrimary),
+            updatedAt: drift.Value(updated.updatedAt),
+          ),
+        );
       }
     } catch (e) {
       throw StorageException(
         message: 'Error al establecer dirección principal: $e',
       );
-    }
-  }
-
-  Future<void> clear() async {
-    await _ensureInitialized();
-    await _box.clear();
-  }
-
-  Future<void> close() async {
-    if (_isInitialized) {
-      await _box.close();
-      _isInitialized = false;
     }
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/result.dart';
+import '../../../../core/database/database_provider.dart';
 import '../../data/datasources/user_datasource.dart';
 import '../../data/datasources/user_datasource_impl.dart';
 import '../../data/repositories/user_repository_impl.dart';
@@ -11,7 +12,8 @@ import '../controllers/user_filters/user_filters_notifier.dart';
 import '../controllers/user_filters/user_filters_state.dart';
 
 final userDataSourceProvider = Provider<IUserDataSource>((ref) {
-  return UserDataSourceImpl();
+  final database = ref.watch(databaseProvider);
+  return UserDataSourceImpl(database: database);
 });
 
 final userRepositoryProvider = Provider<IUserRepository>((ref) {
@@ -35,10 +37,7 @@ final usersProvider = FutureProvider.autoDispose((ref) async {
   }
 });
 
-final userByIdProvider = FutureProvider.autoDispose.family((
-  ref,
-  String id,
-) async {
+final userByIdProvider = FutureProvider.autoDispose.family((ref, int id) async {
   final useCases = ref.watch(userUseCasesProvider);
   final result = await useCases.getUserById(id);
 

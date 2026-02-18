@@ -19,7 +19,7 @@ void main() {
   });
 
   final testUser = UserEntity(
-    id: '1',
+    id: 1,
     firstName: 'John',
     lastName: 'Doe',
     birthDate: DateTime(1990, 1, 1),
@@ -67,20 +67,20 @@ void main() {
   group('getUserById', () {
     test('should return Success with user when found', () async {
       when(
-        () => mockDataSource.getUserById('1'),
+        () => mockDataSource.getUserById(1),
       ).thenAnswer((_) async => testUser);
 
-      final result = await repository.getUserById('1');
+      final result = await repository.getUserById(1);
 
       expect(result, isA<Success<UserEntity>>());
       expect((result as Success).value, testUser);
-      verify(() => mockDataSource.getUserById('1')).called(1);
+      verify(() => mockDataSource.getUserById(1)).called(1);
     });
 
     test('should return NotFoundFailure when user is null', () async {
-      when(() => mockDataSource.getUserById('1')).thenAnswer((_) async => null);
+      when(() => mockDataSource.getUserById(1)).thenAnswer((_) async => null);
 
-      final result = await repository.getUserById('1');
+      final result = await repository.getUserById(1);
 
       expect(result, isA<Failure<UserEntity>>());
       final failure = (result as Failure).error;
@@ -90,19 +90,19 @@ void main() {
 
     test('should return StorageReadFailure on StorageException', () async {
       when(
-        () => mockDataSource.getUserById('1'),
+        () => mockDataSource.getUserById(1),
       ).thenThrow(const StorageException(message: 'Read error'));
 
-      final result = await repository.getUserById('1');
+      final result = await repository.getUserById(1);
 
       expect(result, isA<Failure<UserEntity>>());
       expect((result as Failure).error, isA<StorageReadFailure>());
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.getUserById('1')).thenThrow(Exception('Boom'));
+      when(() => mockDataSource.getUserById(1)).thenThrow(Exception('Boom'));
 
-      final result = await repository.getUserById('1');
+      final result = await repository.getUserById(1);
 
       expect(result, isA<Failure<UserEntity>>());
       expect((result as Failure).error, isA<UnknownFailure>());
@@ -198,20 +198,20 @@ void main() {
 
   group('deleteUser', () {
     test('should return Success when deletion succeeds', () async {
-      when(() => mockDataSource.deleteUser('1')).thenAnswer((_) async => {});
+      when(() => mockDataSource.deleteUser(1)).thenAnswer((_) async => {});
 
-      final result = await repository.deleteUser('1');
+      final result = await repository.deleteUser(1);
 
       expect(result, isA<Success<void>>());
-      verify(() => mockDataSource.deleteUser('1')).called(1);
+      verify(() => mockDataSource.deleteUser(1)).called(1);
     });
 
     test('should return NotFoundFailure on NotFoundException', () async {
       when(
-        () => mockDataSource.deleteUser('1'),
+        () => mockDataSource.deleteUser(1),
       ).thenThrow(const NotFoundException(message: 'User not found'));
 
-      final result = await repository.deleteUser('1');
+      final result = await repository.deleteUser(1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<NotFoundFailure>());
@@ -219,19 +219,19 @@ void main() {
 
     test('should return StorageFailure on StorageException', () async {
       when(
-        () => mockDataSource.deleteUser('1'),
+        () => mockDataSource.deleteUser(1),
       ).thenThrow(const StorageException(message: 'Delete error'));
 
-      final result = await repository.deleteUser('1');
+      final result = await repository.deleteUser(1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<StorageFailure>());
     });
 
     test('should return UnknownFailure on unexpected exception', () async {
-      when(() => mockDataSource.deleteUser('1')).thenThrow(Exception('Boom'));
+      when(() => mockDataSource.deleteUser(1)).thenThrow(Exception('Boom'));
 
-      final result = await repository.deleteUser('1');
+      final result = await repository.deleteUser(1);
 
       expect(result, isA<Failure<void>>());
       expect((result as Failure).error, isA<UnknownFailure>());

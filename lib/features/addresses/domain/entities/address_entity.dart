@@ -10,8 +10,8 @@ enum AddressLabel {
 }
 
 class AddressEntity extends Equatable {
-  final String id;
-  final String userId;
+  final int id;
+  final int userId;
   final String street;
   final String neighborhood;
   final String city;
@@ -42,8 +42,8 @@ class AddressEntity extends Equatable {
   String get shortAddress => '$street, $neighborhood';
 
   AddressEntity copyWith({
-    String? id,
-    String? userId,
+    int? id,
+    int? userId,
     String? street,
     String? neighborhood,
     String? city,

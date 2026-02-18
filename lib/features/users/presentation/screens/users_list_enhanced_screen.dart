@@ -8,7 +8,6 @@ import '../../../../components/widgets/shimmers/shimmers.dart';
 import '../../../../components/widgets/animated/animated.dart';
 import '../../../../components/widgets/filters/filters.dart';
 import '../../../../components/widgets/pagination/pagination.dart';
-import '../../data/datasources/user_datasource_impl.dart';
 import '../../domain/entities/user_entity.dart';
 import '../providers/user_providers.dart';
 import '../controllers/search_query_notifier.dart';
@@ -34,18 +33,7 @@ class _UsersListEnhancedScreenState
   final int _itemsPerPage = 20;
   List<UserEntity> _displayedUsers = [];
 
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() async {
-      final dataSource = ref.read(userDataSourceProvider);
-      if (dataSource is UserDataSourceImpl) {
-        await dataSource.init();
-      }
-    });
-  }
-
-  Future<void> _deleteUser(String userId) async {
+  Future<void> _deleteUser(int userId) async {
     await ref
         .read(userListNotifierProvider.notifier)
         .deleteUser(userId: userId);

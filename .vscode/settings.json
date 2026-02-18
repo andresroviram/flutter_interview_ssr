@@ -1,3 +1,6 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.38.9"
+  "dart.flutterSdkPath": ".fvm/versions/3.38.9",
+  "avdmanager.sdkPath": "c:\\Android\\sdk",
+  "avdmanager.executable": "c:\\Android\\sdk\\cmdline-tools\\latest\\bin\\avdmanager.bat",
+  "avdmanager.sdkManager": "c:\\Android\\sdk\\cmdline-tools\\latest\\bin\\sdkmanager.bat"
 }

@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/result.dart';
+import '../../../../core/database/database_provider.dart';
 import '../../data/datasources/address_datasource.dart';
 import '../../data/datasources/address_datasource_impl.dart';
 import '../../data/repositories/address_repository_impl.dart';
@@ -7,7 +8,8 @@ import '../../domain/repositories/address_repository.dart';
 import '../../domain/usecases/address_usecases.dart';
 
 final addressDataSourceProvider = Provider<IAddressDataSource>((ref) {
-  return AddressDataSourceImpl();
+  final database = ref.watch(databaseProvider);
+  return AddressDataSourceImpl(database: database);
 });
 
 final addressRepositoryProvider = Provider<IAddressRepository>((ref) {
@@ -22,7 +24,7 @@ final addressUseCasesProvider = Provider<AddressUseCases>((ref) {
 
 final userAddressesProvider = FutureProvider.autoDispose.family((
   ref,
-  String userId,
+  int userId,
 ) async {
   final useCases = ref.watch(addressUseCasesProvider);
   final result = await useCases.getAddressesByUserId(userId);
@@ -36,7 +38,7 @@ final userAddressesProvider = FutureProvider.autoDispose.family((
 
 final addressByIdProvider = FutureProvider.autoDispose.family((
   ref,
-  String id,
+  int id,
 ) async {
   final useCases = ref.watch(addressUseCasesProvider);
   final result = await useCases.getAddressById(id);

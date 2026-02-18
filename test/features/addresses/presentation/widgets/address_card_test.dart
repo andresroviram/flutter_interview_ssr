@@ -9,8 +9,8 @@ void main() {
 
     setUp(() {
       testAddress = AddressEntity(
-        id: '1',
-        userId: 'user1',
+        id: 1,
+        userId: 1,
         street: 'Calle Principal',
         neighborhood: 'Centro',
         city: 'Madrid',

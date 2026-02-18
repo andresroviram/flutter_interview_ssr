@@ -5,9 +5,9 @@ part 'address_model.g.dart';
 
 @JsonSerializable()
 class AddressModel {
-  final String id;
+  final int id;
   @JsonKey(name: 'user_id')
-  final String userId;
+  final int userId;
   final String street;
   final String neighborhood;
   final String city;
@@ -45,35 +45,35 @@ class AddressModel {
 
 extension AddressModelMapper on AddressModel {
   AddressEntity toEntity() => AddressEntity(
-        id: id,
-        userId: userId,
-        street: street,
-        neighborhood: neighborhood,
-        city: city,
-        state: state,
-        postalCode: postalCode,
-        label: AddressLabel.values.firstWhere(
-          (l) => l.name == labelString,
-          orElse: () => AddressLabel.other,
-        ),
-        isPrimary: isPrimary,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
-      );
+    id: id,
+    userId: userId,
+    street: street,
+    neighborhood: neighborhood,
+    city: city,
+    state: state,
+    postalCode: postalCode,
+    label: AddressLabel.values.firstWhere(
+      (l) => l.name == labelString,
+      orElse: () => AddressLabel.other,
+    ),
+    isPrimary: isPrimary,
+    createdAt: createdAt,
+    updatedAt: updatedAt,
+  );
 }
 
 extension AddressEntityMapper on AddressEntity {
   AddressModel toModel() => AddressModel(
-        id: id,
-        userId: userId,
-        street: street,
-        neighborhood: neighborhood,
-        city: city,
-        state: state,
-        postalCode: postalCode,
-        labelString: label.name,
-        isPrimary: isPrimary,
-        createdAt: createdAt,
-        updatedAt: updatedAt,
-      );
+    id: id,
+    userId: userId,
+    street: street,
+    neighborhood: neighborhood,
+    city: city,
+    state: state,
+    postalCode: postalCode,
+    labelString: label.name,
+    isPrimary: isPrimary,
+    createdAt: createdAt,
+    updatedAt: updatedAt,
+  );
 }

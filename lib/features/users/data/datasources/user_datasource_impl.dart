@@ -1,62 +1,34 @@
-import 'package:hive/hive.dart';
+import 'package:drift/drift.dart' as drift;
+import 'package:flutter_interview_ssr/core/database/tables/users_table.dart';
+import '../../../../core/database/app_database.dart';
 import '../../../../core/error/exceptions.dart';
-import '../../../../core/utils/box_converter.dart';
 import '../../domain/entities/user_entity.dart';
-import '../models/user_model.dart';
 import 'user_datasource.dart';
 
 class UserDataSourceImpl implements IUserDataSource {
-  static const String _boxName = 'users';
-  late Box<Map> _box;
-  bool _isInitialized = false;
+  final AppDatabase _database;
 
-  UserDataSourceImpl({Box<Map>? box}) {
-    if (box != null) {
-      _box = box;
-      _isInitialized = true;
-    }
-  }
-
-  Future<void> init() async {
-    if (!_isInitialized) {
-      _box = await Hive.openBox<Map>(_boxName);
-      _isInitialized = true;
-    }
-  }
-
-  Future<void> _ensureInitialized() async {
-    if (!_isInitialized) {
-      await init();
-    }
-  }
+  UserDataSourceImpl({required AppDatabase database}) : _database = database;
 
   @override
   Future<List<UserEntity>> getAllUsers() async {
     try {
-      await _ensureInitialized();
-
-      final users = _box.values.toEntityList<UserEntity>(
-        callback: (json) => UserModel.fromJson(json).toEntity(),
-      );
-
-      users.sort((a, b) => b.createdAt.compareTo(a.createdAt));
-
-      return users;
+      final users = await _database.select(_database.users).get();
+      final entities = users.map((user) => user.toEntity()).toList();
+      entities.sort((a, b) => b.createdAt.compareTo(a.createdAt));
+      return entities;
     } catch (e) {
       throw StorageException(message: 'Error al obtener usuarios: $e');
     }
   }
 
   @override
-  Future<UserEntity?> getUserById(String id) async {
+  Future<UserEntity?> getUserById(int id) async {
     try {
-      await _ensureInitialized();
-
-      return _box
-          .get(id)
-          .toEntityOrNull<UserEntity>(
-            callback: (json) => UserModel.fromJson(json).toEntity(),
-          );
+      final query = _database.select(_database.users)
+        ..where((tbl) => tbl.id.equals(id));
+      final user = await query.getSingleOrNull();
+      return user?.toEntity();
     } catch (e) {
       throw StorageException(message: 'Error al obtener usuario: $e');
     }
@@ -65,12 +37,30 @@ class UserDataSourceImpl implements IUserDataSource {
   @override
   Future<UserEntity> createUser(UserEntity user) async {
     try {
-      await _ensureInitialized();
+      final id = await _database
+          .into(_database.users)
+          .insert(
+            UsersCompanion.insert(
+              firstName: user.firstName,
+              lastName: user.lastName,
+              birthDate: user.birthDate,
+              email: user.email,
+              phone: user.phone,
+              createdAt: user.createdAt,
+              updatedAt: drift.Value(user.updatedAt),
+            ),
+          );
 
-      final model = user.toModel();
-      await _box.put(user.id, model.toJson());
-
-      return user;
+      return UserEntity(
+        id: id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        birthDate: user.birthDate,
+        email: user.email,
+        phone: user.phone,
+        createdAt: user.createdAt,
+        updatedAt: user.updatedAt,
+      );
     } catch (e) {
       throw StorageException(message: 'Error al crear usuario: $e');
     }
@@ -79,14 +69,23 @@ class UserDataSourceImpl implements IUserDataSource {
   @override
   Future<UserEntity> updateUser(UserEntity user) async {
     try {
-      await _ensureInitialized();
-
-      if (!_box.containsKey(user.id)) {
+      final existing = await getUserById(user.id);
+      if (existing == null) {
         throw NotFoundException(message: 'Usuario no encontrado');
       }
 
-      final model = user.toModel();
-      await _box.put(user.id, model.toJson());
+      await (_database.update(
+        _database.users,
+      )..where((tbl) => tbl.id.equals(user.id))).write(
+        UsersCompanion(
+          firstName: drift.Value(user.firstName),
+          lastName: drift.Value(user.lastName),
+          birthDate: drift.Value(user.birthDate),
+          email: drift.Value(user.email),
+          phone: drift.Value(user.phone),
+          updatedAt: drift.Value(user.updatedAt),
+        ),
+      );
 
       return user;
     } catch (e) {
@@ -96,15 +95,16 @@ class UserDataSourceImpl implements IUserDataSource {
   }
 
   @override
-  Future<void> deleteUser(String id) async {
+  Future<void> deleteUser(int id) async {
     try {
-      await _ensureInitialized();
-
-      if (!_box.containsKey(id)) {
+      final existing = await getUserById(id);
+      if (existing == null) {
         throw NotFoundException(message: 'Usuario no encontrado');
       }
 
-      await _box.delete(id);
+      await (_database.delete(
+        _database.users,
+      )..where((tbl) => tbl.id.equals(id))).go();
     } catch (e) {
       if (e is NotFoundException) rethrow;
       throw StorageException(message: 'Error al eliminar usuario: $e');
@@ -114,21 +114,17 @@ class UserDataSourceImpl implements IUserDataSource {
   @override
   Future<List<UserEntity>> searchUsers(String query) async {
     try {
-      await _ensureInitialized();
-
       final lowerQuery = query.toLowerCase();
 
-      final users = _box.values.toEntityListWhere<UserEntity>(
-        callback: (json) => UserModel.fromJson(json).toEntity(),
-        test: (user) {
-          return user.firstName.toLowerCase().contains(lowerQuery) ||
-              user.lastName.toLowerCase().contains(lowerQuery) ||
-              user.email.toLowerCase().contains(lowerQuery) ||
-              user.fullName.toLowerCase().contains(lowerQuery);
-        },
-      );
+      final allUsers = await getAllUsers();
+      final filtered = allUsers.where((user) {
+        return user.firstName.toLowerCase().contains(lowerQuery) ||
+            user.lastName.toLowerCase().contains(lowerQuery) ||
+            user.email.toLowerCase().contains(lowerQuery) ||
+            user.fullName.toLowerCase().contains(lowerQuery);
+      }).toList();
 
-      users.sort((a, b) {
+      filtered.sort((a, b) {
         final aStartsWith = a.fullName.toLowerCase().startsWith(lowerQuery);
         final bStartsWith = b.fullName.toLowerCase().startsWith(lowerQuery);
         if (aStartsWith && !bStartsWith) return -1;
@@ -136,7 +132,7 @@ class UserDataSourceImpl implements IUserDataSource {
         return a.fullName.compareTo(b.fullName);
       });
 
-      return users;
+      return filtered;
     } catch (e) {
       throw StorageException(message: 'Error al buscar usuarios: $e');
     }
@@ -145,26 +141,12 @@ class UserDataSourceImpl implements IUserDataSource {
   @override
   Future<bool> emailExists(String email) async {
     try {
-      await _ensureInitialized();
-
-      return _box.values.anyEntity<UserEntity>(
-        callback: (json) => UserModel.fromJson(json).toEntity(),
-        test: (user) => user.email.toLowerCase() == email.toLowerCase(),
-      );
+      final query = _database.select(_database.users)
+        ..where((tbl) => tbl.email.lower().equals(email.toLowerCase()));
+      final user = await query.getSingleOrNull();
+      return user != null;
     } catch (e) {
       throw StorageException(message: 'Error al verificar email: $e');
-    }
-  }
-
-  Future<void> clear() async {
-    await _ensureInitialized();
-    await _box.clear();
-  }
-
-  Future<void> close() async {
-    if (_isInitialized) {
-      await _box.close();
-      _isInitialized = false;
     }
   }
 }

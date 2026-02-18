@@ -7,8 +7,8 @@ void main() {
     final testDateTime = DateTime(2024, 1, 15, 10, 30);
 
     final testJson = {
-      'id': 'address-123',
-      'user_id': 'user-123',
+      'id': 123,
+      'user_id': 123,
       'street': 'Calle Principal 123',
       'neighborhood': 'Centro',
       'city': 'Ciudad de México',
@@ -21,8 +21,8 @@ void main() {
     };
 
     final testModel = AddressModel(
-      id: 'address-123',
-      userId: 'user-123',
+      id: 123,
+      userId: 123,
       street: 'Calle Principal 123',
       neighborhood: 'Centro',
       city: 'Ciudad de México',
@@ -38,8 +38,8 @@ void main() {
       test('should create AddressModel from valid JSON', () {
         final result = AddressModel.fromJson(testJson);
 
-        expect(result.id, 'address-123');
-        expect(result.userId, 'user-123');
+        expect(result.id, 123);
+        expect(result.userId, 123);
         expect(result.street, 'Calle Principal 123');
         expect(result.neighborhood, 'Centro');
         expect(result.city, 'Ciudad de México');
@@ -64,10 +64,7 @@ void main() {
       });
 
       test('should handle work label', () {
-        final jsonWithWork = {
-          ...testJson,
-          'label': 'work',
-        };
+        final jsonWithWork = {...testJson, 'label': 'work'};
 
         final result = AddressModel.fromJson(jsonWithWork);
 
@@ -75,10 +72,7 @@ void main() {
       });
 
       test('should handle other label', () {
-        final jsonWithOther = {
-          ...testJson,
-          'label': 'other',
-        };
+        final jsonWithOther = {...testJson, 'label': 'other'};
 
         final result = AddressModel.fromJson(jsonWithOther);
 
@@ -86,10 +80,7 @@ void main() {
       });
 
       test('should handle non-primary address', () {
-        final jsonNonPrimary = {
-          ...testJson,
-          'is_primary': false,
-        };
+        final jsonNonPrimary = {...testJson, 'is_primary': false};
 
         final result = AddressModel.fromJson(jsonNonPrimary);
 
@@ -101,8 +92,8 @@ void main() {
       test('should convert AddressModel to JSON', () {
         final result = testModel.toJson();
 
-        expect(result['id'], 'address-123');
-        expect(result['user_id'], 'user-123');
+        expect(result['id'], 123);
+        expect(result['user_id'], 123);
         expect(result['street'], 'Calle Principal 123');
         expect(result['neighborhood'], 'Centro');
         expect(result['city'], 'Ciudad de México');
@@ -117,8 +108,8 @@ void main() {
       test('should include updatedAt in JSON when present', () {
         final updatedDateTime = DateTime(2024, 2, 10);
         final modelWithUpdate = AddressModel(
-          id: 'address-123',
-          userId: 'user-123',
+          id: 123,
+          userId: 123,
           street: 'Calle Principal 123',
           neighborhood: 'Centro',
           city: 'Ciudad de México',
@@ -175,8 +166,8 @@ void main() {
 
       test('should convert work label correctly', () {
         final workModel = AddressModel(
-          id: 'address-123',
-          userId: 'user-123',
+          id: 123,
+          userId: 123,
           street: 'Calle Principal 123',
           neighborhood: 'Centro',
           city: 'Ciudad de México',
@@ -195,8 +186,8 @@ void main() {
 
       test('should convert other label correctly', () {
         final otherModel = AddressModel(
-          id: 'address-123',
-          userId: 'user-123',
+          id: 123,
+          userId: 123,
           street: 'Calle Principal 123',
           neighborhood: 'Centro',
           city: 'Ciudad de México',
@@ -215,8 +206,8 @@ void main() {
 
       test('should default to other label for unknown label strings', () {
         final unknownLabelModel = AddressModel(
-          id: 'address-123',
-          userId: 'user-123',
+          id: 123,
+          userId: 123,
           street: 'Calle Principal 123',
           neighborhood: 'Centro',
           city: 'Ciudad de México',
@@ -237,8 +228,8 @@ void main() {
     group('fromEntity', () {
       test('should convert AddressEntity to AddressModel', () {
         final entity = AddressEntity(
-          id: 'address-456',
-          userId: 'user-456',
+          id: 456,
+          userId: 456,
           street: 'Av. Reforma 456',
           neighborhood: 'Polanco',
           city: 'Ciudad de México',
@@ -268,8 +259,8 @@ void main() {
 
       test('should convert home label correctly', () {
         final entity = AddressEntity(
-          id: 'address-456',
-          userId: 'user-456',
+          id: 456,
+          userId: 456,
           street: 'Av. Reforma 456',
           neighborhood: 'Polanco',
           city: 'Ciudad de México',
@@ -288,8 +279,8 @@ void main() {
 
       test('should convert other label correctly', () {
         final entity = AddressEntity(
-          id: 'address-456',
-          userId: 'user-456',
+          id: 456,
+          userId: 456,
           street: 'Av. Reforma 456',
           neighborhood: 'Polanco',
           city: 'Ciudad de México',
@@ -308,28 +299,31 @@ void main() {
     });
 
     group('Model-Entity roundtrip', () {
-      test('should maintain data integrity through Model-Entity conversion', () {
-        final entity = testModel.toEntity();
-        final resultModel = entity.toModel();
+      test(
+        'should maintain data integrity through Model-Entity conversion',
+        () {
+          final entity = testModel.toEntity();
+          final resultModel = entity.toModel();
 
-        expect(resultModel.id, testModel.id);
-        expect(resultModel.userId, testModel.userId);
-        expect(resultModel.street, testModel.street);
-        expect(resultModel.neighborhood, testModel.neighborhood);
-        expect(resultModel.city, testModel.city);
-        expect(resultModel.state, testModel.state);
-        expect(resultModel.postalCode, testModel.postalCode);
-        expect(resultModel.labelString, testModel.labelString);
-        expect(resultModel.isPrimary, testModel.isPrimary);
-        expect(resultModel.createdAt, testModel.createdAt);
-        expect(resultModel.updatedAt, testModel.updatedAt);
-      });
+          expect(resultModel.id, testModel.id);
+          expect(resultModel.userId, testModel.userId);
+          expect(resultModel.street, testModel.street);
+          expect(resultModel.neighborhood, testModel.neighborhood);
+          expect(resultModel.city, testModel.city);
+          expect(resultModel.state, testModel.state);
+          expect(resultModel.postalCode, testModel.postalCode);
+          expect(resultModel.labelString, testModel.labelString);
+          expect(resultModel.isPrimary, testModel.isPrimary);
+          expect(resultModel.createdAt, testModel.createdAt);
+          expect(resultModel.updatedAt, testModel.updatedAt);
+        },
+      );
 
       test('should maintain all label types through roundtrip', () {
         for (final label in AddressLabel.values) {
           final model = AddressModel(
-            id: 'test-id',
-            userId: 'user-id',
+            id: 1,
+            userId: 1,
             street: 'Test Street',
             neighborhood: 'Test Neighborhood',
             city: 'Test City',

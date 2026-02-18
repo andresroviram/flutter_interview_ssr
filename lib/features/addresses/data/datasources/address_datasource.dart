@@ -1,17 +1,17 @@
 import '../../domain/entities/address_entity.dart';
 
 abstract class IAddressDataSource {
-  Future<List<AddressEntity>> getAddressesByUserId(String userId);
+  Future<List<AddressEntity>> getAddressesByUserId(int userId);
 
-  Future<AddressEntity?> getAddressById(String id);
+  Future<AddressEntity?> getAddressById(int id);
 
-  Future<AddressEntity?> getPrimaryAddress(String userId);
+  Future<AddressEntity?> getPrimaryAddress(int userId);
 
   Future<AddressEntity> createAddress(AddressEntity address);
 
   Future<AddressEntity> updateAddress(AddressEntity address);
 
-  Future<void> deleteAddress(String id);
+  Future<void> deleteAddress(int id);
 
-  Future<void> setPrimaryAddress(String userId, String addressId);
+  Future<void> setPrimaryAddress(int userId, int addressId);
 }

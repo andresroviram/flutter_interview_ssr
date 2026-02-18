@@ -11,9 +11,7 @@ class AddressRepositoryImpl implements IAddressRepository {
   const AddressRepositoryImpl(this.dataSource);
 
   @override
-  Future<Result<List<AddressEntity>>> getAddressesByUserId(
-    String userId,
-  ) async {
+  Future<Result<List<AddressEntity>>> getAddressesByUserId(int userId) async {
     try {
       final addresses = await dataSource.getAddressesByUserId(userId);
       return Success(addresses);
@@ -25,7 +23,7 @@ class AddressRepositoryImpl implements IAddressRepository {
   }
 
   @override
-  Future<Result<AddressEntity>> getAddressById(String id) async {
+  Future<Result<AddressEntity>> getAddressById(int id) async {
     try {
       final address = await dataSource.getAddressById(id);
       if (address == null) {
@@ -42,7 +40,7 @@ class AddressRepositoryImpl implements IAddressRepository {
   }
 
   @override
-  Future<Result<AddressEntity?>> getPrimaryAddress(String userId) async {
+  Future<Result<AddressEntity?>> getPrimaryAddress(int userId) async {
     try {
       final address = await dataSource.getPrimaryAddress(userId);
       return Success(address);
@@ -80,7 +78,7 @@ class AddressRepositoryImpl implements IAddressRepository {
   }
 
   @override
-  Future<Result<void>> deleteAddress(String id) async {
+  Future<Result<void>> deleteAddress(int id) async {
     try {
       await dataSource.deleteAddress(id);
       return const Success(null);
@@ -94,10 +92,7 @@ class AddressRepositoryImpl implements IAddressRepository {
   }
 
   @override
-  Future<Result<void>> setPrimaryAddress(
-    String userId,
-    String addressId,
-  ) async {
+  Future<Result<void>> setPrimaryAddress(int userId, int addressId) async {
     try {
       await dataSource.setPrimaryAddress(userId, addressId);
       return const Success(null);

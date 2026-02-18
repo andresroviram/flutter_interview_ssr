@@ -19,8 +19,8 @@ void main() {
 
   group('AddressEntity', () {
     final testAddress = AddressEntity(
-      id: '1',
-      userId: 'user1',
+      id: 1,
+      userId: 1,
       street: '123 Main St',
       neighborhood: 'Downtown',
       city: 'Springfield',
@@ -33,8 +33,8 @@ void main() {
     );
 
     test('should create AddressEntity with all required fields', () {
-      expect(testAddress.id, '1');
-      expect(testAddress.userId, 'user1');
+      expect(testAddress.id, 1);
+      expect(testAddress.userId, 1);
       expect(testAddress.street, '123 Main St');
       expect(testAddress.neighborhood, 'Downtown');
       expect(testAddress.city, 'Springfield');
@@ -46,8 +46,8 @@ void main() {
 
     test('should create AddressEntity with default isPrimary false', () {
       final address = AddressEntity(
-        id: '1',
-        userId: 'user1',
+        id: 1,
+        userId: 1,
         street: '123 Main St',
         neighborhood: 'Downtown',
         city: 'Springfield',
@@ -71,8 +71,8 @@ void main() {
 
       test('should format complete address components', () {
         final address = AddressEntity(
-          id: '2',
-          userId: 'user1',
+          id: 2,
+          userId: 1,
           street: 'Av. Principal 456',
           neighborhood: 'Centro',
           city: 'Bogotá',
@@ -96,8 +96,8 @@ void main() {
 
       test('should format only street and neighborhood', () {
         final address = AddressEntity(
-          id: '2',
-          userId: 'user1',
+          id: 2,
+          userId: 1,
           street: 'Calle 72 #10-34',
           neighborhood: 'Chapinero',
           city: 'Bogotá',
@@ -113,8 +113,8 @@ void main() {
 
     group('copyWith', () {
       test('should copy with new id', () {
-        final copied = testAddress.copyWith(id: '2');
-        expect(copied.id, '2');
+        final copied = testAddress.copyWith(id: 2);
+        expect(copied.id, 2);
         expect(copied.street, testAddress.street);
         expect(copied.city, testAddress.city);
       });
@@ -155,8 +155,8 @@ void main() {
 
       test('should copy all fields', () {
         final copied = testAddress.copyWith(
-          id: '2',
-          userId: 'user2',
+          id: 2,
+          userId: 2,
           street: 'New Street',
           neighborhood: 'New Hood',
           city: 'New City',
@@ -167,8 +167,8 @@ void main() {
           updatedAt: DateTime(2024, 2, 1),
         );
 
-        expect(copied.id, '2');
-        expect(copied.userId, 'user2');
+        expect(copied.id, 2);
+        expect(copied.userId, 2);
         expect(copied.street, 'New Street');
         expect(copied.neighborhood, 'New Hood');
         expect(copied.city, 'New City');
@@ -183,8 +183,8 @@ void main() {
     group('equality', () {
       test('should be equal when all properties match', () {
         final address1 = AddressEntity(
-          id: '1',
-          userId: 'user1',
+          id: 1,
+          userId: 1,
           street: '123 Main St',
           neighborhood: 'Downtown',
           city: 'Springfield',
@@ -196,8 +196,8 @@ void main() {
         );
 
         final address2 = AddressEntity(
-          id: '1',
-          userId: 'user1',
+          id: 1,
+          userId: 1,
           street: '123 Main St',
           neighborhood: 'Downtown',
           city: 'Springfield',
@@ -213,7 +213,7 @@ void main() {
 
       test('should not be equal when id differs', () {
         final address1 = testAddress;
-        final address2 = testAddress.copyWith(id: '2');
+        final address2 = testAddress.copyWith(id: 2);
 
         expect(address1, isNot(equals(address2)));
       });
@@ -252,8 +252,8 @@ void main() {
     group('props', () {
       test('should include all properties in props list', () {
         expect(testAddress.props.length, 11);
-        expect(testAddress.props[0], '1'); // id
-        expect(testAddress.props[1], 'user1'); // userId
+        expect(testAddress.props[0], 1); // id
+        expect(testAddress.props[1], 1); // userId
         expect(testAddress.props[2], '123 Main St'); // street
         expect(testAddress.props[3], 'Downtown'); // neighborhood
         expect(testAddress.props[4], 'Springfield'); // city

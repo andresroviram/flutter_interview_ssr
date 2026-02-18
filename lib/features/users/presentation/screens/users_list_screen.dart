@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../components/widgets/confirmation_dialog.dart';
 import '../../../../components/widgets/shimmers/shimmers.dart';
-import '../../data/datasources/user_datasource_impl.dart';
 import '../providers/user_providers.dart';
 import '../controllers/search_query_notifier.dart';
 import '../controllers/user_list/user_list_notifier.dart';
@@ -19,18 +18,7 @@ class UsersListScreen extends ConsumerStatefulWidget {
 }
 
 class _UsersListScreenState extends ConsumerState<UsersListScreen> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() async {
-      final dataSource = ref.read(userDataSourceProvider);
-      if (dataSource is UserDataSourceImpl) {
-        await dataSource.init();
-      }
-    });
-  }
-
-  Future<void> _deleteUser(String userId) async {
+  Future<void> _deleteUser(int userId) async {
     await ref
         .read(userListNotifierProvider.notifier)
         .deleteUser(userId: userId);

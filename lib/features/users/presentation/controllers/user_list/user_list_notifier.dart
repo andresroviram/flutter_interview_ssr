@@ -12,7 +12,7 @@ class UserListNotifier extends Notifier<UserListState> {
 
   UserUseCases get _userUseCases => ref.read(userUseCasesProvider);
 
-  Future<void> deleteUser({required String userId}) async {
+  Future<void> deleteUser({required int userId}) async {
     state = const UserListState.loading();
 
     final result = await _userUseCases.deleteUser(userId);

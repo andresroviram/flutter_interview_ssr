@@ -7,15 +7,15 @@ class AddressUseCases {
 
   const AddressUseCases(this.repository);
 
-  Future<Result<List<AddressEntity>>> getAddressesByUserId(String userId) {
+  Future<Result<List<AddressEntity>>> getAddressesByUserId(int userId) {
     return repository.getAddressesByUserId(userId);
   }
 
-  Future<Result<AddressEntity>> getAddressById(String id) {
+  Future<Result<AddressEntity>> getAddressById(int id) {
     return repository.getAddressById(id);
   }
 
-  Future<Result<AddressEntity?>> getPrimaryAddress(String userId) {
+  Future<Result<AddressEntity?>> getPrimaryAddress(int userId) {
     return repository.getPrimaryAddress(userId);
   }
 
@@ -56,7 +56,7 @@ class AddressUseCases {
     return repository.updateAddress(address);
   }
 
-  Future<Result<void>> deleteAddress(String addressId) async {
+  Future<Result<void>> deleteAddress(int addressId) async {
     final addressResult = await repository.getAddressById(addressId);
 
     return addressResult.fold(
@@ -93,7 +93,7 @@ class AddressUseCases {
     );
   }
 
-  Future<Result<void>> setPrimaryAddress(String userId, String addressId) {
+  Future<Result<void>> setPrimaryAddress(int userId, int addressId) {
     return repository.setPrimaryAddress(userId, addressId);
   }
 

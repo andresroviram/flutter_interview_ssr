@@ -8,7 +8,7 @@ void main() {
     final testBirthDate = DateTime(1990, 5, 20);
 
     final testJson = {
-      'id': 'user-123',
+      'id': 123,
       'first_name': 'John',
       'last_name': 'Doe',
       'birth_date': testBirthDate.toIso8601String(),
@@ -19,7 +19,7 @@ void main() {
     };
 
     final testModel = UserModel(
-      id: 'user-123',
+      id: 123,
       firstName: 'John',
       lastName: 'Doe',
       birthDate: testBirthDate,
@@ -33,7 +33,7 @@ void main() {
       test('should create UserModel from valid JSON', () {
         final result = UserModel.fromJson(testJson);
 
-        expect(result.id, 'user-123');
+        expect(result.id, 123);
         expect(result.firstName, 'John');
         expect(result.lastName, 'Doe');
         expect(result.email, 'john.doe@example.com');
@@ -60,7 +60,7 @@ void main() {
       test('should convert UserModel to JSON', () {
         final result = testModel.toJson();
 
-        expect(result['id'], 'user-123');
+        expect(result['id'], 123);
         expect(result['first_name'], 'John');
         expect(result['last_name'], 'Doe');
         expect(result['email'], 'john.doe@example.com');
@@ -73,7 +73,7 @@ void main() {
       test('should include updatedAt in JSON when present', () {
         final updatedDateTime = DateTime(2024, 2, 10);
         final modelWithUpdate = UserModel(
-          id: 'user-123',
+          id: 123,
           firstName: 'John',
           lastName: 'Doe',
           birthDate: testBirthDate,
@@ -123,7 +123,7 @@ void main() {
       test('should preserve all fields during conversion', () {
         final updatedDateTime = DateTime(2024, 2, 10);
         final modelWithUpdate = UserModel(
-          id: 'user-123',
+          id: 123,
           firstName: 'John',
           lastName: 'Doe',
           birthDate: testBirthDate,
@@ -142,7 +142,7 @@ void main() {
     group('fromEntity', () {
       test('should convert UserEntity to UserModel', () {
         final entity = UserEntity(
-          id: 'user-456',
+          id: 456,
           firstName: 'Jane',
           lastName: 'Smith',
           birthDate: testBirthDate,

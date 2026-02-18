@@ -23,7 +23,7 @@ class UserRepositoryImpl implements IUserRepository {
   }
 
   @override
-  Future<Result<UserEntity>> getUserById(String id) async {
+  Future<Result<UserEntity>> getUserById(int id) async {
     try {
       final user = await dataSource.getUserById(id);
       if (user == null) {
@@ -64,7 +64,7 @@ class UserRepositoryImpl implements IUserRepository {
   }
 
   @override
-  Future<Result<void>> deleteUser(String id) async {
+  Future<Result<void>> deleteUser(int id) async {
     try {
       await dataSource.deleteUser(id);
       return const Success(null);

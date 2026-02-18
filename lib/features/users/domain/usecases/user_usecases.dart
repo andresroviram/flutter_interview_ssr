@@ -12,7 +12,7 @@ class UserUseCases {
     return repository.getAllUsers();
   }
 
-  Future<Result<UserEntity>> getUserById(String id) {
+  Future<Result<UserEntity>> getUserById(int id) {
     return repository.getUserById(id);
   }
 
@@ -36,7 +36,7 @@ class UserUseCases {
     return repository.updateUser(user);
   }
 
-  Future<Result<void>> deleteUser(String id) {
+  Future<Result<void>> deleteUser(int id) {
     return repository.deleteUser(id);
   }
 

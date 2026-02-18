@@ -5,7 +5,7 @@ import 'package:flutter_interview_ssr/features/users/presentation/widgets/user_c
 
 void main() {
   final testUser = UserEntity(
-    id: 'user-123',
+    id: 123,
     firstName: 'John',
     lastName: 'Doe',
     birthDate: DateTime(1990, 5, 20),
