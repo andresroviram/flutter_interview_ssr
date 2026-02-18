@@ -5,8 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('PaginatedListView', () {
-    testWidgets('renders items using itemBuilder',
-        (WidgetTester tester) async {
+    testWidgets('renders items using itemBuilder', (WidgetTester tester) async {
       final items = List.generate(5, (index) => 'Item $index');
 
       await tester.pumpWidget(

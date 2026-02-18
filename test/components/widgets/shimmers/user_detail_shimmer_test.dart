@@ -30,9 +30,11 @@ void main() {
       );
       await tester.pump();
 
-      final shimmerWidgets = tester.widgetList<ShimmerLoading>(
-        find.byType(ShimmerLoading),
-      ).toList();
+      final shimmerWidgets = tester
+          .widgetList<ShimmerLoading>(
+            find.byType(ShimmerLoading),
+          )
+          .toList();
 
       // First shimmer should be large circular avatar
       expect(shimmerWidgets.first.width, equals(120));

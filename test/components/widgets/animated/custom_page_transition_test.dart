@@ -4,7 +4,8 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   group('CustomPageTransition', () {
-    testWidgets('creates a route with the child widget', (WidgetTester tester) async {
+    testWidgets('creates a route with the child widget',
+        (WidgetTester tester) async {
       const testPage = CustomPageTransition(
         child: Text('Test Page'),
       );
@@ -65,7 +66,7 @@ void main() {
 
     testWidgets('respects custom duration', (WidgetTester tester) async {
       const customDuration = Duration(milliseconds: 500);
-      
+
       const testPage = CustomPageTransition(
         duration: customDuration,
         child: Scaffold(body: Text('Test Page')),
@@ -85,9 +86,10 @@ void main() {
       expect(find.text('Test Page'), findsOneWidget);
     });
 
-    testWidgets('respects custom reverse duration', (WidgetTester tester) async {
+    testWidgets('respects custom reverse duration',
+        (WidgetTester tester) async {
       const customReverseDuration = Duration(milliseconds: 100);
-      
+
       const testPage = CustomPageTransition(
         reverseDuration: customReverseDuration,
         child: Scaffold(body: Text('Test Page')),
@@ -107,7 +109,8 @@ void main() {
       expect(find.text('Test Page'), findsOneWidget);
     });
 
-    testWidgets('handles navigation between pages', (WidgetTester tester) async {
+    testWidgets('handles navigation between pages',
+        (WidgetTester tester) async {
       final pages = <Page>[
         const MaterialPage(
           child: Scaffold(body: Text('Page 1')),
@@ -165,7 +168,8 @@ void main() {
       expect(find.text('Page 2'), findsOneWidget);
     });
 
-    testWidgets('can be used with MaterialApp onGenerateRoute', (WidgetTester tester) async {
+    testWidgets('can be used with MaterialApp onGenerateRoute',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           onGenerateRoute: (settings) {
@@ -185,13 +189,14 @@ void main() {
       // Navigate to test route
       final navigator = tester.state<NavigatorState>(find.byType(Navigator));
       navigator.pushNamed('/test');
-      
+
       await tester.pumpAndSettle();
 
       expect(find.text('Test Route'), findsOneWidget);
     });
 
-    testWidgets('createRoute returns PageRouteBuilder', (WidgetTester tester) async {
+    testWidgets('createRoute returns PageRouteBuilder',
+        (WidgetTester tester) async {
       const transition = CustomPageTransition(
         child: Text('Test'),
       );

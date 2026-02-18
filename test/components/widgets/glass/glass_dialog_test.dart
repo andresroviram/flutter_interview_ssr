@@ -36,8 +36,7 @@ void main() {
       expect(find.byType(Dialog), findsOneWidget);
     });
 
-    testWidgets('uses GlassContainer internally',
-        (WidgetTester tester) async {
+    testWidgets('uses GlassContainer internally', (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -159,8 +158,7 @@ void main() {
       expect(dialog.elevation, equals(0));
     });
 
-    testWidgets('adapts gradient to light theme',
-        (WidgetTester tester) async {
+    testWidgets('adapts gradient to light theme', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.light(),

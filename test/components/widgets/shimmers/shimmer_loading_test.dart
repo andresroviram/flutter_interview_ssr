@@ -5,7 +5,8 @@ import 'package:shimmer/shimmer.dart';
 
 void main() {
   group('ShimmerLoading', () {
-    testWidgets('renders with required dimensions', (WidgetTester tester) async {
+    testWidgets('renders with required dimensions',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(

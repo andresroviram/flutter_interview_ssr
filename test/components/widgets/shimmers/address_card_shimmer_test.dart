@@ -29,9 +29,11 @@ void main() {
       );
       await tester.pump();
 
-      final shimmerWidgets = tester.widgetList<ShimmerLoading>(
-        find.byType(ShimmerLoading),
-      ).toList();
+      final shimmerWidgets = tester
+          .widgetList<ShimmerLoading>(
+            find.byType(ShimmerLoading),
+          )
+          .toList();
 
       // First shimmer should be circular icon
       expect(shimmerWidgets.first.width, equals(40));
@@ -111,9 +113,11 @@ void main() {
       );
       await tester.pump();
 
-      final shimmerWidgets = tester.widgetList<ShimmerLoading>(
-        find.byType(ShimmerLoading),
-      ).toList();
+      final shimmerWidgets = tester
+          .widgetList<ShimmerLoading>(
+            find.byType(ShimmerLoading),
+          )
+          .toList();
 
       expect(shimmerWidgets.length, equals(5));
       // Icon has fixed width

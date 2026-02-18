@@ -71,7 +71,8 @@ void main() {
         ),
       );
 
-      final gesture = await tester.startGesture(tester.getCenter(find.text('Test')));
+      final gesture =
+          await tester.startGesture(tester.getCenter(find.text('Test')));
       await tester.pump(const Duration(milliseconds: 50));
 
       // Move finger away to cancel

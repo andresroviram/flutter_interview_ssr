@@ -90,8 +90,7 @@ void main() {
       expect(find.byType(FilterChip), findsWidgets);
     });
 
-    testWidgets('displays ascending order switch',
-        (WidgetTester tester) async {
+    testWidgets('displays ascending order switch', (WidgetTester tester) async {
       const initialFilters = UserFiltersState();
 
       await tester.pumpWidget(

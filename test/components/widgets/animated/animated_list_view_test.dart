@@ -122,7 +122,7 @@ void main() {
       );
 
       await tester.pumpAndSettle();
-      
+
       expect(find.text('Item 0'), findsOneWidget);
       expect(find.text('Item 1'), findsOneWidget);
     });
@@ -166,7 +166,8 @@ void main() {
       expect(find.byType(ListView), findsOneWidget);
     });
 
-    testWidgets('itemBuilder receives correct index', (WidgetTester tester) async {
+    testWidgets('itemBuilder receives correct index',
+        (WidgetTester tester) async {
       final builtIndices = <int>[];
 
       await tester.pumpWidget(

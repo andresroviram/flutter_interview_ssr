@@ -54,8 +54,7 @@ void main() {
       expect(find.byType(ClipRRect), findsOneWidget);
     });
 
-    testWidgets('applies custom width and height',
-        (WidgetTester tester) async {
+    testWidgets('applies custom width and height', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -69,8 +68,7 @@ void main() {
       );
       await tester.pump();
 
-      final container =
-          tester.widget<Container>(find.byType(Container).first);
+      final container = tester.widget<Container>(find.byType(Container).first);
       expect(container.constraints?.maxWidth, equals(200));
       expect(container.constraints?.maxHeight, equals(100));
     });
@@ -110,8 +108,7 @@ void main() {
       );
       await tester.pump();
 
-      final container =
-          tester.widget<Container>(find.byType(Container).first);
+      final container = tester.widget<Container>(find.byType(Container).first);
       expect(container.margin, equals(customMargin));
     });
 

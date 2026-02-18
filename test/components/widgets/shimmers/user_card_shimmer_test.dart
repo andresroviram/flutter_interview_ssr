@@ -19,7 +19,8 @@ void main() {
       expect(find.byType(Card), findsOneWidget);
     });
 
-    testWidgets('contains circular avatar shimmer', (WidgetTester tester) async {
+    testWidgets('contains circular avatar shimmer',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         const MaterialApp(
           home: Scaffold(
@@ -98,7 +99,8 @@ void main() {
       expect(card.margin, equals(const EdgeInsets.only(bottom: 12)));
     });
 
-    testWidgets('text lines have different widths', (WidgetTester tester) async {
+    testWidgets('text lines have different widths',
+        (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           home: Scaffold(
@@ -111,9 +113,11 @@ void main() {
       );
       await tester.pump();
 
-      final shimmerWidgets = tester.widgetList<ShimmerLoading>(
-        find.byType(ShimmerLoading),
-      ).toList();
+      final shimmerWidgets = tester
+          .widgetList<ShimmerLoading>(
+            find.byType(ShimmerLoading),
+          )
+          .toList();
 
       // Skip first (avatar), check text lines
       expect(shimmerWidgets.length, equals(4));

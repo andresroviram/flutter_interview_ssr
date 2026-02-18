@@ -68,8 +68,7 @@ void main() {
       expect(find.byType(Container), findsWidgets);
     });
 
-    testWidgets('adapts gradient to light theme',
-        (WidgetTester tester) async {
+    testWidgets('adapts gradient to light theme', (WidgetTester tester) async {
       await tester.pumpWidget(
         MaterialApp(
           theme: ThemeData.light(),
