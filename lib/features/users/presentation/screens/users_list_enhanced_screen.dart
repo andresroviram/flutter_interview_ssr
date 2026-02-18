@@ -72,6 +72,14 @@ class _UsersListEnhancedScreenState
     });
   }
 
+  void _resetUsersList() {
+    ref.invalidate(searchUsersProvider);
+    setState(() {
+      _currentPage = 1;
+      _displayedUsers = [];
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final usersAsync = ref.watch(filteredAndSortedUsersProvider);
@@ -118,13 +126,7 @@ class _UsersListEnhancedScreenState
           ),
           IconButton(
             icon: const Icon(Icons.refresh),
-            onPressed: () {
-              unawaited(ref.refresh(searchUsersProvider.future));
-              setState(() {
-                _currentPage = 1;
-                _displayedUsers = [];
-              });
-            },
+            onPressed: _resetUsersList,
           ),
         ],
       ),
@@ -211,11 +213,7 @@ class _UsersListEnhancedScreenState
 
                 return RefreshIndicator(
                   onRefresh: () async {
-                    unawaited(ref.refresh(searchUsersProvider.future));
-                    setState(() {
-                      _currentPage = 1;
-                      _displayedUsers = [];
-                    });
+                    _resetUsersList();
                   },
                   child: PaginatedListView<UserEntity>(
                     items: _displayedUsers.isEmpty
@@ -237,19 +235,11 @@ class _UsersListEnhancedScreenState
                               '/user/${user.id}/detail',
                               extra: user,
                             );
-                            unawaited(ref.refresh(searchUsersProvider.future));
-                            setState(() {
-                              _currentPage = 1;
-                              _displayedUsers = [];
-                            });
+                            _resetUsersList();
                           },
                           onEdit: () async {
                             await context.push('/user/edit', extra: user);
-                            unawaited(ref.refresh(searchUsersProvider.future));
-                            setState(() {
-                              _currentPage = 1;
-                              _displayedUsers = [];
-                            });
+                            _resetUsersList();
                           },
                           onViewAddresses: () {
                             context.push(
@@ -288,13 +278,7 @@ class _UsersListEnhancedScreenState
                     Text('Error: $error'),
                     const SizedBox(height: 16),
                     ElevatedButton(
-                      onPressed: () {
-                        unawaited(ref.refresh(searchUsersProvider.future));
-                        setState(() {
-                          _currentPage = 1;
-                          _displayedUsers = [];
-                        });
-                      },
+                      onPressed: _resetUsersList,
                       child: const Text('Reintentar'),
                     ),
                   ],
@@ -307,11 +291,7 @@ class _UsersListEnhancedScreenState
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () async {
           await context.push('/user/new');
-          unawaited(ref.refresh(searchUsersProvider.future));
-          setState(() {
-            _currentPage = 1;
-            _displayedUsers = [];
-          });
+          _resetUsersList();
         },
         icon: const Icon(Icons.add),
         label: const Text('Nuevo Usuario'),
