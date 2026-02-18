@@ -295,20 +295,16 @@ El proyecto mantiene un umbral mínimo de cobertura del **60%** en el CI/CD.
 ### Estado Actual
 
 ```
-Total:               61.87%
-├─ features/         93.81% ✅
-├─ core/             48.01% ⚠️
+Total:               79.26% ✅
+├─ features/         93.34% ✅
+├─ core/             82.92% ✅
 └─ components/       11.43% ❌
 ```
 
-### Archivos Core sin Tests
+### Prioridades
 
-Ver [COVERAGE_ANALYSIS.md](COVERAGE_ANALYSIS.md) para análisis detallado.
-
-**Alta prioridad:**
-- `core/database/*` - Tests de base de datos
-- `core/router/app_router.dart` - Tests de rutas
-- `core/utils/input_formatters.dart` - Tests de formatters
+**🔴 Crítico (11.43%):**
+- `components/widgets/*` - Tests de componentes UI reutilizables
 
 ### Scripts de Cobertura
 
