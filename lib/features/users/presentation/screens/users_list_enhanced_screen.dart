@@ -96,9 +96,7 @@ class _UsersListEnhancedScreenState
     });
 
     ref.listen<UserListState>(userListNotifierProvider, (previous, next) {
-      next.when(
-        initial: () {},
-        loading: () {},
+      next.whenOrNull(
         success: () {
           ScaffoldMessenger.of(
             context,

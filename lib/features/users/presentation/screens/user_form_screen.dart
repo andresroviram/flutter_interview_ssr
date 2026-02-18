@@ -74,9 +74,7 @@ class _UserFormScreenState extends ConsumerState<UserFormScreen> {
     final isSaving = formState is UserFormSaving;
 
     ref.listen<UserFormState>(userFormNotifierProvider, (previous, next) {
-      next.when(
-        initial: () {},
-        saving: () {},
+      next.whenOrNull(
         success: (user) {
           context.pop();
           ScaffoldMessenger.of(context).showSnackBar(

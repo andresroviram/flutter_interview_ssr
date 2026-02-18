@@ -29,9 +29,7 @@ class _UsersListScreenState extends ConsumerState<UsersListScreen> {
     final usersAsync = ref.watch(searchUsersProvider);
 
     ref.listen<UserListState>(userListNotifierProvider, (previous, next) {
-      next.when(
-        initial: () {},
-        loading: () {},
+      next.whenOrNull(
         success: () {
           ScaffoldMessenger.of(
             context,
