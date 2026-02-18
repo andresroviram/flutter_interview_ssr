@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_interview_ssr/components/widgets/glass/glass_app_bar.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'dart:ui';
 
 void main() {
   group('GlassAppBar', () {

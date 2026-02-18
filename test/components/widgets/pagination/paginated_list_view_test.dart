@@ -348,7 +348,6 @@ void main() {
 
     testWidgets('respects loadMoreThreshold parameter',
         (WidgetTester tester) async {
-      bool loadMoreCalled = false;
       final items = List.generate(30, (index) => 'Item $index');
 
       await tester.pumpWidget(
@@ -363,7 +362,6 @@ void main() {
                   child: Text(item),
                 ),
                 onLoadMore: () async {
-                  loadMoreCalled = true;
                 },
                 loadMoreThreshold: 500, // Large threshold
               ),

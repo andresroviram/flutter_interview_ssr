@@ -14,7 +14,7 @@ void main() {
         MaterialApp(
           home: Navigator(
             pages: const [testPage],
-            onPopPage: (route, result) => route.didPop(result),
+            onDidRemovePage: (route) {},
           ),
         ),
       );
@@ -31,7 +31,7 @@ void main() {
                 child: Scaffold(body: Text('Page 1')),
               ),
             ],
-            onPopPage: (route, result) => route.didPop(result),
+            onDidRemovePage: (route) {},
           ),
         ),
       );
@@ -52,7 +52,7 @@ void main() {
                 child: Scaffold(body: Text('Page 1')),
               ),
             ],
-            onPopPage: (route, result) => route.didPop(result),
+            onDidRemovePage: (route) {},
           ),
         ),
       );
@@ -76,7 +76,7 @@ void main() {
         MaterialApp(
           home: Navigator(
             pages: const [testPage],
-            onPopPage: (route, result) => route.didPop(result),
+            onDidRemovePage: (route) {},
           ),
         ),
       );
@@ -99,7 +99,7 @@ void main() {
         MaterialApp(
           home: Navigator(
             pages: const [testPage],
-            onPopPage: (route, result) => route.didPop(result),
+            onDidRemovePage: (route) {},
           ),
         ),
       );
@@ -123,11 +123,10 @@ void main() {
             builder: (context, setState) {
               return Navigator(
                 pages: pages,
-                onPopPage: (route, result) {
+                onDidRemovePage: (route) {
                   setState(() {
                     pages.removeLast();
                   });
-                  return route.didPop(result);
                 },
               );
             },
@@ -151,11 +150,10 @@ void main() {
                     child: Scaffold(body: Text('Page 2')),
                   ),
                 ],
-                onPopPage: (route, result) {
+                onDidRemovePage: (route) {
                   setState(() {
                     pages.removeLast();
                   });
-                  return route.didPop(result);
                 },
               );
             },
@@ -222,7 +220,7 @@ void main() {
                 child: Scaffold(body: Text('Page 1')),
               ),
             ],
-            onPopPage: (route, result) => route.didPop(result),
+            onDidRemovePage: (route) {},
           ),
         ),
       );
