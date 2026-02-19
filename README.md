@@ -288,23 +288,24 @@ flutter analyze
 
 ## � Cobertura de Tests
 
-[![codecov](https://codecov.io/gh/[usuario]/flutter_interview_ssr/branch/main/graph/badge.svg)](https://codecov.io/gh/[usuario]/flutter_interview_ssr)
+[![codecov](https://codecov.io/gh/andresroviram/flutter_interview_ssr/branch/main/graph/badge.svg)](https://codecov.io/gh/andresroviram/flutter_interview_ssr)
 
 El proyecto mantiene un umbral mínimo de cobertura del **60%** en el CI/CD.
 
 ### Estado Actual
 
 ```
-Total:               79.26% ✅
-├─ features/         93.34% ✅
-├─ core/             82.92% ✅
-└─ components/       11.43% ❌
+Total:                      90.56% ✅ (1285/1419 líneas)
+├─ features/                91.79% ✅ (581/633 líneas)
+├─ components/widgets/      92.50% ✅ (469/507 líneas)
+└─ core/                    84.23% ✅ (235/279 líneas)
 ```
 
-### Prioridades
+### Resumen de Tests
 
-**🔴 Crítico (11.43%):**
-- `components/widgets/*` - Tests de componentes UI reutilizables
+- **702 tests** ejecutándose exitosamente
+- **237 tests de widgets** - Componentes reutilizables totalmente cubiertos
+- **Cobertura superior al 90%** - Supera ampliamente el umbral del 60%
 
 ### Scripts de Cobertura
 
