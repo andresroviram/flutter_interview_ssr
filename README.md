@@ -364,6 +364,7 @@ Este proyecto incluye soporte completo para Flutter Web utilizando Drift con SQL
 # Configurar assets web (primera vez)
 .\scripts\setup_web.ps1  # Windows
 # o
+chmod +x scripts/setup_web.sh
 ./scripts/setup_web.sh   # Linux/Mac
 
 # Ejecutar en Chrome
