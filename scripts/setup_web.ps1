@@ -1,6 +1,6 @@
 # Script para configurar archivos web necesarios para Drift
 
-$SQLITE3_VERSION = "2.4.6"
+$SQLITE3_VERSION = "3.5.1"
 
 Write-Host "Configurando Drift Web Support..." -ForegroundColor Cyan
 Write-Host ""
