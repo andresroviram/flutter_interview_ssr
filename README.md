@@ -362,9 +362,9 @@ Este proyecto incluye soporte completo para Flutter Web utilizando Drift con SQL
 
 ```bash
 # Configurar assets web (primera vez)
-.\setup_web.ps1  # Windows
+.\scripts\setup_web.ps1  # Windows
 # o
-./setup_web.sh   # Linux/Mac
+./scripts/setup_web.sh   # Linux/Mac
 
 # Ejecutar en Chrome
 flutter run -d chrome --web-port=8080
